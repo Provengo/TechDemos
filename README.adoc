@@ -23,15 +23,15 @@ IMPORTANT: Visit https://provengo.tech[Provengo] to know what this is all about.
 | Basic BP example
 | bp-base, bp
 
-| vps-customer-conversion
+| link:vps-customer-conversion[]
 | User onboarding business flow. Bad Infinite loops. Product-facing markers.
 | stateory, hot/liveness, Ctrl.markers
 
-| insurance
+| link:insurance[]
 | Online claim process in an insurance company
 | Combi, Stateory, script generation, code generation, ensembles
 
-| selenium-basics
+| link:selenium-basics[]
 | Searching terms in https://ecosia.org[Ecosia search engine].
 | bp-base, selenium-based direct actuations, script generation, test books
 
