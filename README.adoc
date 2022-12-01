@@ -13,7 +13,9 @@ endif::[]
 
 Some https://provengo.tech[Provengo] project to demo different aspects of our technology.
 
-IMPORTANT: Visit https://provengo.tech[Provengo] to know what this is all about.
+NOTE: Documentation for the Provengo tool is at https://docs.provengo.tech[docs.provengo.tech].
+
+TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
 
 [1,2,1]
 |===
@@ -31,7 +33,7 @@ IMPORTANT: Visit https://provengo.tech[Provengo] to know what this is all about.
 | Online claim process in an insurance company
 | Combi, Stateory, script generation, code generation, ensembles
 
-| link:selenium-basics[]
+| link:web-search[]
 | Searching terms in https://ecosia.org[Ecosia search engine].
 | bp-base, selenium-based direct actuations, script generation, test books
 

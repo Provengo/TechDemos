@@ -1,0 +1,2 @@
+version: 1
+selenium_implicit_wait: 6000
