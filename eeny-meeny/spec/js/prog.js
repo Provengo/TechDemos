@@ -15,12 +15,12 @@ bthread("akka-bakka", function(){
     request(bp.Event("Ranka"));
 });
 
-// bthread("English first", function(){
-//     sync({
-//         waitFor: bp.Event("Miny"),
-//         block: bp.Event("Banka")
-//     });
-// });
+bthread("English first", function(){
+    sync({
+        waitFor: bp.Event("Miny"),
+        block: bp.Event("Banka")
+    });
+});
 
 // bthread("EMMM after bakka", function(){
 //   sync({
@@ -29,20 +29,20 @@ bthread("akka-bakka", function(){
 //   });
 // });
 
-// bthread("pop after bakka", function ()  {
-//     waitFor(bp.Event("Bakka"));
-//     request(bp.Event("Pop!"));
-// });
+bthread("pop after bakka", function ()  {
+    waitFor(bp.Event("Bakka"));
+    request(bp.Event("Pop!"));
+});
 
 // Constraints.after(bp.Event("Banka"))
 //            .require(bp.Event("Moe"))
 //            .eventually();
 
-// bthread("splitter!", function(){
-//     const history = [];
-//     const allEvents = bp.EventSet("*",e=>true);
-//     while ( true ) {
-//         let e = waitFor(allEvents);
-//         history.push(e);
-//     }
-// });
+bthread("splitter!", function(){
+    const history = [];
+    const allEvents = bp.EventSet("*",e=>true);
+    while ( true ) {
+        let e = waitFor(allEvents);
+        history.push(e);
+    }
+});

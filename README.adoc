@@ -8,8 +8,16 @@ IMPORTANT: This repo should be consistent/runnable with `master` at all times, a
 |===
 | Project | Description | Demonstrated Technologies
 
-| aa
-| aaaa
-| aaa a aa aaa a a
+| eeny-meeny
+| Basic BP example
+| bp-base, bp
+
+| vps-customer-conversion
+| User onboarding business flow. Bad Infinite loops. Product-facing markers.
+| stateory, hot/liveness, Ctrl.markers
+
+| insurance
+| Online claim process in an insurance company
+| Combi, Stateory, script generation, code generation, ensembles
 
 |===

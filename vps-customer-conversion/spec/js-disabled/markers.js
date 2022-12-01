@@ -4,10 +4,10 @@ flow.whileAt("beginTrial", function(){
     Ctrl.doMark("We Pay");
 });
 
-flow.whileAt("join", function(){
+flow.at("join").run(function(){
     Ctrl.doMark("Customer Pays");
 });
 
-flow.whileAt("leave", function(){
-    Ctrl.doMark("No One Pays");
-});
+// flow.at("leave").run(function(){
+//     Ctrl.doMark("No One Pays");
+// });

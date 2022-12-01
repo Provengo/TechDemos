@@ -36,3 +36,11 @@ flow.connect("endTrial").to("30-more").to("beginTrial");
 //     let repeatCount = (visitor=="Assaf" ? 3 : 2);
 //     Constraints.limit( flow.enters("30-more"), repeatCount ).forever();
 // });
+
+bthread("stopper", function(){
+    waitFor(flow.enters("join"));
+    sync({
+        request: flow.doneEvent,
+        block: flow.anyStateChange
+    });
+});
