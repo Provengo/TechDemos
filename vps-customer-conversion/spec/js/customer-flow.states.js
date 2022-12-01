@@ -29,18 +29,7 @@ Constraints.after(flow.enters("beginTrial"))
 // More trial time
 flow.connect("endTrial").to("30-more").to("beginTrial");
 
-// Constraints.limit( flow.enters("30-more"), 3 ).forever();
+Constraints.limit( flow.enters("30-more"), 3 ).forever();
 
-// flow.whileAt("visit", function(){
-//     let visitor = choose("Assaf","Lior");
-//     let repeatCount = (visitor=="Assaf" ? 3 : 2);
-//     Constraints.limit( flow.enters("30-more"), repeatCount ).forever();
-// });
-
-bthread("stopper", function(){
-    waitFor(flow.enters("join"));
-    sync({
-        request: flow.doneEvent,
-        block: flow.anyStateChange
-    });
-});
+// limit enter to support state. Requires so that we don't get infinite tests.
+Constraints.limit( flow.enters("support"), 2 ).forever();
