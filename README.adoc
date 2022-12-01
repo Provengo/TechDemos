@@ -19,7 +19,7 @@ IMPORTANT: Visit https://provengo.tech[Provengo] to know what this is all about.
 |===
 | Project | Description | Demonstrated Technologies
 
-| xref:/eeny-meeny/[eeny-meeny]
+| link:/eeny-meeny/[eeny-meeny]
 | Basic BP example
 | bp-base, bp
 
