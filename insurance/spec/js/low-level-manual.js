@@ -24,10 +24,10 @@ on(ABORT_EVENT, function(){
 
 highLevelFlow.whileAt("choosePlaintiffStage", function(){
     if ( maybeAbort() ) return;
-    request([
+    requestOne(
         t1.Action("Choose existing claim"),
         t1.Action("Choose new claim")
-    ]);
+    );
     t1.validate("all buttons work");
 });
 
@@ -49,7 +49,7 @@ highLevelFlow.whileAt("userApprovalStage", function(){
 highLevelFlow.whileAt("paymentDetailsStage", function(){
     if ( maybeAbort() ) return;
     request([
-        t1.Action("Pay: BIT"),
+        t1.Action("Pay: Credit Card"),
         t1.Action("Pay: Bank Transfer")
     ]);
 });

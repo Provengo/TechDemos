@@ -10,16 +10,16 @@ function rankByLengthVariance( ensemble ) {
 
 const GOALS = [
     isChild.setToEvent(Combi.YES),
-    hasHierarchyException.setToEvent(Combi.YES),
-    hasHierarchyException.setToEvent(Combi.NO),
+    hasExistingClaims.setToEvent(Combi.YES),
+    hasExistingClaims.setToEvent(Combi.NO),
     ABORT_EVENT,
-    expectedRoute.setToEvent("Green"),
-    expectedRoute.setToEvent("Yellow"),
-    expectedRoute.setToEvent("Red"),
-    highLevelFlow.enters("digitalForm"),
+    expectedResult.setToEvent("Accept"),
+    expectedResult.setToEvent("Manual"),
+    expectedResult.setToEvent("Reject"),
+    highLevelFlow.enters("manualClaimProcess"),
     highLevelFlow.enters("claimSubmittedMessage"),
-    highLevelFlow.enters("updateEmail"),
-    t1.Action("Pay: BIT"),
+    highLevelFlow.enters("updateContactDetails"),
+    t1.Action("Pay: Credit Card"),
     t1.Action("Pay: Bank Transfer")
 ];
 
@@ -42,6 +42,8 @@ function rankByGoals( ensemble ) {
         }
     }
     
+    
+    bp.log.info(unreachedGoals);
     return GOALS.length-unreachedGoals.length;
 }
 

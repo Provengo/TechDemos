@@ -1,5 +1,4 @@
 const py = Manual.defineUser("python");
-const ABORT_EVENT = bp.Event("Process Aborted");
 
 /**
  * may or may not leave the process.
@@ -10,7 +9,7 @@ function maybeAbort() {
         py.act("Pre-Exit Screen", "Click another tab on the screen. A dialog box should appear.");
         if ( choose("Leave", "BackToScreen")=="Leave" ) {
             py.act("Exit Screen","Approve leave");
-            Constraints.block(highLevelFlow.STATE_CHANGES).forever();
+            Constraints.block(highLevelFlow.anyStateChange).forever();
             request(ABORT_EVENT);
             return true;
         } else {
@@ -26,19 +25,19 @@ on(ABORT_EVENT, function(){
 
 highLevelFlow.whileAt("choosePlaintiffStage", function(){
     if ( maybeAbort() ) return;
-    chooseOne([
+    requestOne(
         py.Action("Choose existing claim"),
         py.Action("Choose new claim")
-    ]);
+    );
     py.validate("all buttons work");
 });
 
 highLevelFlow.whileAt("addReceiptStage", function(){
     if ( maybeAbort() ) return;
-    chooseOne([
+    requestOne(
         py.Action("Add receipt"),
         py.Action("Choose existing receipt")
-    ]);
+    );
     py.act("Add treatment on receipt");
     py.validate("Check that only .jpg, .png file types work");
 });
@@ -50,8 +49,8 @@ highLevelFlow.whileAt("userApprovalStage", function(){
 
 highLevelFlow.whileAt("paymentDetailsStage", function(){
     if ( maybeAbort() ) return;
-    chooseOne([
-        py.Action("Pay: BIT"),
+    requestOne(
+        py.Action("Pay: Credit Card"),
         py.Action("Pay: Bank Transfer")
-    ]);
+    );
 });

@@ -14,22 +14,22 @@ highLevelFlow.connect("login")
     .to("paymentDetailsStage")
     .to("userApprovalStage") 
     .to("claimSettledMessage")
-    .to("validateOnSMART")
-    .to("validateOnGreen")
+    .to("validateOnInternalSystemA")
+    .to("validateOnInternalSystemB")
     ;
 
-// RED/YELLOW routes never get to the approval screen, only to a "case submitted" one.
+// Reject/Manual Acceptance routes never get to the approval screen, only to a "case submitted" one.
 highLevelFlow.connect("userApprovalStage")
-    .to("claimSubmittedMessage") // "Yellow"/"Red" paths
-    .to("validateOnSMART") // "Yellow"/"Red" paths
+    .to("claimSubmittedMessage") 
+    .to("validateOnInternalSystemA") 
     ;
 
-// Non-ambulatory cases are routed to the "digital form"
+// Add a route for excluded topics to go to the manual claim process.
 highLevelFlow.connect("chooseTopic")
-    .to("digitalForm")
+    .to("manualClaimProcess")
 ;
 
-// When an email update is required, show email update popup prior to enabling the main screen.
+// When the claimant needs to update their contact details, show an update popup prior to enabling the main screen.
 highLevelFlow.connect("login")
-    .to("updateEmail")
+    .to("updateContactDetails")
     .to("mainScreen");

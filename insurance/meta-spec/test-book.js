@@ -6,9 +6,9 @@ const STATE_TEXTS = {
         title: "Go to the login screen",
         remark: "Enter name, password, and OTP."
     },
-    updateEmail: {
-        title: "Update Email Pop-up",
-        remark: "Update email pop-up should be visible. Enter a new email and close it."
+    updateContactDetails: {
+        title: "Update contact details Pop-up",
+        remark: "Update contact details pop-up should be visible. Enter a new email and phone number, and close it."
     }, 
     mainScreen: {
         title: "Personal Customer Area",
@@ -42,17 +42,21 @@ const STATE_TEXTS = {
         title: "Claim Submitted Messages",
         remark: "The system should show a message that the claim is submitted (but not settled yet!)."
     },
-    validateOnSMART: {
-        title: "Validate on SMART",
-        remark: "On the SMART system, check that the claim was recorded."
+    addReceiptStage:{
+        title:  "Add Receipt",
+        remark: "Add a receipt to the claim, by uploading it to the site."
     },
-    validateOnGreen: {
-        title: "Validate on the Green System",
-        remark: "On the green system, validate that a payment instruction was issued."
+    validateOnInternalSystemA: {
+        title: "Validate on Internal System A",
+        remark: "On Internal System A, check that the claim was recorded."
+    },
+    validateOnInternalSystemB: {
+        title: "Validate on the Internal System B",
+        remark: "On Internal System B, validate that a payment instruction was issued."
     }, 
-    digitalForm: {
-        title: "Digital Claim Form",
-        remark: "The client should be routed to a 'traditional' digital claim form."
+    manualClaimProcess: {
+        title: "Manual Claim Process",
+        remark: "The client should be routed to a 'traditional' claim process."
     }
 
 };
@@ -60,9 +64,11 @@ const STATE_TEXTS = {
 // names of events to ignore
 const MUTED = HashSet();
 MUTED.add("Pre-Leave");
-MUTED.add("Stay");
-MUTED.add("Leave");
+MUTED.add("Choice: Stay");
+MUTED.add("Choice: Leave");
+MUTED.add("Choice: Pre-Leave");
 MUTED.add("BackToScreen");
+MUTED.add("Done");
 
 let count=0;
 let hasAbort=false;
@@ -77,20 +83,24 @@ function documentEvent( event ) {
     if ( d && d.lib == "COMBI" ) return; // Auto-handled by the Testory platform.
 
     if ( d ) {
-        if ( d.lib == "STATES" ) {
+        if ( d.lib == "STATEORY" ) {
             let stateText = STATE_TEXTS[event.name];
             if ( ! stateText ) {
                 stateText = {title: event.name, remark: event.toString() };
             }
             TEST_SCENARIO.addElement( StepElement("Stage", stateText.title, stateText.remark ));
+            count++;
 
-        } else if ( d.lib == "Instruct" ) {
+        } else if ( d.lib == "Manual" ) {
             TEST_SCENARIO.addElement( StepElement("Do", d.text, (d.details?d.details:"") ));
+            count++;
 
         } else {
-            TEST_SCENARIO.addElement( StepElement(event.name, event.toString(), "" ));
+            if ( ! MUTED.contains(event.name) ) {
+                TEST_SCENARIO.addElement( StepElement(event.name, event.toString(), "" ));        
+                count++;
+            }
         }
-        count++;
         
     } else {
         if ( ! MUTED.contains(event.name) ) {
