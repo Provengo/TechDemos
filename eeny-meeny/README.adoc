@@ -1,0 +1,34 @@
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+:caution-caption: :bangbang:
+:important-caption: :exclamation:
+:note-caption: :page_with_curl:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+
+# Eeny-Meeny
+
+This simple example demonstrates the basics of the Behavioral Programming paradigm, using Provengo's tools. Basically, we have two children songs (Eeeny-meeny-miny-moe and its Norwegian equivalent), and we see how they interweave.
+
+## Things to try
+
+IMPORTANT: These assume that you have provengo installed on your system. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[the install page on our documentation site] if not.
+
+Run the code and see the events on the console
+
+[code, bash]
+----
+$ provengo run eeny-meeny
+----
+
+Visualize the specification space
+
+[code, bash]
+----
+$ provengo analyze -f pdf eeny-meeny
+----
+
+Try to un-comment some of the code blocks (or add your own!) and see how the specification space changes accordingly.
