@@ -42,8 +42,6 @@ function rankByGoals( ensemble ) {
         }
     }
     
-    
-    bp.log.info(unreachedGoals);
     return GOALS.length-unreachedGoals.length;
 }
 
