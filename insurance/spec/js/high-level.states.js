@@ -4,7 +4,7 @@ High-level flow between screens
 
 const highLevelFlow = StateMachine("high-level", false);
 
-// Happy flow
+// Happy flow: the customer logs in, goes to the main screen and starts the claim submission process.
 highLevelFlow.connect("login")
     .to("mainScreen")
     .to("claimSettlementTab")
@@ -18,7 +18,7 @@ highLevelFlow.connect("login")
     .to("validateOnInternalSystemB")
     ;
 
-// Reject/Manual Acceptance routes never get to the approval screen, only to a "case submitted" one.
+// Claims that are rejected or go through manual acceptance routes never get to the approval screen, only to a "case submitted" one.
 highLevelFlow.connect("userApprovalStage")
     .to("claimSubmittedMessage") 
     .to("validateOnInternalSystemA") 

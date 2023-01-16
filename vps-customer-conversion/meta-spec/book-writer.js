@@ -10,14 +10,17 @@ function startTrace() {
 
 function documentEvent( event ) {
     const d = event.data;
+    
+    TEST_SCENARIO.addElement( StepElement(event.name, event.toString(), "" ));
+
     if ( d && d.lib == "COMBI" ) return; // Handled at the Java level
-    if ( d.lib == "Instruct" ){
+    if ( d.lib == "Manual" ){
         TEST_SCENARIO.addElement(
             StepElement(event.name,
             `<em>${d.session}:</em> ${d.type}: ${d.text}`, (d.details ? d.details : "")  )
         );
 
-    } else if (d.lib == "STATES") {
+    } else if (StateMachine.allEvents.contains(event)) {
         TEST_SCENARIO.addElement(
             StepElement(event.name,
             `<em>${d.machineName}:</em> moving to <span style="color:#080">${event.name}</span>`, "" )

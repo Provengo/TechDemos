@@ -3,12 +3,11 @@
 
 const rec = Combi("case");
 
-/** The applicant may be part of a collective, or may be an individual, or may have been a part of a collective once. */
+/** The applicant may be a part of a collective, an individual, or previously a part of a collective. */
 const isCollective = rec.field("collective")
                         .isOneOf(["collective","individual","expired"]);
 
-/** Does the claimant need to update their contact details?
- * When YES, the client's first interaction with the site should be the contact details screen. */
+/** A claimant may need to update her contact details. */
 const isContactDetailsUpdateRequired = rec.yesNoField("isContactDetailsUpdateRequired");
 
 /** Topics not covered by the policy */
@@ -17,38 +16,39 @@ const excludedTopics = ["operations","excluded illnesses","excluded medicines"];
 /** Topics that are covered by the policy */
 const coveredTopics = ["treatments","counselling","tests"];
 
-/** Claim topic */
+/** A claim topic is selected covered and non-covered topic lists. */
 const claimTopic = rec.field("claimTopic").isOneOf(coveredTopics.concat(excludedTopics));                    
 
 /** The claim amount. Selected amounts that correspond to thresholds within the company's business logic. */
 const claimAmount = rec.field("claimAmount").isOneOf(["100","1000","2000","2001","10000"]);
 
-/** How many people are insured by the policy */
+/** A policy may cover more than a single person. */
 const policyPersonCount = rec.field("personCount").isOneOf("1","2","4","8");
 
-/** Is the claimant the primary insured person? */
+/** The claimant may or may not be the primary person on the policy. */
 const isPrimary = rec.yesNoField("isPrimary");
 
-/** Does the claim involves the claimant? */
+/** The claimant may or may not submit the claim for herself. */
 const isSelfClaim = rec.yesNoField("isSelfClaim");
 
-/** Is the claimant a child? */
+/** The claimant may or may not be a child. */
 const isChild = rec.yesNoField("isChildPlaintiff");
 
-/** dual coverage */
+/** A claim might be covered by more than a single policy. */
 const hasMultiCoverage = rec.yesNoField("hasMultiCoverage");
 
-/** Validity of policy and tariffs. Note that a policy is composed of tariffs here. */
+/** A policy may or may not be valid */
 const isPolicyValid = rec.yesNoField("isPolicyValid");        
+/** The tariff may or may not be valid */
 const isTariffValid = rec.yesNoField("isTariffValid");
 
-/** Are there any existing claims on the policy? */
+/** A policy may have existing claims filed under it */
 const hasExistingClaims = rec.yesNoField("hasExistingClaims");
 
-/** Does the claimant have debts for the insurance company? */
-const hasDebts = rec.yesNoField("hasDebts");
+/** The claimant might have unpaid company bills */
+const hasDebts = rec.yesNoField("in debts");
 
-/** The expected result of processing the claim. */
+/** The expected result of processing the claim is Accept, Manual, or Reject. */
 const expectedResult = rec.field("expectedResult").isOneOf(["Accept","Manual","Reject"]);
 
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
@@ -59,17 +59,19 @@ const expectedResult = rec.field("expectedResult").isOneOf(["Accept","Manual","R
 isPolicyValid.whenSetTo(Combi.NO)
             .field( isTariffValid ).mustBe( Combi.NO );
 
-/** If the policy covers only one person, that person is the primary insured.  */
+/** 
+ * If the policy covers only one person, that person is the primary insured, and the case must be a self-claim case. */
 policyPersonCount.whenSetTo("1")
                  .field( isPrimary ).mustBe(Combi.YES)
                  .field( isSelfClaim ).mustBe(Combi.YES);
 
-/**
-Non-primary insured can only claim for themselves. */
+/** 
+ * Non-primary insured can only claim for themselves. */
 isPrimary.whenSetTo(Combi.NO)
          .field( isSelfClaim ).mustBe(Combi.YES);
 
-// Excluded topics are routed to previous system
+/**
+ * Excluded topics are routed to previous system  */ 
 bthread("non-amb-stopper", function(){
     var e = waitFor(claimTopic.anySetEvent);
     if ( excludedTopics.indexOf(e.data.value) > -1 ) {
@@ -82,30 +84,33 @@ bthread("non-amb-stopper", function(){
     }
 });
 
+
+
 // //\/\/\/\/\/\/\/ Expected routing
 
-// Cases that require Rejected
+// If the claimant has debts or the tariff is invalid, the claim must be rejected.
 const mustBeRejected = hasDebts.setToEvent(Combi.YES)
                     .or(isTariffValid.setToEvent(Combi.NO));
 
-// Cases that require Manual treatment
+// If the claim amount is above 2000 or there's a multi-coverage, the claim must 
+//  go through manual process.
 const mustBeManual = claimAmount.setToEvent("2001").or(claimAmount.setToEvent("10000"))
                                 .or(hasMultiCoverage.setToEvent(Combi.YES));
 
-// If it can be Rejected, it must be Rejected.
+// If a claim can be Rejected, it must be Rejected.
 Constraints.after(mustBeRejected)
            .block(
                 expectedResult.setToEvent("Accept").or( expectedResult.setToEvent("ManualAcceptance"))
             ).until(rec.doneEvent);
     
-// If it can't be Rejected but can be Manually handled, it must be manually handled
+// If a claim can't be Rejected but can be Manually handled, it must be manually handled
 Constraints.unless( mustBeRejected )
            .after( mustBeManual )
            .block(
                 expectedResult.setToEvent("Accept").or( expectedResult.setToEvent("Reject") )
             ).until(rec.doneEvent);
 
-// Otherwise, Accept
+// Claims that cannot be rejected or manually handled must be accepted.
 Constraints.unless( mustBeRejected )
             .after( expectedResult.startEvent )
             .block( expectedResult.setToEvent("Reject") )

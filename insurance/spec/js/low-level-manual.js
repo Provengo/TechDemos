@@ -1,6 +1,6 @@
 
 /**
- * may or may not leave the process.
+ * may or may not abort the process.
  * @returns true iff leaving, false if staying
  */
 function maybeAbort() {
@@ -18,20 +18,23 @@ function maybeAbort() {
     return false;
 }
 
+// When a user aborts the process, the system should send a follow-up email.
 on(ABORT_EVENT, function(){
-    t1.validate("Check Email","A continuation instruction email should be sent");
+    t1.validate("Check Email","A follow-up instruction email should be sent");
 });
 
-highLevelFlow.whileAt("choosePlaintiffStage", function(){
+// At the choosePlaintiff stage, the user should choose a claim and see that all buttons work.
+highLevelFlow.at("choosePlaintiffStage").run(function(){
     if ( maybeAbort() ) return;
     requestOne(
         t1.Action("Choose existing claim"),
         t1.Action("Choose new claim")
-    );
-    t1.validate("all buttons work");
-});
-
-highLevelFlow.whileAt("addReceiptStage", function(){
+        );
+        t1.validate("all buttons work");
+    });
+    
+// At the addReceipt stage, the user should add receipts or choose existing ones.
+highLevelFlow.at("addReceiptStage").run(function(){
     if ( maybeAbort() ) return;
     request([
         t1.Action("Add receipt"),
@@ -41,12 +44,14 @@ highLevelFlow.whileAt("addReceiptStage", function(){
     t1.validate("Check that only .jpg, .png file types work");
 });
 
-highLevelFlow.whileAt("userApprovalStage", function(){
+// at the userApproval stage, the user must accept the terms to proceed. Also, the user may abort.
+highLevelFlow.at("userApprovalStage").run(function(){
     if ( maybeAbort() ) return;
     t1.validate("Mandatory Accept","User must accept term to proceed, try to proceed without and validate that you can't.");
 });
 
-highLevelFlow.whileAt("paymentDetailsStage", function(){
+// at the paymentDetails stage, the user can choose between a credit card and a bank transfer. Also, the user may abort.
+highLevelFlow.at("paymentDetailsStage").run(function(){
     if ( maybeAbort() ) return;
     request([
         t1.Action("Pay: Credit Card"),

@@ -60,17 +60,3 @@ function rankingFunction(ensemble) {
     var rank = rankByGoals(ensemble);
     return rank;
 }
-
-const m1 = Ctrl.markEvent("We Pay");
-const m2 = Ctrl.markEvent("We Pay");
-
-if ( GOALS[3].contains(m2) ) {
-    bp.log.info("!!!!!!!!!!!! yes");
-} else {
-    bp.log.info("xxxxxxxxxxxxx no");
-}
-if ( GOALS[0].contains(m2) ) {
-    bp.log.info("xxxxxxxxxxxxx no");
-} else {
-    bp.log.info("!!!!!!!!!!!! yes");
-}

@@ -11,7 +11,11 @@ bthread("gen->states", function(){
     highLevelFlow.doStart();
 });
 
-// Enforce contact detail update when needed
+/**
+ * * When a claimant needs to update her contact details, she must visit the contact details screen before 
+ * visiting the main screen.
+ * * When a does not claimant need to update her contact details, she must not visit the contact details screen.
+ */
 bthread("Contact details router", function(){
     var updateContactDetails = waitFor(isContactDetailsUpdateRequired.anySetEvent)
     if ( updateContactDetails.data.value === Combi.YES ) {
@@ -30,27 +34,24 @@ bthread("Contact details router", function(){
     }
 });
 
-// Code below routes non-covered topics to the manual process page, and
-// covered topics to the online claim process.
+// Event set containing all excluded topics.
 const excludedTopicsEventSet = bp.EventSet("excludedTopics", function(e){
     return claimTopic.anySetEvent.contains(e) &&
-            ( excludedTopics.indexOf(e.data.value) > -1 );
+    ( excludedTopics.indexOf(e.data.value) > -1 );
 });
+// Event set containing all covered topics.
 const coveredTopicsEventSet = bp.EventSet("coveredTopics", function(e){
     return claimTopic.anySetEvent.contains(e) &&
-            ( coveredTopics.indexOf(e.data.value) > -1 );
+    ( coveredTopics.indexOf(e.data.value) > -1 );
 });
 
-bthread("excludedTopicsRoutes", function(){
-    interrupt(claimTopic.doneEvent, function(){
-        waitFor(excludedTopicsEventSet);
-        Constraints.block(highLevelFlow.enters("choosePlaintiffStage")).forever();
-    });
-});
-bthread("coveredTopicsRouter", function(){
-    interrupt(claimTopic.doneEvent, function(){
-        waitFor(coveredTopicsEventSet);
-        Constraints.block(highLevelFlow.enters("manualClaimProcess")).forever();
-    });
-});
+// After an excluded topic was selected, don't allow the user to get to the "choosePlaintiff" stage.
+Constraints.unless(claimTopic.doneEvent)
+            .after(excludedTopicsEventSet)
+            .block(highLevelFlow.enters("choosePlaintiffStage")).forever();
+
+// After a covered topic was selected, don't allow the user to get to the "manualClaimProcess" stage.
+Constraints.unless(claimTopic.doneEvent)
+            .after(coveredTopicsEventSet)
+            .block(highLevelFlow.enters("manualClaimProcess")).forever();
 
