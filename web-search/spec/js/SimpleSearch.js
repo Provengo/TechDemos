@@ -39,8 +39,8 @@ bthread("basic search", function(){
     // Assert that results were found
     seleniumSession.assertText( COMPONENTS.resultsSection,
         searchTerm,
-        TextAssertions.modifiers.IgnoreCase, 
-        TextAssertions.modifiers.Contains
+        [TextAssertions.modifiers.IgnoreCase, 
+        TextAssertions.modifiers.Contains]
     );
     
     // Intentionally fail the test 1 out of 4 runs.
