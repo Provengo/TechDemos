@@ -37,4 +37,8 @@ TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
 | Searching terms in https://ecosia.org[Ecosia search engine].
 | bp-base, selenium-based direct actuations, script generation, test books
 
+| link:dummy-bank-storyline[]
+| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank].
+| `Storylines`, selenium-based  `Ctrl.markers`
+
 |===
