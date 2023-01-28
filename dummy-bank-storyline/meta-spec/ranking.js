@@ -9,12 +9,13 @@ function rankByLengthVariance( ensemble ) {
 }
 
 const GOALS = [
-//    quickAction("dashboard","meet_banker").or(quickAction("dashboard","meet_invest")),
-//    quickAction("dashboard","meet_cashier"),
-//    action("nudge_chat", {value:"try our chat"}),
-//    action("day_part_menu/select", {new_value:"morning"}),
-//    action("day_part_menu/select", {new_value:"noon"}),
-//    action("day_part_menu/select", {new_value:"evening"})
+    choiceEvent(REMOTE_BRANCH_1),
+    choiceEvent(REMOTE_BRANCH_3),
+    choiceEvent(REMOTE_BRANCH_5),
+    choiceEvent("meet_banker"),
+    choiceEvent("meet_invest"),
+    choiceEvent("meet_cashier"),
+    bp.EventSet("all", e=>true )
 ];
 
 function rankByGoals( ensemble ) {
@@ -23,22 +24,19 @@ function rankByGoals( ensemble ) {
         unreachedGoals.push(GOALS[idx]);
     }
 
-    // bp.log.info("unreached goals: {0}", unreachedGoals);
-
     for (let testIdx = 0; testIdx < ensemble.length; testIdx++) {
-        const test = ensemble[testIdx];
+        let test = ensemble[testIdx];
         for (let eventIdx = 0; eventIdx < test.length; eventIdx++) {
-            const event = test[eventIdx];
+            let event = test[eventIdx];
             for (let ugIdx = 0; ugIdx < unreachedGoals.length; ugIdx++) {
-                const unreachedGoal = unreachedGoals[ugIdx];
-                // if ( eventEquals(unreachedGoal, event) ) {
+                let unreachedGoal = unreachedGoals[ugIdx];
                 if ( unreachedGoal.contains(event) ) {
                     unreachedGoals.splice(ugIdx,1);
-                }
+                }   
             }
         }
     }
-
+    
     return GOALS.length-unreachedGoals.length;
 }
 

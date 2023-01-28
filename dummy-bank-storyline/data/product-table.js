@@ -1,5 +1,7 @@
 
-//test data
+
+const URL = "https://dummy-bank.provengo.tech/";
+
 const USERNAME = "teddyBear123";
 const PASSWORD = "Bear123";
 

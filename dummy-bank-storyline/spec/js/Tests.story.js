@@ -1,8 +1,6 @@
 //@provengo summon selenium
 
-const URL = "https://dummy-bank.provengo.tech/";
 // Define a Selenium session. No window is opened yet.
-
 const seleniumSession = new SeleniumSession("user");
 story('TestBank', function () {
     with (seleniumSession.start(URL)) {

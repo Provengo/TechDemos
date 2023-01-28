@@ -9,12 +9,12 @@ bthread("eeny-meeny", function(){
 
 // Norwegian version 
 // see https://en.wikipedia.org/wiki/Akka_bakka_bonka_rakka
-// bthread("akka-bakka", function(){
-//     request(bp.Event("Akka"));
-//     request(bp.Event("Bakka"));
-//     request(bp.Event("Banka"));
-//     request(bp.Event("Ranka"));
-// });
+bthread("akka-bakka", function(){
+    request(bp.Event("Akka"));
+    request(bp.Event("Bakka"));
+    request(bp.Event("Banka"));
+    request(bp.Event("Ranka"));
+});
 
 // bthread("door for Norway", function(){
 //     waitFor( choiceEvent("useDoor") );
@@ -24,12 +24,12 @@ bthread("eeny-meeny", function(){
 //     });
 // });
 
-// bthread("English first", function(){
-//     sync({
-//         waitFor: bp.Event("Miny"),
-//         block: bp.Event("Banka")
-//     });
-// });
+bthread("English first", function(){
+    sync({
+        waitFor: bp.Event("Miny"),
+        block: bp.Event("Banka")
+    });
+});
 
 // bthread("EMMM after bakka", function(){
 //   sync({
