@@ -2,9 +2,6 @@
 
 const URL = "https://dummy-bank.provengo.tech/";
 
-const USERNAME = "teddyBear123";
-const PASSWORD = "Bear123";
-
 const MEETING_TYPE_2_SERVICE = {
     meet_banker:  ["banker topic 1", "banker topic 2"],
     meet_cashier: ["cashier topic 1", "cashier topic 2"],
@@ -12,10 +9,8 @@ const MEETING_TYPE_2_SERVICE = {
 };
 
 const DAYPART_2_TIME = {
-    "morning":
-        ["09:00", "09:30", "10:30"],
-    "afternoon":
-        ["1:00","1:30","2:30"]
+    "morning":   ["09:00", "09:30", "10:30"],
+    "afternoon": [ "1:00",  "1:30",  "2:30"]
 };
 
 const REMOTE_BRANCH_1 = "Tel Aviv Central";
@@ -25,10 +20,13 @@ const REMOTE_BRANCH_4 = "Ramat Gan";
 const REMOTE_BRANCH_5 = "Beer Sheva";
 const HOME_BRANCH = "Home Branch";
 
-
-const EMAIL = "israel.israeli@example.co.il";
-const PHONE = "054-1234567";
-const REMARKS= "Some Remarks";
+const CUSTOMER_DETAILS = {
+    email:   "israel.israeli@example.co.il",
+    phone:   "054-1234567",
+    remarks: "Some Remarks",
+    username: "teddyBear123",
+    password: "Bear123"
+}
 
 // Components repository, holds XPaths for UI elements.
 const COMPONENTS = {
@@ -71,23 +69,5 @@ const COMPONENTS = {
     header:                             "//div[@class='header']",
     conclusion_service:                 "//div[@id='user-confirmation-service']",
     conclusion_topic:                   "//div[@id='user-confirmation-topic']",
-    conclusion_phone:                   "//div[@id='user-confirmation-phone']",
-
-
+    conclusion_phone:                   "//div[@id='user-confirmation-phone']"
  };
-
-////////////////////////////////////////////////////////////////////////////////////////
-// Basic app flow
-
-//                         +----------+
-//                  +----->| set time |
-//                  |      +---+------+
-//                  |          |         +-------+
-//   +-----+   +----+----+     +-------->|contact|   +--------+   +-------+
-//-->|Login|-->|Dashboard|               |  and  |-->|approval|-->|confirm|
-//   +-----+   +----+----+     +-------->|remarks|   +--------+   +-------+
-//                  |          |         +-------+
-//                  |      +---+------+
-//                  |      |set time  |
-//                  +----->|and branch|
-//                         +----------+

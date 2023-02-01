@@ -14,8 +14,7 @@ const GOALS = [
     choiceEvent(REMOTE_BRANCH_5),
     choiceEvent("meet_banker"),
     choiceEvent("meet_invest"),
-    choiceEvent("meet_cashier"),
-    bp.EventSet("all", e=>true )
+    choiceEvent("meet_cashier")
 ];
 
 function rankByGoals( ensemble ) {
