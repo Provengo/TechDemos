@@ -1,2 +1,3 @@
-version: 1
+version: 2
 selenium_implicit_wait: 6000
+visualization.style: raw
