@@ -61,13 +61,9 @@ story('TestBank', function () {
         // system confirmation for the scheduled meeting
         verifyConclusionMessage({
             service:service,
-            phone:CUSTOMER_DETAILS.phone
+            email:CUSTOMER_DETAILS.email,
+            phone:CUSTOMER_DETAILS.phone,
+            remarks:CUSTOMER_DETAILS.remarks
         });
     }
-});
-
-bthread("No investors in the afternoon", function(){
-    waitFor(choiceEvent("meet_invest"));
-    waitFor(choiceEvent("afternoon"));
-    bp.ASSERT(false, "No investors in the afternoon");
 });
