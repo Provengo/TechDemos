@@ -24,12 +24,12 @@ bthread("akka-bakka", function(){
 //     });
 // });
 
-bthread("English first", function(){
-    sync({
-        waitFor: bp.Event("Miny"),
-        block: bp.Event("Banka")
-    });
-});
+// bthread("English first", function(){
+//     sync({
+//         waitFor: bp.Event("Miny"),
+//         block: bp.Event("Banka")
+//     });
+// });
 
 // bthread("EMMM after bakka", function(){
 //   sync({

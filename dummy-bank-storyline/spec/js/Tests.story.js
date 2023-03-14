@@ -43,7 +43,7 @@ story('TestBank', function () {
 
         // for meeting with a cashier, choose the branch location as well
         if ( service === "meet_cashier" ) {
-            let branch = choose(REMOTE_BRANCH_1,REMOTE_BRANCH_2,REMOTE_BRANCH_3,REMOTE_BRANCH_4,REMOTE_BRANCH_5);
+            let branch = choose(REMOTE_BRANCH_1,REMOTE_BRANCH_2,REMOTE_BRANCH_3);//,REMOTE_BRANCH_4,REMOTE_BRANCH_5);
             setBranch({branch:branch});
         }
 
