@@ -5,3 +5,5 @@ sample:
   delete-previous: yes
 ensemble: 
   size: 10
+run:
+  max-depth: 100

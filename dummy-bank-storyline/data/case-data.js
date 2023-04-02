@@ -3,7 +3,7 @@
 const URL = "https://dummy-bank.provengo.tech/";
 
 const MEETING_TYPE_2_SERVICE = {
-    meet_banker:  ["banker deposit funds", "banker withdraw NFTs"],
+    meet_banker:  ["banker deposit funds 1", "banker withdraw NFTs 2"],
     meet_cashier: ["cashier topic 1", "cashier topic 2"],
     meet_invest:  ["investment topic 1", "investment topic 2","investment topic 3"]
 };

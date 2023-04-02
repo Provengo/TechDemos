@@ -29,7 +29,7 @@ highLevelFlow.at("choosePlaintiffStage").run(function(){
     requestOne(
         t1.Action("Choose existing claim"),
         t1.Action("Choose new claim")
-        );
+    );
         t1.validate("all buttons work");
     });
     

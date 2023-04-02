@@ -43,6 +43,9 @@ bthread("basic search", function(){
         TextAssertions.modifiers.Contains]
     );
     
+    // Explicitly state that we won't use the search term anymore.
+    searchTerm = undefined;
+    
     // Intentionally fail the test 1 out of 4 runs.
     // Added to make the logs more interesting.
     if ( choose("ok","fine","pass","fail") === "fail" ) {

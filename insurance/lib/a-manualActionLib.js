@@ -7,7 +7,7 @@ const Manual = (function(){
         if ( details ) {
             data.details = details;
         }
-        return bp.Event("Validate: "+msg, data);
+        return bp.Event("[Validate] "+msg, data);
     }
     
     function makeAction(session, msg, details){
@@ -15,7 +15,7 @@ const Manual = (function(){
         if ( details ) {
             data.details = details;
         }
-        return bp.Event("Do: "+msg, data);
+        return bp.Event("[Do] "+msg, data);
     }
     
     function validate(session, msg, details){
