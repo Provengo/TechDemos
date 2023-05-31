@@ -62,12 +62,12 @@ const COMPONENTS = {
     },
 
     HOURS:{
-        "09:00":                            "//input[@id='hour-0']",
-        "1:00":                             "//input[@id='hour-0']",
-        "09:30":                            "//input[@id='hour-1']",
-        "1:30":                             "//input[@id='hour-1']",
-        "10:30":                            "//input[@id='hour-2']",
-        "2:30":                             "//input[@id='hour-2']",
+        "09:00":                            "//input[@id='Morning-hour-0']",
+        "1:00":                             "//input[@id='Afternoon-hour-0']",
+        "09:30":                            "//input[@id='Morning-hour-1']",
+        "1:30":                             "//input[@id='Afternoon-hour-1']",
+        "10:30":                            "//input[@id='Morning-hour-2']",
+        "2:30":                             "//input[@id='Afternoon-hour-2']",
     },
 
     BRANCHES:{
