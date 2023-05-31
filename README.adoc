@@ -45,4 +45,8 @@ TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank].
 | `Stateory`, `bp-base`, selenium-based actuations, `Constraints`
 
+| link:dummy-bank-combi[]
+| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank].
+| `Combi` `Stateory`, `bp-base`, selenium-based actuations, `Constraints`
+
 |===
