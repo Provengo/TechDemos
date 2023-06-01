@@ -11,7 +11,8 @@ function rankByLengthVariance( ensemble ) {
 const GOALS = [
     choiceEvent("banana"),
     choiceEvent("strawberry"),
-    choiceEvent("fail")
+    choiceEvent("fail"),
+    selectEvent("fail type", "visibility")
 ];
 
 function rankByGoals( ensemble ) {

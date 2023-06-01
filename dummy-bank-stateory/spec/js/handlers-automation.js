@@ -1,5 +1,18 @@
 // @provengo summon selenium
 
+/////////////////////////////////////////////////////////////////////////////
+///
+/// Low-level handlers that perform control flow based on user decisions,
+/// and Selenium-based automation.
+///                                                               |\_/|
+///                                                               |o o|__
+///                                                               --*--__\
+///                                                               C_C_(___)
+////////////////////////////////////////////////////////////////////////////
+
+/**
+ * The selenium automation session
+ */
 const session = new SeleniumSession("session");
 
 function userLogin(){
@@ -55,18 +68,25 @@ function chooseTopic(){
     }
 
     session.click(button);
-//    bp.store.remove("service");
+   
+    // alternative to blocking state entries in high-level.states.js#34
+    // if ( bp.store.get("service") === "Cashier" ) {
+    //     getSm().next.mustBe("setTimeAndBranch");
+    // } else {
+    //     getSm().next.mustBe("setTime");
+    // }
+   
 };
 
 function setTimeAndBranch(){
-    let dayPart = select("day part").from("morning","afternoon");
+    let dayPart = select("day part").from(DAYPART);
     let hour = select("hour").from(DAYPART_2_TIME[dayPart]);
     bp.store.put("hour",hour);
 
     session.click(COMPONENTS.HOURS[hour]);
 
     let branch = select("branch").from(REMOTE_BRANCHES);
-    let button = COMPONENTS.BRANCHES[`${branch}`];
+    let button = COMPONENTS.BRANCHES[branch];
 
     bp.store.put("branch",branch);
     session.click(button);
@@ -74,7 +94,7 @@ function setTimeAndBranch(){
 }
 
 function setTime(){
-    let dayPart = select("day part").from("morning","afternoon");
+    let dayPart = select("day part").from(DAYPART);
     let hour = select("hour").from(DAYPART_2_TIME[dayPart]);
     bp.store.put("hour",hour);
 
@@ -101,12 +121,10 @@ function systemConfirmation(){
 
 
     let service = bp.store.get("service");
-    service = service.split("_")[1];//[1];//.toString();
+    service = service.split("_")[1];
 
-    if(service.includes("cashier")){
+    if ( service.includes("cashier") ) {
         let branch = bp.store.get("branch");
-
-
         session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_branch, branch);
     }
 
@@ -115,25 +133,22 @@ function systemConfirmation(){
 
     let hour = bp.store.get("hour");
 
-    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_service, service,
-    [TextAssertions.modifiers.IgnoreCase,TextAssertions.modifiers.Contains]);
+    session.assertText(
+        COMPONENTS.SYSTEM_CONFIRM.conclusion_service, service, 
+        [TextAssertions.modifiers.IgnoreCase,TextAssertions.modifiers.Contains]
+    );
 
-    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_topic, topic,
-    [TextAssertions.modifiers.IgnoreCase]);
+    session.assertText(
+        COMPONENTS.SYSTEM_CONFIRM.conclusion_topic, topic,
+        [TextAssertions.modifiers.IgnoreCase]
+    );
 
-
-    //  hour has bugs
-    //  mail / phone are optional
-
-//    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_time,hour,
-//    [TextAssertions.modifiers.Contains]);
-
-
-//    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_email, CUSTOMER_DETAILS.email);
-
-
-//    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_phone, CUSTOMER_DETAILS.phone);
-
+    session.assertText(
+        COMPONENTS.SYSTEM_CONFIRM.conclusion_time,hour,
+        [TextAssertions.modifiers.Contains]
+    );
+    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_email, CUSTOMER_DETAILS.email);
+    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_phone, CUSTOMER_DETAILS.phone);
 
     bp.store.remove("service");
     bp.store.remove("branch");

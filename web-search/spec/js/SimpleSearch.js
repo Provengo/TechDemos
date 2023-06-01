@@ -8,11 +8,14 @@ const URL = "https://ecosia.org";
 const COMPONENTS = {
     searchField:    "//input[@name='q']",
     submitButton:   "//button[@type='submit']",
-    resultsSection: "//section[@data-test-id='mainline']"
+    resultsSection: "//section[@data-test-id='mainline']",
+    body:           "//body"
 };
 
 // Define a Selenium session. No window is opened yet.
 const seleniumSession = new SeleniumSession("user");
+
+bp.log.info("INFO MESSAGE");
 
 /**
  * "Main" test scenario: Open a browser window, types a search term, and 
@@ -49,8 +52,28 @@ bthread("basic search", function(){
     // Intentionally fail the test 1 out of 4 runs.
     // Added to make the logs more interesting.
     if ( choose("ok","fine","pass","fail") === "fail" ) {
-        seleniumSession.waitForVisibility("//notThere");
+        let failType = select("fail type").from(/*"visibility", "content", */"move");
+        switch ( failType ) {
+            case "visibility":
+                seleniumSession.waitForVisibility("//notThere");
+                break;
+            case "content":
+                seleniumSession.assertText( COMPONENTS.resultsSection,
+                    "XXX-not-supposed-to-be-there-XXX",
+                    [TextAssertions.modifiers.IgnoreCase, 
+                    TextAssertions.modifiers.Contains]
+                );
+                break;
+            case "move":
+                seleniumSession.moveToElement("(//img[@alt=' Trail Jacket'])[last()]]]");
+                break;
+        }
     }
+
+    // This will always succeed. It's here to show that after failure
+    // actuations are skipped automatically.
+    seleniumSession.waitForVisibility(COMPONENTS.body);
+
 });
 
 /**
@@ -61,3 +84,4 @@ bthread("Don't fail after strawberry", function(){
     waitFor(choiceEvent("strawberry"));
     block(choiceEvent("fail"));
 });
+

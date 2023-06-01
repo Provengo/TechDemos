@@ -58,3 +58,9 @@ highLevelFlow.at("paymentDetailsStage").run(function(){
         t1.Action("Pay: Bank Transfer")
     ]);
 });
+
+// bthread("Can't exit after receipt", function(){
+//     waitFor(highLevelFlow.enterEvent("addReceiptStage"));
+//     waitFor(ABORT_EVENT);
+//     bp.ASSERT(false,"Can't abort after receipt");
+// });

@@ -38,15 +38,15 @@ TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
 | bp-base, selenium-based direct actuations, script generation, test books
 
 | link:dummy-bank-storyline[]
-| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank].
+| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Using the Storylines DSL, the process is modeled like a user story.
 | `Storylines`, selenium-based actuations, `Ctrl.markers`
 
-| link:dummy-bank-statory[]
-| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank].
+| link:dummy-bank-stateory[]
+| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Same process as above, modeled as a State Machine.
 | `Stateory`, `bp-base`, selenium-based actuations, `Constraints`
 
 | link:dummy-bank-combi[]
-| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank].
+| Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Same process as above, this time modeled with a combination of Combi-based case parameters, and a state machine that is constrained by them.
 | `Combi` `Stateory`, `bp-base`, selenium-based actuations, `Constraints`
 
 |===

@@ -1,4 +1,14 @@
 
+/////////////////////////////////////////////////////////////////////////////
+/// Constants and data used throughout the model.            (\/)
+///                                                          (_o |
+///                                                           /  |
+///                                                           \  \______
+///                                                            \        )o
+///                                                             /|----- |
+///                                                             \|     /|
+/////////////////////////////////////////////////////////////////////////////
+
 
 const URL = "https://dummy-bank.provengo.tech/";
 
@@ -7,6 +17,8 @@ const MEETING_TYPE_2_TOPIC = {
     meet_cashier: ["Receive payments 1", "issue receipts 2","track transactions 3","payments 4"],
     meet_invest:  ["consult a specialist 1", "make smart investments 2", "make new financial goals 3"]
 };
+
+const DAYPART = ["morning","afternoon"];
 
 const DAYPART_2_TIME = {
     morning:   ["09:00", "09:30", "10:30"],
@@ -29,7 +41,9 @@ const REMOTE_BRANCHES = [
     "Beer Sheva",
 ];
 
-// Components repository, holds XPaths for UI elements.
+/**
+ * Components repository, holds XPaths for UI elements.
+ */
 const COMPONENTS = {
 
     LOGIN: {
