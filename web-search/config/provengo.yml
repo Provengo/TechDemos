@@ -1,2 +1,6 @@
 version: 2
 selenium_implicit_wait: 6000
+bpmn:
+  auto-start:
+    - google.bpmn
+    - HighLevelGoogle.bpmn

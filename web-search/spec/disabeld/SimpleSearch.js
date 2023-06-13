@@ -21,13 +21,13 @@ const seleniumSession = new SeleniumSession("user");
 bthread("basic search", function(){
     // Go to search screen
     seleniumSession.start(URL);
-    
-    // decide what we search for (this splits the scenario into 3 scenarios)
-    let searchTerm = choose("pizza","banana","strawberry");
-    
+
     // Wait up to 10 seconds for the target component to be visible.
     seleniumSession.waitForVisibility(COMPONENTS.searchField, 10000);
-    
+
+    // decide what we search for (this splits the scenario into 3 scenarios)
+    let searchTerm = choose("pizza","banana","strawberry");
+
     // Enter search term
     seleniumSession.writeText(COMPONENTS.searchField, searchTerm);
     // Search!
