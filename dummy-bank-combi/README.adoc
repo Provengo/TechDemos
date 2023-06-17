@@ -1,0 +1,18 @@
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+:caution-caption: :bangbang:
+:important-caption: :exclamation:
+:note-caption: :point_right:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+
+# Dummy Bank: Combi
+
+A sample test model for a queue scheduling application for a bank. The tested site is available at https://dummy-bank.provengo.tech.
+
+Basic concept: Model as combi for the case parameters, and a state machine for the user flow. Have the decisions that the combi makes constrain the flow of the state machine (sealed fate pattern).
+
+IMPORTANT: For the automation to work, you need a running selenium server available from your machine. The simplest way is to run them locally. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[here] for installation instructions.

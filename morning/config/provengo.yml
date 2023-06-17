@@ -1,0 +1,3 @@
+version: 2
+sample:
+  delete-previous: true
