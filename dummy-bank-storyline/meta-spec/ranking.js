@@ -9,12 +9,8 @@ function rankByLengthVariance( ensemble ) {
 }
 
 const GOALS = [
-    choiceEvent(REMOTE_BRANCH_1),
-    choiceEvent(REMOTE_BRANCH_2),
-    choiceEvent(REMOTE_BRANCH_3),
-    choiceEvent("meet_banker"),
-    choiceEvent("meet_invest"),
-    choiceEvent("meet_cashier")
+    sm.enterEvent("setTime"),
+    sm.enterEvent("setTimeAndBranch")
 ];
 
 function rankByGoals( ensemble ) {

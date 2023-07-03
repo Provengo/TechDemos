@@ -20,8 +20,13 @@
 const GOALS = [
     Actions.goOut(),
     // Actions.backToSleep(),
-    // Actions.brushTeeth(),
-    Ctrl.markEvent("good test")
+    Actions.brushTeeth(),
+    Ctrl.markEvent("good test"),
+    Actions.eat("Cereal")
+];
+
+const WEIGHTS = [
+    10, 20, 5, 7
 ];
 
 /**
@@ -96,8 +101,8 @@ function shirtLater(ensemble) {
  * @returns the rank of the ensemble.
  */
  function rankingFunction(ensemble) {
-     const metGoalsCount = rankByMetGoals(ensemble);
-     return metGoalsCount/GOALS.length*100;
+    const metGoalsCount = rankByMetGoals(ensemble);
+    return metGoalsCount/GOALS.length*100;
     // return shirtLater(ensemble);
 }
  

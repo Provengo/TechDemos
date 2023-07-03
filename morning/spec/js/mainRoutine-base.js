@@ -1,4 +1,5 @@
 // @provengo summon constraints
+
 bthread("main", function(){
 
     request(Actions.wakeUp());
@@ -7,13 +8,17 @@ bthread("main", function(){
         Actions.wear("pants"),
         Actions.wear("shirt"),
         Actions.wear("socks"),
-        Actions.wear("shoes"));
-    
+        Actions.wear("shoes")
+    ); 
+
     request(Actions.brushTeeth());
-    requestAtAnyOrder(
-        Actions.eat("Cereal"),
-        Actions.eat("Banana")
-    );
+
+    if ( maybe("eat breakfast") ) {
+        requestAtAnyOrder(
+            Actions.eat("Cereal"),
+            Actions.eat("Coffee")
+        );
+    }
     
     request(Actions.tidyUp());
     request(Actions.goOut());

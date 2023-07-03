@@ -15,7 +15,6 @@ sm.connect("chooseTopic")
     .to("setTimeAndBranch")
     .to("contactInfo");
 
-
 // Automation handlers
 sm.at("login").run(userLogin);
 sm.at("dashboard").run(dashboard);
