@@ -9,6 +9,10 @@ function startTrace() {
 }
 
 function documentEvent( event ) {
+
+    GenBook.autoTag(event); 
+
+
     const d = event.data;
     
     TEST_SCENARIO.addElement( StepElement(event.name, event.toString(), "" ));

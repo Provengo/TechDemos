@@ -11,7 +11,8 @@ endif::[]
 
 # Web Search
 
-A Provnego project for demonstrating the basics of Selenium-based actuation. This project searches for "pizza", "strawberry", or "banana" in the https://ecosia.org[Ecosia] search engine, and validates that pages containing these terms were indeed found.
+A Provnego project for demonstrating the basics of Selenium-based actuation. 
+This project searches for "pizza", "strawberry", or "banana" in the https://ecosia.org[Ecosia] search engine, and validates that pages containing these terms were indeed found.
 
 IMPORTANT: This demo project does not look into any other features of the Provengo system, such as DSLs, multi-level event flows, optimized test suite generation, etc. Just Selenium actuation and some Provengo extensions to JavaScript.
 
@@ -33,21 +34,21 @@ NOTE: In the below listings, we assume that `provengo.bat` is in the path, and t
 
 Perform a single run through the specification, with no actuations. Good for "Sanity checks", e.g. to see examples of what can happen. Does not require any Selenium server.
 
-    provengo.bat run --dry-run web-search
+    provengo.bat run --dry-run web-search-bpmn
 
 ### Randomized Run 
 
 Perform a single run through the specification.  Selenium server needs to be running for this.
 
-    provengo.bat run web-search
+    provengo.bat run web-search-bpmn
 
 Running with the browser visible
 
-    provengo.bat run --show-sessions web-search
+    provengo.bat run --show-sessions web-search-bpmn
 
 Running with delayed actions. Units are milliseconds, so the `5000` in the below snippet means "5 seconds".
 
-    provengo.bat run --action-delay 5000 web-search
+    provengo.bat run --action-delay 5000 web-search-bpmn
 
 The above flags can of course be used together.
 
@@ -57,27 +58,27 @@ NOTE: This requires http://graphviz.org[Graphviz] to be installed.
 
 Draw the specification in a PDF file.
 
-    provengo.bat analyze -f pdf web-search
+    provengo.bat analyze -f pdf web-search-bpmn
 
 
 ### Sample Runs from the Spec
 
 Sample 10 scenarios into a file. The scenarios are stored in a file called `samples.json` (this can be changed using the `-o`/`--output-file` switch).
 
-    provengo.bat sample --delete-previous --sample-size 10 web-search
+    provengo.bat sample --delete-previous --sample-size 10 web-search-bpmn
 
 
 ### Run the Sample as a Suite
 
 Run the sampled tests as a single test suite.
 
-    provengo.bat run --run-source samples.json web-search
+    provengo.bat run --run-source samples.json web-search-bpmn
 
 ### Create Run Logs
 
 Creates a report of the tests run, in the form of a static HTML site.
 
-    provengo.bat report web-search
+    provengo.bat report web-search-bpmn
 
 
 ## NOTES

@@ -28,7 +28,6 @@ sm.at("systemConfirmation").run(systemConfirmation);
 sm.at("setTime").run(setTime);
 sm.at("setTimeAndBranch").run(setTimeAndBranch);
 
-
 // if the selected service is Cashier, do not go into the "setTime" screen
 //  (since the user needs to select the branch as well).
 Constraints.unless(sm.enterEvent("contactInfo"))

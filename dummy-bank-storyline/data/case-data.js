@@ -3,8 +3,8 @@
 const URL = "https://dummy-bank.provengo.tech/";
 
 const MEETING_TYPE_2_SERVICE = {
-    meet_banker:  ["banker deposit funds 1", "banker withdraw NFTs 2"],
-    meet_cashier: ["cashier topic 1", "cashier topic 2"],
+    meet_banker:  ["banker deposit funds 1", "banker withdraw NFTs 2", "banker evalute overdrafts and loans 3"],
+    meet_cashier: ["cashier topic 1", "cashier topic 2", "cashier topic 3", "cashier topic 4"],
     meet_invest:  ["investment topic 1", "investment topic 2","investment topic 3"]
 };
 
@@ -41,6 +41,7 @@ const COMPONENTS = {
     topic_1:                            "//button[@id='topic-1']",
     topic_2:                            "//button[@id='topic-2']",
     topic_3:                            "//button[@id='topic-3']",
+    topic_4:                            "//button[@id='topic-4']",
     setTimePage:                        "//div[@class='select-time']",
     setTimeAndBranchPage:               "//div[@class='set-time-and-branch']",
     "09:00":                            "//input[@id='Morning-hour-0']",
@@ -69,5 +70,6 @@ const COMPONENTS = {
     header:                             "//div[@class='header']",
     conclusion_service:                 "//div[@id='user-confirmation-service']",
     conclusion_topic:                   "//div[@id='user-confirmation-topic']",
-    conclusion_phone:                   "//div[@id='user-confirmation-phone']"
+    conclusion_phone:                   "//div[@id='user-confirmation-phone']",
+    conclusion_email:                   "//div[@id='user-confirmation-email']"
  };

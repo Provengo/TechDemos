@@ -29,10 +29,11 @@ sm.at("setTime").run(setTime);
 sm.at("setTimeAndBranch").run(setTimeAndBranch);
 
 // if the selected service is Cashier, go to "setTimeAndBranch"
-// if the selected service is either Banker or Investment Specialist, go to "setTime"
+// if the selected service is either Banker or Investment Specialist, go to "setTime" (default branch is home-branch).
 Constraints.after(service.setToEvent("Banker")).block(sm.enterEvent("setTimeAndBranch")).forever();
 Constraints.after(service.setToEvent("Investment Specialist")).block(sm.enterEvent("setTimeAndBranch")).forever();
 Constraints.after(service.setToEvent("Cashier")).block(sm.enterEvent("setTime")).forever();
+
 
 // function to get the sm instance from other js files
 function getSm(){

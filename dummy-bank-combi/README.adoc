@@ -13,6 +13,57 @@ endif::[]
 
 A sample test model for a queue scheduling application for a bank. The tested site is available at https://dummy-bank.provengo.tech.
 
-Basic concept: Model as combi for the case parameters, and a state machine for the user flow. Have the decisions that the combi makes constrain the flow of the state machine (sealed fate pattern).
+## Basic concept:
+
+Model as combi for the case parameters, and a state machine for the user flow. Have the decisions that the combi makes constrain the flow of the state machine (sealed fate pattern).
+
+IMPORTANT: Provengo is not publicly accessible yet. If you find this repo interesting and wand to join our closed beta, please contact hello@provengo.tech.
 
 IMPORTANT: For the automation to work, you need a running selenium server available from your machine. The simplest way is to run them locally. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[here] for installation instructions.
+
+## Files
+
+link:spec/js/user-flow.states.js[user-flow.states.js]::
+   Defines the high-level flows of the tests. 
+   - Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/dsls/stateory.html[Stateory (State Machine) DSL ].
+   - Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/libraries/constraints.html[Constraints library].
+link:spec/js/case-params.js[case-params.js]::
+    Defines possible combinations of properties for possible test cases. Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[Combi library].
+link:spec/js-disabled/low-level.js[low-level.js]::
+    Code for Selenium-actuations.
+link:meta-spec/book-writer.js[book-writer.js]::
+    Code for generating manual test books from scenario files.
+link:meta-spec/ranking.js[ranking.js]::
+    Code for optimizing test suites.
+
+
+## Things To Try
+
+NOTE: These assume that you have Provengo installed on your system. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[the install page on our documentation site] if not.
+
+
+### Visualize the Spec
+
+Draw the specification in a PDF file.
+
+[code, bash]
+----
+$ provengo analyze -f pdf dummy-bank-combi/
+----
+
+CAUTION: This requires http://graphviz.org[Graphviz] to be installed.
+
+### Generate a CSV file 
+
+Describe the data variations in the specification model.
+
+[code, bash]
+----
+$ provengo combi -f csv dummy-bank-combi/
+----
+
+
+
+TIP: Try adding or removing blocks in the code and see the changes.
+    
+ 

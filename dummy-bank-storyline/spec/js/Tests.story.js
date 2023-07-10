@@ -33,12 +33,12 @@ story('TestBank', function () {
         chooseService({service:service});
 
         // choose a topic (by service)
-        let topic = choose(MEETING_TYPE_2_SERVICE[service]);
-        chooseTopic({topic:"topic_"+topic.charAt(topic.length-1)});
+        let topic = select("topic").from(MEETING_TYPE_2_SERVICE[service]);
+        chooseTopic({topic:`topic_${topic.charAt(topic.length-1)}`});
 
         // schedule the meeting
         let dayPart = choose("morning","afternoon");
-        let time = choose(DAYPART_2_TIME[dayPart]);
+        let time = select("time").from(DAYPART_2_TIME[dayPart]);
         setTime({time:time});
 
         // for meeting with a cashier, choose the branch location as well
@@ -49,6 +49,7 @@ story('TestBank', function () {
 
         // fill in contact info
         moveToContactDataPage();
+
         fillContactData({
             email:CUSTOMER_DETAILS.email,
             phone:CUSTOMER_DETAILS.phone,
@@ -62,7 +63,6 @@ story('TestBank', function () {
         verifyConclusionMessage({
             service:service,
             email:CUSTOMER_DETAILS.email,
-            phone:CUSTOMER_DETAILS.phone,
             remarks:CUSTOMER_DETAILS.remarks
         });
     }

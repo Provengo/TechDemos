@@ -12,5 +12,64 @@ endif::[]
 # Dummy Bank: Storylines
 
 A sample test model for a queue scheduling application for a bank. The tested site is available at https://dummy-bank.provengo.tech.
+The process is modeled like a user-story. 
 
 IMPORTANT: For the automation to work, you need a running selenium server available from your machine. The simplest way is to run them locally. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[here] for installation instructions.
+
+
+## Files
+
+link:spec/js/Tests.story.js[Tests.story.js]::
+   Defines the high-level flows of the tests and connects them to the event-defs.
+   Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/dsls/storylines.html[Storylines DSL], and the https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/libraries/selenium.html[Selenium library].
+link:spec/js/EventDef-Selenium.js[EventDef-Selenium.js]::
+    Defines the automation steps for each event.
+    Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/libraries/selenium.html[Selenium library].
+link:meta-spec/book-writer.js[book-writer.js]::
+    Code for generating manual test books from scenario files.
+link:meta-spec/ranking.js[ranking.js]::
+    Code for optimizing test suites.
+
+
+## Things to try
+
+IMPORTANT: These assume that you have provengo installed on your system. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[the install page on our documentation site] if not.
+
+
+### Visualize the Spec
+
+Draw the specification in a PDF file.
+
+[code, bash]
+----
+$ provengo analyze -f pdf dummy-bank-storyline/
+----
+
+### Randomized Run
+
+Perform a single run through the specification.  
+
+[code, bash]
+----
+$ provengo run dummy-bank-storyline/
+----
+
+### Randomized run 
+
+Randomly selects a single run from the model, this time with an open browser to see the actuations. 
+
+[code, bash]
+----
+$ provengo run --show-sessions dummy-bank-storyline/
+----
+
+### Create Run Logs
+
+Create a report based on the data gathered during previous test-runs, in the form of a static HTML site.
+
+[code, bash]
+----
+$ provengo report dummy-bank-storyline/
+----
+
+

@@ -1,5 +1,6 @@
 
 const TEST_BOOK = {
+    
     documentEvent: function(event){
         if ( GenBook.autoTag(event) ) return; 
         if ( event.data ){

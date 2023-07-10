@@ -7,6 +7,8 @@ function startTrace() {
 }
 
 function documentEvent( event ) {
+    GenBook.autoTag(event); 
+
     const d = event.data;
     if ( d && d.lib == "COMBI" ) return; // Auto-handled by the Testory platform.
 
