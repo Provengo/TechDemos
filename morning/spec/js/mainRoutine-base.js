@@ -20,7 +20,6 @@ bthread("main", function () {
   request(Actions.tidyUp());
   request(Actions.play());
 
-
   request(Actions.wear("hat"));
 
   request(Actions.goOut());

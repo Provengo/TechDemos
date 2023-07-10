@@ -45,7 +45,7 @@ function brushTeeth() {
 function tidyUp() {
   session.click(COMPONENTS.BUTTONS["btn-tidy-up"]);
   session.waitForVisibility(COMPONENTS.SVG_ELEMENTS.stars, 2000);
-  // session.waitForInvisibility(COMPONENTS.SVG_ELEMENTS.stars,10000);
+  session.waitForInvisibility(COMPONENTS.SVG_ELEMENTS.stars,12000);
 }
 
 function goOut() {

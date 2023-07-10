@@ -1,14 +1,5 @@
 // @provengo summon selenium
 
-{
-  wakeUp;
-  wearShirt;
-  wearShoes;
-  wearPants;
-  wearSocks;
-  eatBanana;
-}
-
 bthread("actuation layer", function () {
   block(Actions.any, function () {
     start();

@@ -18,6 +18,9 @@ function startTrace() {
 }
 
 function documentEvent( event ) {
+
+    GenBook.autoTag(event); 
+
     const d = event.data;
     if ( d ) {
         if ( d.lib == "COMBI" ) return; // Handled at the Java level
