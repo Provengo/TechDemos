@@ -3,24 +3,34 @@ importPackage(Packages.java.util);
 
 const TEXTS = {
     "eat": {
-        "Banana": "יש לשים לב כי הבננה צהובה דיה",
-        "Cornflakes": "לא להוסיף יותר מדי חלב כי אז נשאר בלמטה של הקערה וחבל" 
+        "banana": "Ensure the banana is yellow.",
+        "cereal": "Don't spill too much milk!", 
     },
     "wake up": {
-        "": "לא לשכוח לסדר את המיטה"
+        "": "Don't forget to tidy up your bed."
+    },
+    "wear": {
+        "socks": "The ankle part should be aligned with the ankle.",
+        "shirt": "No, you can't wear this one, you wore it yesterday. Take a clean one from the closet.",
+        "shoes": "Laces should be tied properly."
     }
 }
 
 let count=0;
+let countToShirt=0;
 
 function startTrace() {
     count=0;
+    countToShirt=0;
 }
 
 function documentEvent( event ) {
-
+    count++;
+    
     GenBook.autoTag(event); 
-
+    if ( event.name==="wear shirt" ) {
+        countToShirt = count;
+    }
     const d = event.data;
     if ( d ) {
         if ( d.lib == "COMBI" ) return; // Handled at the Java level
@@ -31,8 +41,8 @@ function documentEvent( event ) {
             }
             TEST_SCENARIO.addElement(
                 StepElement(
-                    event.name,
-                    `${d.type}: ${d.name}`,details 
+                    event.name.split(" ")[0],
+                    `${d.type}${d.name? ": ":""} ${d.name}`, details 
                 ));
         } else if ( d.lib === "Ctrl" ) {
             if ( d.verb === "marker" ) {
@@ -71,11 +81,14 @@ function documentEvent( event ) {
     } else {
         TEST_SCENARIO.addElement( StepElement("Step", event.name, event.toString() ));
     }
-    count++;
+ 
 }
 
 function endTrace() {
     TEST_SCENARIO.addMetadataLine("Event count: " + count);
+    if ( count/2 < countToShirt ) {
+        TEST_SCENARIO.addTag("LateShirt");
+    }
 }
 
 // This object is the callback entry point.

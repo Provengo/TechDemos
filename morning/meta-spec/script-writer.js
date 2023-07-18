@@ -8,22 +8,17 @@
  function generateScript(run, scriptFile) {
     scriptFile.prepend("# Auto-generated python script");
     scriptFile.append(`# script number ${scriptFile.scriptNumber}`);
+    scriptFile.include("config/performAction.py");
 
     run.forEach(evt => {
-        scriptFile.append(`print("${evt.name}")`);
-        if ( evt.data ) {
-            if ( typeof evt.data === "object" ) {
-                for ( let k in evt.data ) {
-                    scriptFile.append(`print("   ${k}:\t${evt.data[k]}")`);
-                }
-            } else {
-                scriptFile.append(`print("   ${evt.data}")`);
-            }
+        if ( (!!evt.data) && evt.data.lib==="ACTION" ) {
+           scriptFile.append(`performAction("${evt.data.type}", "${evt.data.name}")`);
+        } else {
+            scriptFile.append(`# ${evt.name}`);
         }
     });
 
-
     scriptFile.append("");
-    scriptFile.append(`print("Generated script completed")`);
+    scriptFile.append(`print("Script ${scriptFile.scriptNumber} done.")`);
 
 }

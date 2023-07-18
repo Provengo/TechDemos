@@ -6,6 +6,15 @@ michael
 
 Provnego project for spec-ing and testing my system.
 
+## TODO
+* Cleanup Actions event names (camelCase etc)
+* mainRoutine might be removed
+* GEN-Book
+* unit test --single-file
+* python scripts
+* tag for initial case
+* Tidy mainRoutine-full-example.js
+* 
 
 ## Important Files
 

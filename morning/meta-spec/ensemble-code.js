@@ -1,10 +1,10 @@
 // @provengo summon ctrl
 
 /**
-  * @param {Event[][]} ensemble The test suite to be ranked.
+ * @param {Event[][]} ensemble The test suite to be ranked.
  * @returns A ranking for the test suite based on length difference.
  */
- function rankByLengthVariance( ensemble ) {
+function rankByLengthVariance( ensemble ) {
     let min=ensemble[0].length;
     let max=min;
     for (let scenario of ensemble ) {
@@ -19,31 +19,10 @@
  */
 const GOALS = [
     Actions.goOut(),
-    // Actions.backToSleep(),
-    // Actions.brushTeeth(),
-    Ctrl.markEvent("good test")
+    Actions.eat("banana"),
+    Actions.eat("salad"),
+    selectEvent("breakfast", "quick")
 ];
-
-/**
- * Ranks test suites by how many times it hits events from the GOALS array.
- * The more hits, the higher the score.
- * @param {Event[][]} ensemble The test suite to be ranked.
- * @returns Number of times an event from GOALS has been met.
- */
-function rankByGoalHits( ensemble ) {
-    let hits = 0;
-    for ( let test of ensemble ) {
-        for (let event of test) {
-            for (let goalEvent of GOALS) {
-                if ( goalEvent.contains(event) ) {
-                    hits = hits + 1;
-                }
-            }
-        }
-    }
-
-    return hits;
-}
 
 /**
  * Ranks test suites by how many events from the GOALS array were met.
@@ -52,7 +31,7 @@ function rankByGoalHits( ensemble ) {
  * @param {Event[][]} ensemble The test suite to be ranked.
  * @returns Number of events from GOALS that have been met.
  */
-function rankByMetGoals( ensemble ) {
+function countMetGoals( ensemble ) {
     const unreachedGoals = [];
     for ( let idx=0; idx<GOALS.length; idx++ ) {
         unreachedGoals.push(GOALS[idx]);
@@ -74,12 +53,17 @@ function rankByMetGoals( ensemble ) {
     return GOALS.length-unreachedGoals.length;
 }
 
+/**
+ * Rank test suites by how many steps there are until a shirt is worn. The more steps, the higher the score.
+ * @param {Event[][]} ensemble Test suite candidate
+ * @returns rank of the test suite
+ */
 function shirtLater(ensemble) {
     let count = 0;
     for ( let route of ensemble ) {
-        for ( let x=0; x<route.length; x++ ) {
-            if ( route[x].name === "wear shirt") {
-                count+=x;
+        for ( let eventIndex=0; eventIndex<route.length; eventIndex++ ) {
+            if ( route[eventIndex].name === "wear shirt") {
+                count+=eventIndex;
             }
         }
     };
@@ -96,21 +80,7 @@ function shirtLater(ensemble) {
  * @returns the rank of the ensemble.
  */
  function rankingFunction(ensemble) {
-     const metGoalsCount = rankByMetGoals(ensemble);
+     const metGoalsCount = countMetGoals(ensemble);
      return metGoalsCount/GOALS.length*100;
-    // return shirtLater(ensemble);
 }
  
-function fullRankingFunction(ensemble) {
-     // How many times did `ensemble` hit a goal
-     const goalHitCount = rankByGoalHits(ensemble);
-     
-     // How many goals did `ensemble` hit?
-     const metGoalsCount = rankByMetGoals(ensemble);
-    // What percentage of the goals did `ensemble` cover?
-    const metGoalsPercent = metGoalsCount/GOALS.length;
-
-    // factor all in, and return a rank.
-    const metGoalsPercentBias = 0.9; // how important is the coverage percent.
-    return metGoalsPercentBias*metGoalsPercent + (1-metGoalsPercentBias)*metGoalsCount;
-}

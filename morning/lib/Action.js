@@ -30,7 +30,7 @@ const Actions = (function () {
       return e("Sleep Again", "");
     },
     fail: function (what) {
-      return e("fail: ", what);
+      return e("fail", what);
     },
     
     play: function () {

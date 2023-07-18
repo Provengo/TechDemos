@@ -10,6 +10,7 @@ bthread("Good Morning", function(){
     request(Actions.wakeUp());
     eatBreakfast();
     if ( maybe() ) {
+        // either 
         while ( true ) {
             request(Actions.wakeUp());
             requestOne(

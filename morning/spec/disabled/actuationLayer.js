@@ -1,6 +1,8 @@
 // @provengo summon selenium
 
-const session = new SeleniumSession("session");
+// Create a new selenium session. Possible target browsers are firefox, chrome, edge, and safari. Defaults to "chorme".
+const session = new SeleniumSession("session"); //, "firefox");
+
 function start() {
   session.start(URL);
   session.waitForVisibility(COMPONENTS.SVG_ELEMENTS.svg, 5000);

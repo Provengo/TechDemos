@@ -5,19 +5,15 @@
 bthread("main", function () {
   request(Actions.wakeUp());
   
-  requestAtAnyOrder(
-    Actions.wear("pants"),
-    Actions.wear("shirt"),
-    Actions.wear("socks"),
-    Actions.wear("shoes")
-  );
+  request(Actions.wear("pants"));
+  request(Actions.wear("shirt"));
+  request(Actions.wear("socks"));
+  request(Actions.wear("shoes"));
   
   request(Actions.brushTeeth());
   request(Actions.eat("cereal"));
   request(Actions.eat("banana"));
-  if ( maybe("want mango?") ) {
-    request(Actions.eat("mango"));
-  }
+  request(Actions.eat("mango"));
   
   request(Actions.tidyUp());
   request(Actions.goOut());
