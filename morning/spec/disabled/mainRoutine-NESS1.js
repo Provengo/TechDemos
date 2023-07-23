@@ -25,13 +25,6 @@ bthread("main", function () {
   request(Actions.goOut());
 });
 
-function dressUpFull() {
-  let wearOptions = ["pants", "shirt", "shoes", "socks"];
-  let toWearStr = selectSome("toWear").from(wearOptions);
-  let toWear = toWearStr.map( item => Actions.wear(item) );
-
-  requestAtAnyOrder(toWear);
-}
 
 function dressUp() {
   let toWear = [Actions.wear("pants"),

@@ -19,18 +19,9 @@ const MEETING_TYPE_2_TOPIC = {
   ],
 };
 
-const TOPICS = [
-  "create new account 1",
-  "manage your account 2",
-  "evaluate overdrafts and loans 3",
-  "Receive payments 1",
-  "issue receipts 2",
-  "track transactions 3",
-  "payments 4",
-  "consult a specialist 1",
-  "make smart investments 2",
-  "make new financial goals 3",
-];
+const TOPICS = [].concat(MEETING_TYPE_2_TOPIC.meet_banker)
+  .concat(MEETING_TYPE_2_TOPIC.meet_cashier)
+  .concat(MEETING_TYPE_2_TOPIC.meet_invest);
 
 const DAYPART = ["morning", "afternoon"];
 
@@ -38,7 +29,7 @@ const DAYPART_2_TIME = {
   morning: ["09:00", "09:30", "10:30"],
   afternoon: ["1:00", "1:30", "2:30"],
 };
-const HOURS = ["09:00", "09:30", "10:30", "1:00", "1:30", "2:30"];
+const HOURS = [].concat(DAYPART_2_TIME.morning).concat(DAYPART_2_TIME.afternoon);
 
 const CUSTOMER_DETAILS = {
   email: "israel.israeli@example.co.il",

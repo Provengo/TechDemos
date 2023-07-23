@@ -1,0 +1,58 @@
+{
+  "combiV": {
+    "id": "Kh65Tzd0CrESnuiL2DC9nMhiT6YecoYw",
+    "name": "Breakfast",
+    "remarks": "A combi deciding what will the breakfast be like.",
+    "created": 1690110077551,
+    "fields": [
+      {
+        "id": "tXghzlENpYC4KdC58WX6mDcz4ri8nw26",
+        "name": "main",
+        "type": "one of",
+        "values": [
+          "egg",
+          " porridge",
+          " toast"
+        ],
+        "record": false,
+        "remark": ""
+      },
+      {
+        "id": "lb03Q7GksKoMSozqRRncMPlfuWKp4zaI",
+        "name": "drink",
+        "type": "some of",
+        "values": [
+          "coffee",
+          " juice"
+        ],
+        "record": false,
+        "remark": ""
+      },
+      {
+        "id": "yaCjHmKJhdEElO94UEpeSe11O9lMwrin",
+        "name": "side",
+        "type": "one of",
+        "values": [
+          "salad",
+          " chips",
+          " none"
+        ],
+        "record": false,
+        "remark": ""
+      }
+    ]
+  },
+  "combiC": {
+    "dependencies": [
+      {
+        "id": "Ax7FwiQSYOLZQtcRJbTfimr64MrOOanH",
+        "field1": "main",
+        "value1": " porridge",
+        "field2": "side",
+        "type": "cannot be",
+        "value2": "salad"
+      }
+    ],
+    "isAutoStart": false
+  }
+}

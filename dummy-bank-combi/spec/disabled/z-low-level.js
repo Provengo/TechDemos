@@ -1,5 +1,20 @@
 // @provengo summon selenium
 
+// Make sure the combi selected values are available for the automation steps.
+recordCombiValues();
+
+// Add state handlers
+getSm().at("login").run(userLogin);
+getSm().at("dashboard").run(dashboard);
+getSm().at("chooseService").run(chooseService);
+getSm().at("chooseTopic").run(chooseTopic);
+getSm().at("contactInfo").run(contactInfo);
+getSm().at("userConfirmation").run(userConfirmation);
+getSm().at("systemConfirmation").run(systemConfirmation);
+getSm().at("setTime").run(setTime);
+getSm().at("setTimeAndBranch").run(setTimeAndBranch);
+
+
 const session = new SeleniumSession("session");
 
 function userLogin() {
