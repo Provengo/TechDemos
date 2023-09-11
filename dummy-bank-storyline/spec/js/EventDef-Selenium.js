@@ -1,8 +1,13 @@
 // @provengo summon ctrl
+// @provengo summon rtv
 
 //event def for login
 defineEvent(SeleniumSession, "Login", function (session,event) {
     with (session) {
+    // e2e test
+        store(loginTitle, "title");
+        rtv.assertEq("Login", "@{title}")
+
         waitForVisibility(COMPONENTS.header, 100000);
         waitForVisibility(COMPONENTS.submitButton, 10000);
 
@@ -25,7 +30,6 @@ defineEvent(SeleniumSession, "ChooseTopic", function (session,event) {
     with (session) {
         waitForVisibility(COMPONENTS.dialog,10000);
         click(COMPONENTS[event.topic]);
-        waitForInvisibility(COMPONENTS.dialog,1000);
     }
 });
 
@@ -63,7 +67,7 @@ defineEvent(SeleniumSession, "MoveToContactDataPage", function (session,event) {
 //event def for filling contact information.
 defineEvent(SeleniumSession, "FillContactData", function (session,event) {
     with (session) {
-        waitForInvisibility(COMPONENTS.setTime_btn_continue, 1000);
+//        waitForInvisibility(COMPONENTS.setTime_btn_continue, 1000);
         waitForVisibility(COMPONENTS.email_input, 1000);
         writeText(COMPONENTS.email_input, event.email);
         writeText(COMPONENTS.phone_input, event.phone);
@@ -76,7 +80,6 @@ defineEvent(SeleniumSession, "FillContactData", function (session,event) {
 //event def for confirming the user contact information.
 defineEvent(SeleniumSession, "UserConfirmation", function (session,event) {
     with (session) {
-        waitForInvisibility(COMPONENTS.email_input, 1000);
 
         waitForVisibility(COMPONENTS.user_confirmation_message, 1000);
         waitForVisibility(COMPONENTS.meeting_details, 1000);
