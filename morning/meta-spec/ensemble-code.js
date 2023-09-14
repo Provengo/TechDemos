@@ -19,9 +19,9 @@ function rankByLengthVariance( ensemble ) {
  */
 const GOALS = [
     Actions.goOut(),
+    Actions.eat("cereal"),
     Actions.eat("banana"),
-    Actions.eat("salad"),
-    selectEvent("breakfast", "quick")
+    selectEvent("breakfastType","healthy")
 ];
 
 /**

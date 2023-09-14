@@ -1,4 +1,5 @@
 // @provengo summon selenium
+// @provengo summon ctrl
 
 const URL = "https://ecosia.org";
 
@@ -13,9 +14,7 @@ const COMPONENTS = {
 };
 
 // Define a Selenium session. No window is opened yet.
-const seleniumSession = new SeleniumSession("user");
-
-bp.log.info("INFO MESSAGE");
+const seleniumSession = new SeleniumSession("user", "firefox");
 
 /**
  * "Main" test scenario: Open a browser window, types a search term, and 
@@ -35,6 +34,8 @@ bthread("basic search", function(){
     seleniumSession.writeText(COMPONENTS.searchField, searchTerm);
     // Search!
     seleniumSession.click(COMPONENTS.submitButton);
+
+    Ctrl.doPause();
 
     //// moving to the results screen
     // Wait for results for up to 10 seconds

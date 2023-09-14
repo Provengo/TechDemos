@@ -45,12 +45,20 @@
   "combiC": {
     "dependencies": [
       {
-        "id": "Ax7FwiQSYOLZQtcRJbTfimr64MrOOanH",
+        "id": "ZTNYZR6CSkqRrEt19woGkOZc1tVgUuWd",
         "field1": "main",
-        "value1": " porridge",
+        "value1": "porridge",
+        "field2": "side",
+        "type": "must be",
+        "value2": "chips"
+      },
+      {
+        "id": "F74bYiMAirYTKryVpDGdx7pgLwvL6SWs",
+        "field1": "drink",
+        "value1": "coffee",
         "field2": "side",
         "type": "cannot be",
-        "value2": "salad"
+        "value2": " none"
       }
     ],
     "isAutoStart": false
