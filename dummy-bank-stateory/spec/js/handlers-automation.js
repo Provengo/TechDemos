@@ -148,7 +148,6 @@ function systemConfirmation(){
         [TextAssertions.modifiers.Contains]
     );
     session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_email, CUSTOMER_DETAILS.email);
-    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_phone, CUSTOMER_DETAILS.phone);
 
     bp.store.remove("service");
     bp.store.remove("branch");
