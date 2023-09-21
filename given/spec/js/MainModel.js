@@ -19,15 +19,15 @@ bthread("changeAddress", function(){
 });
 
 bthread("announce", function(){
-    waitFor(Event("deposit"));
+    waitFor(Event("public action"));
     GVN.given("LogIn");
     request(Event("Ka-Ching!"));
 });
 
 Constraints.block(Event("deposit")).until(Event("withdraw"));
 
-bthread("prvs?", function(){
-    if (maybe("prvs")) {
+// bthread("prvs?", function(){
+//     if (maybe("prvs")) {
         GVN.provider("big-login").gives("LogIn", function(){
             let v = select("loginType").from("2FA", "u/p", "biometric");
             request( Event("Login-"+v) );
@@ -38,5 +38,5 @@ bthread("prvs?", function(){
             request( Event("Login: u/p") );
             return true;
         });
-    }
-});
+//     }
+// });

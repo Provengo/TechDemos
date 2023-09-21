@@ -16,7 +16,7 @@
 const session = new SeleniumSession("session");
 
 function userLogin() {
-  session.start(URL);
+  session.start(URL + "?" + Date.now()); // adding date parameters invalidates local caches.
   session.writeText(COMPONENTS.LOGIN.userName, CUSTOMER_DETAILS.username);
   session.writeText(COMPONENTS.LOGIN.password, CUSTOMER_DETAILS.password);
   session.click(COMPONENTS.LOGIN.submitButton);

@@ -4,7 +4,7 @@
 const session = new SeleniumSession("session"); //, "firefox");
 
 function start() {
-  session.start(URL);
+  session.start(URL + "?" + Date.now() ); // adding date parameters invalidates local caches.
   session.waitForVisibility(COMPONENTS.SVG_ELEMENTS.svg, 5000);
 }
 function wakeUp() {
