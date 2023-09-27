@@ -9,8 +9,8 @@ const MEETING_TYPE_2_TOPIC = {
 };
 
 const DAYPART_2_TIME = {
-    morning:   ["09:00", "09:30", "10:30"],
-    afternoon: [ "1:00",  "1:30",  "2:30"]
+    morning:   ["9:00 AM", "09:30 AM", "10:30 AM"],
+    afternoon: [ "1:00 PM",  "1:30 PM",  "2:30 PM"]
 };
 
 const CUSTOMER_DETAILS = {
@@ -26,8 +26,8 @@ const REMOTE_BRANCHES = [
     "Ashdod",
     "Haifa",
     "Ramat Gan",
-    "Beer Sheva",
-    "Home Branch"
+    "Beer Sheva"
+//    ,"Home Branch"
 ];
 
 // Components repository, holds XPaths for UI elements.
@@ -63,18 +63,18 @@ const COMPONENTS = {
     },
 
     HOURS:{
-        "09:00":                            "//input[@id='Morning-hour-0']",
-        "1:00":                             "//input[@id='Afternoon-hour-0']",
-        "09:30":                            "//input[@id='Morning-hour-1']",
-        "1:30":                             "//input[@id='Afternoon-hour-1']",
-        "10:30":                            "//input[@id='Morning-hour-2']",
-        "2:30":                             "//input[@id='Afternoon-hour-2']",
+        "9:00 AM":                            "//input[@id='Morning-hour-0']",
+        "1:00 PM":                             "//input[@id='Afternoon-hour-0']",
+        "9:30 AM":                            "//input[@id='Morning-hour-1']",
+        "1:30 PM":                             "//input[@id='Afternoon-hour-1']",
+        "10:30 AM":                            "//input[@id='Morning-hour-2']",
+        "2:30 PM":                             "//input[@id='Afternoon-hour-2']",
     },
 
     BRANCHES:{
         "Tel Aviv Central":                 "//option[@value='Tel Aviv Central']",
-        Ashdod:                             "//option[@value='Ashdod']",
-        Haifa:                              "//option[@value='Haifa']",
+        "Ashdod":                             "//option[@value='Ashdod']",
+        "Haifa":                              "//option[@value='Haifa']",
         "Beer Sheva":                       "//option[@value='Beer Sheva']",
         "Ramat Gan":                        "//option[@value='Ramat Gan']",
 //        "Home":                             "//option[@value='Ramat Gan']",

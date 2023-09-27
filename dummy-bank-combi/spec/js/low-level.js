@@ -45,11 +45,8 @@ function chooseTopic(){
     else if(topic.includes(2)) {
         button = COMPONENTS.TOPICS.topic_2;
     }
-    else if(topic.includes(3)) {
-        button = COMPONENTS.TOPICS.topic_3;
-    }
     else {
-        button = COMPONENTS.TOPICS.topic_4;
+        button = COMPONENTS.TOPICS.topic_3;
     }
 
     session.click(button);
