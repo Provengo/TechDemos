@@ -1,0 +1,5 @@
+version: 2
+bpmn:
+  auto-start:
+    - process-1.bpmn
+    - process-2.bpmn

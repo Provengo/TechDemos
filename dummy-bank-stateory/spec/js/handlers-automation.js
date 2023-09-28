@@ -10,8 +10,10 @@
 ///                                                               C_C_(___)
 ////////////////////////////////////////////////////////////////////////////
 
-/**
- * The selenium automation session
+
+/** 
+ * The selenium automation session 
+ * {#fff}
  */
 const session = new SeleniumSession("session");
 

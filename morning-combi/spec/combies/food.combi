@@ -12,7 +12,8 @@
         "values": [
           "egg",
           " porridge",
-          " toast"
+          " toast",
+          " pancake"
         ],
         "record": false,
         "remark": ""
@@ -53,12 +54,12 @@
         "value2": "chips"
       },
       {
-        "id": "F74bYiMAirYTKryVpDGdx7pgLwvL6SWs",
+        "id": "SbntveNCMLBS2k6MOBmbaD3owY1Va0fy",
         "field1": "drink",
         "value1": "coffee",
         "field2": "side",
         "type": "cannot be",
-        "value2": " none"
+        "value2": "chips"
       }
     ],
     "isAutoStart": false

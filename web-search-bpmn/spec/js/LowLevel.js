@@ -1,26 +1,13 @@
 // @provengo summon selenium
-//
-let URL = "https://ecosia.org";
+// @provengo summon bpmn
 
-/**
- * Component repository, holds XPaths for UI elements.
- */
-const COMPONENTS = {
-    searchField:    "//input[@name='q']",
-    submitButton:   "//button[@type='submit']",
-    resultsSection: "//section[@data-test-id='mainline']"
-};
 
-const searchFlowDiagram = Bpmn.diagram("HighLevelFlow");
-let seleniumSession;
-
+const searchFlowDiagram = Bpmn.diagram("highlevelflow");
+bp.log.info(JSON.stringify(Bpmn.__allDiagrams));
 
 searchFlowDiagram.atStartEvent("start session").run(function(){
-    // Define a Selenium session. No window is opened yet.
-    seleniumSession = new SeleniumSession("user");
     // Go to search screen
     seleniumSession.start(URL);
-
 });
 
 searchFlowDiagram.atActivity("search").run(function(){

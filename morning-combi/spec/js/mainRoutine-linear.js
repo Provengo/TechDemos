@@ -15,11 +15,11 @@ bthread("main", function () {
   request(Actions.wakeUp());
   
   // Dress up
-  requestAtAnyOrder(
-    Actions.wear("pants"),
-    Actions.wear("shirt"),
-    Actions.wear("socks"),
-    Actions.wear("shoes"));
+  // requestAtAnyOrder(
+  //   Actions.wear("pants"),
+  //   Actions.wear("shirt"),
+  //   Actions.wear("socks"),
+  //   Actions.wear("shoes"));
   
   // Eat
   let breakfast = Combies.get("Breakfast");

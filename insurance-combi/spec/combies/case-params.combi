@@ -1,0 +1,13 @@
+{
+  "combiV": {
+    "id": "20nVSRA5AHDAGDBPSWyP2NiwUQYzgofY",
+    "name": "Case parameters",
+    "remarks": "",
+    "created": 1691930590403,
+    "fields": []
+  },
+  "combiC": {
+    "dependencies": [],
+    "isAutoStart": false
+  }
+}

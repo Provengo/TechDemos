@@ -1,0 +1,105 @@
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+:caution-caption: :bangbang:
+:important-caption: :exclamation:
+:note-caption: :point_right:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+
+# Insurance
+
+This (somewhat advanced) example specifies and tests processing of an online insurance claim. The specification starts with setting the case properties (using Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[Combi library]), and then continues with a state machine describing testable user behavior based on the properties. 
+
+Automation layers are provided for both manual and Python-based testing.
+
+## Files
+
+link:spec/js/case-gen.js[case-gen.js]::
+    Defines possible combinations of properties for possible test cases. Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[Combi library].
+link:spec/js/high-level.states.js[high-level.states.js]::
+    Defines the high-level flows of the tests. Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/dsls/stateory.html[Stateory DSL].
+link:spec/js/z-connect.js[z-connect.js]::
+    Connects the above specifications.
+link:spec/js/low-level-manual.js[low-level-manual.js]::
+    Generates instructions for manual testing.
+link:spec/js-disabled/low-level-python.js[low-level-python.js]::
+    Generates instructions for generating test scripts using Python.
+link:meta-spec/script-writer.js[script-writer.js]::
+    Code for generating Python test scripts from scenario files.
+link:meta-spec/test-book.js[test-book.js]::
+    Code for generating manual test books from scenario files.
+link:meta-spec/z-ranking.js[z-ranking.js]::
+    Code for optimizing test suites.
+
+## Things to try
+
+IMPORTANT: These assume that you have provengo installed on your system. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[the install page on our documentation site] if not.
+
+Run the code and see the events on the console.
+
+[code, bash]
+----
+$ provengo run insurance
+----
+
+Visualize the specification space. Try running this before and after moving `low-level-manual.js` from link:spec/js[] to link:spec/js-disabled[]. Note that for fully drawing the specification space when there are low-level actuation instructions in place, we add the `--max-depth 150` flag.
+
+[code, bash]
+----
+$ provengo analyze -f pdf --max-depth 150 insurance
+----
+
+Sample scenarios (e.g. to allow optimization). This will create a scenario file called "samples.json" at `products/run-source`. The file's name and location can be changed using the `-o/--output-file` flag.
+
+[code, bash]
+----
+$ provengo sample --sample-size 2000 --delete-previous insurance
+----
+
+Generate a test ensemble. You can change the `GOALS` array in link:meta-spec/z-ranking.js[] to optimize for a different set of goal events, or write a completely new ranking function (also in that file).
+
+NOTE: The term "ensemble" refers to a test suite that's optimized for some metric. This metric is provided by a ranking function (see `rankingFunction()` in link:meta-spec/z-ranking.js[]).
+
+[code, bash]
+----
+$ provengo ensemble --suite-size 8 insurance
+----
+
+Below is a sample output (truncated). Note the marked line that shows the rank of the optimized test suite. In this example, the rank is the number of goals covered by the suite. While the goal list (detailed in the `GOALS` array at link:meta-spec/z-ranking.js[]) has 12 goals, these were covered by only 8 tests! This is because ``provengo```s optimization algorithm chose tests that cover more than a single goal.
+
+[code, bash]
+----
+  /\
+ /XX\
+{XXXX#####################################
+ \XX/ / _ \_______ _  _____ ___  ___  ___
+  \/ / ___/ __/ _ \ |/ / -_) _ \/ _ \/ _ \
+    /_/  /_/  \___/___/\__/_//_/\_, /\___/
+                               /___/
+...
+[ENSEMBLER] INFO Read 2,000 samples.
+[ENSEMBLER] INFO Ensemble created (duration 3 seconds).
+[ENSEMBLER] INFO GeneticOptimizer generated an ensemble of size 8 with rank 12.000. <.>
+----
+<.> Rank of optimized test suite
+
+Generate a test book from the test ensemble. Note that for this to work, you need to sample and optimize while the `low-level-manual.js` file is in link:spec/js[].
+
+[code, bash]
+----
+$ provengo gen-book insurance
+----
+
+Generate a set of Python scripts from the ensemble. For this, first move the `low-level-python.js` file to link:spec.js[], and move the `low-level-manual.js` file to link:spec/js-disabled[]. Now we need to resample, optimize, and create the scripts:
+
+[code, bash]
+----
+$ provengo sample --delete-previous --sample-size 2000 insurance
+$ provengo ensemble --suite-size 8 insurance
+$ provengo gen-scripts insurance
+----
+
+
