@@ -1,4 +1,4 @@
-![](Provengo.jpeg)
+
 
 ifndef::env-github[:icons: font]
 ifdef::env-github[]
@@ -12,9 +12,9 @@ ifdef::env-github[]
 endif::[]
 
 # Tech Demos
-
-
 Some https://provengo.tech[Provengo] project to demo different aspects of our technology.
+
+image::Provengo.jpeg[height=600,width=100%]
 
 NOTE: Documentation for the Provengo tool is at https://docs.provengo.tech[docs.provengo.tech].
 
