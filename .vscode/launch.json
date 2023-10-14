@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Selenium Server on Folder Open",
+      "type": "shell",
+      "request": "launch",
+      "preLaunchTask": "Run Selenium Server",
+      "presentation": {
+        "focus": true,
+        "panel": "dedicated"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "windows": {
+        "command": "cmd.exe",
+        "args": ["/c", "start", "cmd", "/k"]
+      },
+      "linux": {
+        "command": "gnome-terminal",
+        "args": ["--", "bash", "-c"]
+      },
+      "osx": {
+        "command": "terminal",
+        "args": ["-e"]
+      }
+    }
+  ]
+}
