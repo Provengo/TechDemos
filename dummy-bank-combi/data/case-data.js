@@ -26,7 +26,7 @@ const TOPICS = [].concat(MEETING_TYPE_2_TOPIC.meet_banker)
 const DAYPART = ["morning", "afternoon"];
 
 const DAYPART_2_TIME = {
-  morning: ["09:00", "09:30", "10:30"],
+  morning: ["9:00", "9:30", "10:30"],
   afternoon: ["1:00", "1:30", "2:30"],
 };
 const HOURS = [].concat(DAYPART_2_TIME.morning).concat(DAYPART_2_TIME.afternoon);
