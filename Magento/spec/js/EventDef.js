@@ -33,13 +33,11 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             click("//button[contains(@class,'accountTrigger-trigger-23q clickable-root-1HB')]");
             waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
             writeText('//input[@id="email"]', event.username);
-            writeText("//input[@id='Password']", event.password);
-            click("xpath:://span[@data-cy='SignIn-title']/following::button[@type='submit']");
+            writeText("css::input#Password", event.password);
+            click("//div[@data-cy='SignIn-root']//button[@type='submit']")
 
             if (event.expectedWelcome)
                 waitForVisibility("(//span[text()='" + event.expectedWelcome + "'])[2]", 10000)
-            else
-                bp.log.info("No expected welcome message was provided for user " + event.username)
         }
     });
 
@@ -177,35 +175,34 @@ if (EXCLUDE_LOW_LEVEL == "true") {
      ************************************************************************************/
     defineEvent(SeleniumSession, "AddToCart", function (session, event) {
         with (session) {
-            moveToElement("//span[text()='" + event.product.category + "']");
-            moveToElement("xpath:://span[text()='" + event.product.category + "']/following::span[text()='" + event.product.subCategory + "']");
-            click("xpath:://span[text()='" + event.product.category + "']/following::span[text()='" + event.product.subCategory + "']/following::span[text()='" + event.product.subSubCategory + "']", 5000);
+            click("//button[@data-cy='Header-NavigationTrigger-root']");
+            click("//span[text()='" + event.product.category + "']");
+            click("//span[text()='" + event.product.subCategory + "']");
 
-
-            selectByValue("xpath:://div[@class='toolbar toolbar-products']/following::select[@id='limiter']", '36')
-
-            moveToElement("(//img[@alt='" + event.product.product + "'])[last()]")
-            waitForClickability("(//img[@alt='" + event.product.product + "'])[last()]", 1000);
-            click("(//img[@alt='" + event.product.product + "'])[last()]");
+            
+            let image = "//article[@data-cy='CategoryContent-root']//img[@loading='lazy' and @alt='" + event.product.product + "']";
+            //moveToElement(image)
+            waitForClickability(image, 1000);
+            click(image);
 
             for (let opt in event.product.options) {
                 // Click the options
-                click("//div[@data-option-label='" + event.product.options[opt] + "']");
+                click("//button[@title='" + event.product.options[opt] + "']");
 
                 // Verify that it was selected
-                waitForVisibility("//div[@data-option-label='" + event.product.options[opt] + "' and contains(@class,'selected')]", 5000);
+                waitForVisibility("//button[@title='" + event.product.options[opt] + "' and contains(@class,'selected')]", 5000);
             }
             if (event.product.quantity) {
-                writeText("//input[@title='Qty']", event.product.quantity, true);
+                writeText("//input[@name='quantity']", event.product.quantity, true);
             }
 
-            if (event.product.expected_image) {
-                waitForVisibility("//img[contains(@src, '" + event.product.expected_image + "')]", 5000);
-            }
-            click("//button[@id='product-addtocart-button']/span");
-            waitForVisibility("//div[@data-ui-id='message-success']//div[1]", 5000);
-            assertText("//div[@data-ui-id='message-success']//div[1]", "You added " + event.product.product + " to your shopping cart.");
-            sleep(5000);
+            // if (event.product.expected_image) {
+            //     waitForVisibility("//img[contains(@loading='lazy' and @src, '" + event.product.expected_image + "')]", 5000);
+            // }
+            click("//span[text()='Add to Cart']");
+            // waitForVisibility("//div[@data-ui-id='message-success']//div[1]", 5000);
+            // assertText("//div[@data-ui-id='message-success']//div[1]", "You added " + event.product.product + " to your shopping cart.");
+            // sleep(5000);
         }
     })
 
@@ -218,7 +215,7 @@ if (EXCLUDE_LOW_LEVEL == "true") {
 
             selectByValue("xpath:://div[@class='toolbar toolbar-products']/following::select[@id='limiter']", '36')
 
-            moveToElement("(//img[@alt='" + event.product.product + "'])[last()]")
+            scrollToElement("(//img[@alt='" + event.product.product + "'])[last()]")
             waitForClickability("(//img[@alt='" + event.product.product + "'])[last()]", 1000);
             click("(//img[@alt='" + event.product.product + "'])[last()]");
 

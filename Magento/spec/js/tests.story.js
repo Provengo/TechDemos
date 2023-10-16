@@ -5,7 +5,11 @@
 // const URL = "http://localhost/"
 // const URL = "https://magento2-demo.magebit.com/"
 // const URL = "https://magento2-b2b.magebit.com/"
-const URL = "https://verbose-cod-v6xg74rrw9fwvw6-10000.preview.app.github.dev/"
+
+//const URL = "https://verbose-cod-v6xg74rrw9fwvw6-10000.preview.app.github.dev/"
+const URL = "http://localhost:10000"
+
+
 
 const NUM_OF_USERS = 1
 const NUM_OF_SESSIONS = 1
@@ -13,15 +17,16 @@ const NUM_OF_PROD = 1
 
 // Add a b-thread for each user in the users array
 for (let i = 0; i < NUM_OF_SESSIONS; i++) {
-    for (let j = 0; i < Math.min(NUM_OF_USERS, users.length); i++) {
+    for (let j = 0; j < Math.min(NUM_OF_USERS, users.length); j++) {
         let user = users[j]
         story('Add to cart sessin #' + i + ' for ' + user.username, function () {
             with (new SeleniumSession().start(URL)) {
                 login(user)
-                // for (let j = 0; j < NUM_OF_PROD; j++) {
-                //     let product = getRandomProduct()
-                //     addToCart({ product: product, user: user })
-                // }
+                for (let k = 0; k < NUM_OF_PROD; k++) {
+                    //let product = getRandomProduct()
+                    product = products[0]
+                    addToCart({ product: product, user: user })
+                }
             }
         })
     }
