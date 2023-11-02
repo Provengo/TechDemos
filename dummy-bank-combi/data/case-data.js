@@ -80,21 +80,21 @@ const COMPONENTS = {
   },
 
   HOURS: {
-    "09:00": "//input[@id='Morning-hour-0']",
+    "9:00": "//input[@id='Morning-hour-0']",
     "1:00": "//input[@id='Afternoon-hour-0']",
-    "09:30": "//input[@id='Morning-hour-1']",
+    "9:30": "//input[@id='Morning-hour-1']",
     "1:30": "//input[@id='Afternoon-hour-1']",
     "10:30": "//input[@id='Morning-hour-2']",
     "2:30": "//input[@id='Afternoon-hour-2']",
   },
 
   BRANCHES: {
+    branch_select: "//select[@id='branch-input']",
     "Tel Aviv Central": "//option[@value='Tel Aviv Central']",
     Ashdod: "//option[@value='Ashdod']",
     Haifa: "//option[@value='Haifa']",
     "Beer Sheva": "//option[@value='Beer Sheva']",
     "Ramat Gan": "//option[@value='Ramat Gan']",
-    //        "Home":                             "//option[@value='Ramat Gan']",
   },
 
   CONTACT_INFO: {

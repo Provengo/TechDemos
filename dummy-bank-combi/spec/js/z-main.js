@@ -10,6 +10,7 @@ const RUN_SM    = true;
 
 /** Main b-thread, coordinates and runs the combi and state machine based on the above const values. */
 bthread("main", function start() {
+  bp.log.info("Starting b-thread");
   if ( RUN_COMBI ){
     bank.doStart();
     waitFor(bank.doneEvent);
