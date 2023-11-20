@@ -1,28 +1,25 @@
 //@provengo summon selenium
+// Define a Selenium session. No window is opened yet.
+const seleniumSession = new SeleniumSession("user");
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //
 // Basic app flow
 //
-//                         +----------+
-//                  +----->| set time |
-//                  |      +---+------+
-//                  |          |         +-------+
-//   +-----+   +----+----+     +-------->|contact|   +--------+   +-------+
-//-->|Login|-->|Dashboard|               |  and  |-->|approval|-->|confirm|
-//   +-----+   +----+----+     +-------->|remarks|   +--------+   +-------+
-//                  |          |         +-------+
-//                  |      +---+------+
-//                  |      |set time  |
-//                  +----->|and branch|
-//                         +----------+
+//                                               +-------+
+//   +-----+   +----+----+   +----------+ (else) |contact|   +--------+   +-------+
+//-->|Login|-->|Dashboard|-->| set time |--––--->|  and  |-->|approval|-->|confirm|
+//   +-----+   +----+----+   +---+------+        |remarks|   +--------+   +-------+
+//                              | (cashier)      +-------+
+//                              |   +----+-------+   |
+//                              +-->| set branch |-->+
+//                                  +------------+
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-
-// Define a Selenium session. No window is opened yet.
-const seleniumSession = new SeleniumSession("user");
 story('TestBank', function () {
     with (seleniumSession.start(URL)) {
         // Open a browser window, go to dummy-bank.provengo.tech and login with username and password.
@@ -40,14 +37,8 @@ story('TestBank', function () {
 
         // schedule the meeting
         let dayPart = choose(Object.keys(DAYPART_2_TIME));
-        let time = choose(DAYPART_2_TIME[dayPart]);
+        let time = select('time').from(DAYPART_2_TIME[dayPart]);
         setTime({time:time});
-
-        // for meeting with a cashier, choose the branch location as well
-        if ( service === "meet_cashier" ) {
-            let branch = choose(REMOTE_BRANCHES);
-            setBranch({branch:branch});
-        }
 
         // fill in contact info
         moveToContactDataPage();
@@ -69,3 +60,13 @@ story('TestBank', function () {
         });
     }
 });
+
+story('meeting with cashier requires branch location', function () {
+    with (seleniumSession.start(URL)) {
+        waitFor(choiceEvent("meet_cashier"));
+        waitFor(Any(/time/))
+        let branch = choose(REMOTE_BRANCHES);
+        setBranch({branch:branch});
+    }
+});
+
