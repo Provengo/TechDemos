@@ -8,20 +8,16 @@ const loginTitle = "//h2[@class='login-title']";
 const MEETING_TYPE_2_SERVICE = {
     meet_banker:  ["banker deposit funds 1", "banker withdraw NFTs 2"],
     meet_cashier: ["cashier topic 1", "cashier topic 2"],
-    meet_invest:  ["investment topic 1", "investment topic 2","investment topic 3"]
+    // meet_invest:  ["investment topic 1", "investment topic 2","investment topic 3"]
 };
 
 const DAYPART_2_TIME = {
-    "morning":   ["09:00", "09:30", "10:30"],
-    "afternoon": [ "1:00",  "1:30",  "2:30"]
+    "morning":   ["09:00", "09:30"],
+    // "afternoon": [ "1:00",  "1:30",  "2:30"]
 };
 
-const REMOTE_BRANCH_1 = "Tel Aviv Central";
-const REMOTE_BRANCH_2 = "Ashdod";
-const REMOTE_BRANCH_3 = "Haifa";
-const REMOTE_BRANCH_4 = "Ramat Gan";
-const REMOTE_BRANCH_5 = "Beer Sheva";
-const HOME_BRANCH = "Home Branch";
+// const REMOTE_BRANCHES = ["Tel Aviv Central", "Ashdod", "Haifa", "Ramat Gan", "Beer Sheva", "Home Branch"];
+const REMOTE_BRANCHES = ["Tel Aviv Central", "Ashdod"];
 
 const CUSTOMER_DETAILS = {
     email:   "israel.israeli@example.co.il",

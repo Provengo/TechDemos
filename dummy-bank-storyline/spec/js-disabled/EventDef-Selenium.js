@@ -48,8 +48,8 @@ defineEvent(SeleniumSession, "SetBranch", function (session,event) {
         click(COMPONENTS.branch);
         selectByValue(COMPONENTS.branch, event.branch);
 
-        if(event.branch.equals(REMOTE_BRANCH_5)){
-            Ctrl.doMark(REMOTE_BRANCH_5)
+        if(event.branch.equals(REMOTE_BRANCHES[4])){
+            Ctrl.doMark(REMOTE_BRANCHES[4])
         }
     }
 });

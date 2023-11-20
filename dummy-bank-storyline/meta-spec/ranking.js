@@ -1,3 +1,5 @@
+const analyzeMode = true;
+
 function rankByLengthVariance( ensemble ) {
     let min=ensemble[0].length;
     let max=min;
@@ -9,9 +11,9 @@ function rankByLengthVariance( ensemble ) {
 }
 
 const GOALS = [
-    choiceEvent(REMOTE_BRANCH_1),
-    choiceEvent(REMOTE_BRANCH_2),
-    choiceEvent(REMOTE_BRANCH_3),
+    choiceEvent(REMOTE_BRANCHES[0]),
+    choiceEvent(REMOTE_BRANCHES[1]),
+    choiceEvent(REMOTE_BRANCHES[2]),
     choiceEvent("meet_banker"),
     choiceEvent("meet_invest"),
     choiceEvent("meet_cashier")

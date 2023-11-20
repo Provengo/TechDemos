@@ -29,21 +29,23 @@ story('TestBank', function () {
         login({username: CUSTOMER_DETAILS.username, password: CUSTOMER_DETAILS.password});
 
         // choose a service for the meeting
-        let service = choose("meet_banker","meet_invest","meet_cashier");
+        let service = choose(Object.keys(MEETING_TYPE_2_SERVICE));
         chooseService({service:service});
 
         // choose a topic (by service)
-        let topic = choose(MEETING_TYPE_2_SERVICE[service]);
-        chooseTopic({topic:"topic_"+topic.charAt(topic.length-1)});
+        if(typeof analyzeMode === 'undefined') {
+            let topic = choose(MEETING_TYPE_2_SERVICE[service])
+            chooseTopic({ topic: 'topic_' + topic.charAt(topic.length - 1) })
+        }
 
         // schedule the meeting
-        let dayPart = choose("morning","afternoon");
+        let dayPart = choose(Object.keys(DAYPART_2_TIME));
         let time = choose(DAYPART_2_TIME[dayPart]);
         setTime({time:time});
 
         // for meeting with a cashier, choose the branch location as well
         if ( service === "meet_cashier" ) {
-            let branch = choose(REMOTE_BRANCH_1,REMOTE_BRANCH_2,REMOTE_BRANCH_3);//,REMOTE_BRANCH_4,REMOTE_BRANCH_5);
+            let branch = choose(REMOTE_BRANCHES);
             setBranch({branch:branch});
         }
 
