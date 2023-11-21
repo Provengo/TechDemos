@@ -3,24 +3,27 @@
 const seleniumSession = new SeleniumSession("user");
 
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////
 //
-// Basic app flow
+//   Main scenario:                         +-------+
+//   +-----+   +---------+   +----------+   |contact|   +--------+   +-------+
+//-->|Login|-->|Dashboard|-->| set time |-->|  and  |-->|approval|-->|confirm|
+//   +-----+   +---------+   +----------+   |remarks|   +--------+   +-------+
+//                                          +-------+
 //
-//                                               +-------+
-//   +-----+   +----+----+   +----------+ (else) |contact|   +--------+   +-------+
-//-->|Login|-->|Dashboard|-->| set time |--––--->|  and  |-->|approval|-->|confirm|
-//   +-----+   +----+----+   +---+------+        |remarks|   +--------+   +-------+
-//                              | (cashier)      +-------+
-//                              |   +----+-------+   |
-//                              +-->| set branch |-->+
-//                                  +------------+
+//   Cashier scenario:
+//   +-----------+                    +----------+   +---------–––-+
+//-->| Dashboard |––––––––––––––––––->| set time |-->|select branch|
+//   +-----------+ (service=cashier)  +----------+   +-------------+
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-story('TestBank', function () {
+
+
+// Main scenario:
+//      Login, choose a service, choose a topic, set time,
+//      fill in contact info, confirm contact info, confirm meeting
+story('Main scenario', function () {
     with (seleniumSession.start(URL)) {
         // Open a browser window, go to dummy-bank.provengo.tech and login with username and password.
         login({username: CUSTOMER_DETAILS.username, password: CUSTOMER_DETAILS.password});
@@ -39,6 +42,11 @@ story('TestBank', function () {
         let dayPart = choose(Object.keys(DAYPART_2_TIME));
         let time = select('time').from(DAYPART_2_TIME[dayPart]);
         setTime({time:time});
+
+        if(typeof analyzeMode === 'undefined' && service === 'meet_cashier') {
+            let branch = choose(REMOTE_BRANCHES);
+            setBranch({branch:branch});
+        }
 
         // fill in contact info
         moveToContactDataPage();
@@ -61,12 +69,13 @@ story('TestBank', function () {
     }
 });
 
+// Cashier scenario:
+//      If the service is 'cashier', the customer must choose a branch.
 story('meeting with cashier requires branch location', function () {
     with (seleniumSession.start(URL)) {
         waitFor(choiceEvent("meet_cashier"));
         waitFor(Any(/time/))
-        let branch = choose(REMOTE_BRANCHES);
-        setBranch({branch:branch});
+        choose(REMOTE_BRANCHES);
     }
 });
 
