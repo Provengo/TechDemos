@@ -34,12 +34,13 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
             writeText('//input[@id="email"]', event.username);
             writeText("css::input#Password", event.password);
-            click("//div[@data-cy='SignIn-root']//button[@type='submit']")
+            click("xpath:://span[text()='Sign-in to Your Account']/following::span[text()='Sign In']");
 
             if (event.expectedWelcome)
                 waitForVisibility("(//span[text()='" + event.expectedWelcome + "'])[2]", 10000)
         }
     });
+
 
 
     /***********************************************************************************
@@ -175,15 +176,18 @@ if (EXCLUDE_LOW_LEVEL == "true") {
      ************************************************************************************/
     defineEvent(SeleniumSession, "AddToCart", function (session, event) {
         with (session) {
-            click("//button[@data-cy='Header-NavigationTrigger-root']");
+            click("//button[contains(@class,'navTrigger-root-3uS clickable-root-1HB')]");
+
             click("//span[text()='" + event.product.category + "']");
             click("//span[text()='" + event.product.subCategory + "']");
 
-            
-            let image = "//article[@data-cy='CategoryContent-root']//img[@loading='lazy' and @alt='" + event.product.product + "']";
+
+            //let image = "//img[@alt='" + event.product.product + "']";
             //moveToElement(image)
-            waitForClickability(image, 1000);
-            click(image);
+            //waitForClickability(image, 10000);
+
+            click("//span[text() = '" + event.product.product + "']");
+            //click(image);
 
             for (let opt in event.product.options) {
                 // Click the options
