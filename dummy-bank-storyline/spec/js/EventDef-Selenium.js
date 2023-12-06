@@ -26,7 +26,6 @@ defineEvent(SeleniumSession, "ChooseTopic", function (session, event) {
     waitForVisibility(COMPONENTS.dialog, 10000);
     let topic = COMPONENTS[event.topic];
     click(topic);
-    waitForInvisibility(COMPONENTS.dialog, 1000);
   }
 });
 
@@ -68,7 +67,6 @@ defineEvent(
 //event def for filling contact information.
 defineEvent(SeleniumSession, "FillContactData", function (session, event) {
   with (session) {
-    waitForInvisibility(COMPONENTS.setTime_btn_continue, 1000);
     waitForVisibility(COMPONENTS.email_input, 1000);
     writeText(COMPONENTS.email_input, event.email);
     writeText(COMPONENTS.phone_input, event.phone);
@@ -86,7 +84,6 @@ defineEvent(SeleniumSession, "UserConfirmation", function (session, event) {
     
     waitForVisibility(COMPONENTS.user_confirmation_btn, 1000);
     click(COMPONENTS.user_confirmation_btn);
-    waitForInvisibility(COMPONENTS.user_confirmation_btn, 1000);
   }
 });
 

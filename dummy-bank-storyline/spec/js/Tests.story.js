@@ -24,7 +24,7 @@
 // Define a Selenium session. No window is opened yet.
 const seleniumSession = new SeleniumSession("user");
 story('TestBank', function () {
-    with (seleniumSession.start(URL + "?" + Date.now())) { // adding date parameters invalidates local caches.
+    with (seleniumSession.start(URL)) { // adding date parameters invalidates local caches.
         // Open a browser window, go to dummy-bank.provengo.tech and login with username and password.
         login({username: CUSTOMER_DETAILS.username, password: CUSTOMER_DETAILS.password});
 
