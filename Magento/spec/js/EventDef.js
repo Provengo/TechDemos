@@ -176,20 +176,27 @@ if (EXCLUDE_LOW_LEVEL == "true") {
      ************************************************************************************/
     defineEvent(SeleniumSession, "AddToCart", function (session, event) {
         with (session) {
-            runCode("document.querySelectorAll('button[class*=\"navTrigger-root-3uS clickable-root-1HB\"]').forEach(function(e){e.click()})");
+            // Click the menu accordion button
+            click("//div[@id='root']/main[1]/header[1]/div[1]/div[1]/button[1]")
 
+            // Click the category
             click("//span[text()='" + event.product.category + "']");
+
+            // Click the sub-category
             click("//span[text()='" + event.product.subCategory + "']");
 
+            // Click the product
             click("//span[text() = '" + event.product.product + "']");
 
+            // Click the options
             for (let opt in event.product.options) {
-                // Click the options
+                // Click the option
                 click("//button[@title='" + event.product.options[opt] + "']");
 
                 // Verify that it was selected
                 waitForVisibility("//button[@title='" + event.product.options[opt] + "' and contains(@class,'selected')]", 5000);
             }
+            // Write the quantity
             if (event.product.quantity) {
                 writeText("//input[@name='quantity']", event.product.quantity, true);
             }
@@ -198,12 +205,19 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             //     waitForVisibility("//img[contains(@loading='lazy' and @src, '" + event.product.expected_image + "')]", 5000);
             // }
 
+            // Click the add to cart button
             click("//span[text()='Add to Cart']");
 
             // waitForVisibility("//div[@data-ui-id='message-success']//div[1]", 5000);
             // assertText("//div[@data-ui-id='message-success']//div[1]", "You added " + event.product.product + " to your shopping cart.");
 
+            // Click the menu accordion button
             click("//div[@id='root']/main[1]/header[1]/div[1]/div[1]/button[1]")
+
+            // Go to main menu by clicking the <- button
+            click("xpath:://span[text()='Main Menu']/preceding::button");
+
+            // Exit the menu by clickin thx X button
             click("xpath:://span[text()='Main Menu']/preceding::button");
         }
     })
