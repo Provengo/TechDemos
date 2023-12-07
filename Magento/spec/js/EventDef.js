@@ -176,18 +176,12 @@ if (EXCLUDE_LOW_LEVEL == "true") {
      ************************************************************************************/
     defineEvent(SeleniumSession, "AddToCart", function (session, event) {
         with (session) {
-            click("//button[contains(@class,'navTrigger-root-3uS clickable-root-1HB')]");
+            runCode("document.querySelectorAll('button[class*=\"navTrigger-root-3uS clickable-root-1HB\"]').forEach(function(e){e.click()})");
 
             click("//span[text()='" + event.product.category + "']");
             click("//span[text()='" + event.product.subCategory + "']");
 
-
-            //let image = "//img[@alt='" + event.product.product + "']";
-            //moveToElement(image)
-            //waitForClickability(image, 10000);
-
             click("//span[text() = '" + event.product.product + "']");
-            //click(image);
 
             for (let opt in event.product.options) {
                 // Click the options
@@ -203,10 +197,14 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             // if (event.product.expected_image) {
             //     waitForVisibility("//img[contains(@loading='lazy' and @src, '" + event.product.expected_image + "')]", 5000);
             // }
+
             click("//span[text()='Add to Cart']");
+
             // waitForVisibility("//div[@data-ui-id='message-success']//div[1]", 5000);
             // assertText("//div[@data-ui-id='message-success']//div[1]", "You added " + event.product.product + " to your shopping cart.");
-            // sleep(5000);
+
+            click("//div[@id='root']/main[1]/header[1]/div[1]/div[1]/button[1]")
+            click("xpath:://span[text()='Main Menu']/preceding::button");
         }
     })
 

@@ -10,9 +10,9 @@
 //const URL = "http://localhost:10000"
 const URL = "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
 
-const NUM_OF_USERS = 2
+const NUM_OF_USERS = 1
 const NUM_OF_SESSIONS = 1
-const NUM_OF_PROD = 1
+const NUM_OF_PROD = 3
 
 // Add a b-thread for each user in the users array
 for (let i = 0; i < NUM_OF_SESSIONS; i++) {
