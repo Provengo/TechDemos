@@ -1,0 +1,1 @@
+./provengo.sh run --show Magento | awk '/switching to dry run/{exit} 1'
