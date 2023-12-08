@@ -10,38 +10,25 @@
 //const URL = "http://localhost:10000"
 const URL = "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
 
-const NUM_OF_USERS = 2
+const NUM_OF_USERS = 3
 const NUM_OF_SESSIONS = 2
 const NUM_OF_PROD = 3
 
-// Add a b-thread for each user in the users array
-for (let i = 0; i < NUM_OF_SESSIONS; i++) {
-    for (let j = 0; j < Math.min(NUM_OF_USERS, users.length); j++) {
-        let user = users[j]
-        story('Add to cart sessin #' + i + ' for ' + user.username, function () {
+// Run sessions for each user in the users array (up to NUM_OF_USERS)
+users.slice(0, NUM_OF_USERS).forEach(user => {
+    // Run multiple parallel sessions for each user
+    for (let i = 0; i < NUM_OF_SESSIONS; i++) {
+        bthread('Add to cart sessin #' + i + ' for ' + user.username, function () {
             with (new SeleniumSession().start(URL)) {
                 login(user)
+                // Add multiple (random) products to the user's cart
                 for (let k = 0; k < NUM_OF_PROD; k++) {
                     addToCart({ product: choose(products), user: user })
                 }
             }
         })
-    }
-}
-
-
-// for (let i = 0; i < NUM_OF_SESSIONS; i++) {
-//     ctx.story('Add to cart' + i, 'User.All', function (user) {
-//         with (new SeleniumSession().start(URL)) {
-//             login({ user: user })
-//             for (let j = 0; j < NUM_OF_PROD; j++) {
-//                 let product = getRandomProduct()
-//                 addToCart({ product: product, user: user })
-//             }
-//         }
-//     })
-// }
-
+    };
+});
 
 
 // ctx.story('the Checkout', 'User.All', function (user) {
