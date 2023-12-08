@@ -22,9 +22,7 @@ for (let i = 0; i < NUM_OF_SESSIONS; i++) {
             with (new SeleniumSession().start(URL)) {
                 login(user)
                 for (let k = 0; k < NUM_OF_PROD; k++) {
-                    let product = choose(products)
-                    //product = products[product]
-                    addToCart({ product: product, user: user })
+                    addToCart({ product: choose(products), user: user })
                 }
             }
         })
