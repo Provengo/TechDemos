@@ -295,10 +295,17 @@ if (EXCLUDE_LOW_LEVEL == "true") {
         with (session) {
             // waitForClickability("//a[@class='level-top ui-corner-all']", 200000);
             // click("//a[@class='level-top ui-corner-all']");
-            refresh();
 
-            waitForClickability("//a[@class='action showcart']", 50000);
-            click("//a[@class='action showcart']");
+            //refresh();
+            //waitForClickability("//a[@class='action showcart']", 50000);
+
+            //driver.execute_script('document.evaluate("//button[contains(@class,\'cartTrigger\')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();')
+            // A simplified version of the above line:
+            runCode(`Array.from(document.querySelectorAll('button[class*="cartTrigger"]')).forEach(element => element.click());`);
+
+            //click("(//span[contains(@class,'cartTrigger')])");
+
+            //click("//a[@class='action showcart']");
             waitForClickability("//button[@title='Proceed to Checkout']", 2000);
             click("//button[@title='Proceed to Checkout']", 5000);
 
