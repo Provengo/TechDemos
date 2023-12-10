@@ -298,8 +298,6 @@ if (EXCLUDE_LOW_LEVEL == "true") {
     defineEvent(SeleniumSession, "CheckOut", function (session, event) {
         with (session) {
 
-            bp.log.info("CheckOut " + event.user.cardHolderName)
-
             // Show the cart
             runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
 
