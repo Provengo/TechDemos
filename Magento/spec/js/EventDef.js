@@ -331,101 +331,22 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             switchFrame("Main Frame")
 
             click("//span[text()='Review Order']");
+
+
+            if (event.verifyItems) {
+                for (item of event.verifyItems) {
+                    waitForVisibility("//img[@alt='" + item.product + "']", 5000);
+                }
+            }
+
+            if (event.verifyNonexistenceOfItems) {
+                for (item of event.verifyNonexistenceOfItems) {
+                    waitForInvisibility("//img[@alt='" + item.product + "']", 5000);
+                }
+            }
+
             click("//span[text()='Place Order']");
             waitForVisibility("//*[contains(text(),'Thank you for your order!')]", 9000);
         }
     });
-
-
-
-    //     defineEvent(SeleniumSession, "CheckOut", function (session, event) {
-
-    //         with (session) {
-    //             // Show the cart
-    //             runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
-
-    //             // Click the checkout button
-    //             click("//span[text()='CHECKOUT']");
-
-    //             // Wait for the checkout page to load
-    //             waitForVisibility("//*[text()='Credit Card']", 20000);
-
-    //             // Click the credit card button
-    //             click('//*[@id="paymentMethod--braintree"]');
-
-    //             // Type the card holder name
-    //             switchFrame("//iframe[@id='braintree-hosted-field-cardholderName']");
-    //             writeText("//input[@id='cardholder-name']", "Roni Cost");
-    //             switchFrame("Main Frame")
-
-    //             // Type the card number
-    //             switchFrame("//iframe[contains(@id,'braintree-hosted-field-number')]");
-    //             writeText("//input", "3566000020000410");
-    //             switchFrame("Main Frame")
-
-    //             // Type the expiration date
-    //             switchFrame("//iframe[@id='braintree-hosted-field-expirationDate']");
-    //             writeText("//input[@id='expiration']", "02/26");
-    //             switchFrame("Main Frame")
-
-    //             // Type the CVV
-    //             switchFrame("//iframe[@id='braintree-hosted-field-cvv']");
-    //             writeText("//input[@id='cvv']", "123");
-    //             switchFrame("Main Frame")
-
-    //             click("//span[text()='Review Order']");
-    //             click("//span[text()='Place Order']");
-    //             waitForVisibility("//*[contains(text(),'Thank you for your order!')]", 9000);
-
-    //             //click("(//span[contains(@class,'cartTrigger')])");
-
-    //             //click("//a[@class='action showcart']");
-    //             //     waitForClickability("//button[@title='Proceed to Checkout']", 2000);
-    //             //     click("//button[@title='Proceed to Checkout']", 5000);
-
-    //             //     if (event.verifyItems || event.verifyNonexistenceOfItems) {
-    //             //         waitForClickability("//div[contains(@class,'items-in-cart')]//div", 5000);
-    //             //         waitForClickability("//div[contains(@class,'items-in-cart')]//div", 5000);
-    //             //         click("//div[contains(@class,'items-in-cart')]//div");
-    //             //     }
-
-    //             //     if (event.verifyItems) {
-    //             //         for (item in event.verifyItems) {
-    //             //             waitForVisibility("//img[@alt='" + event.verifyItems[item] + "']", 5000);
-    //             //         }
-    //             //     }
-
-    //             //     if (event.verifyNonexistenceOfItems) {
-    //             //         for (item in event.verifyNonexistenceOfItems) {
-    //             //             waitForInvisibility("//img[@alt='" + event.verifyNonexistenceOfItems[item] + "']", 5000);
-    //             //         }
-    //             //     }
-
-    //             //     if (event.shippingMethod) {
-    //             //         waitForClickability("//td[text()='" + event.shippingMethod + "']", 5000);
-    //             //         click("//td[text()='" + event.shippingMethod + "']");
-    //             //     }
-
-    //             //     click("//span[text()='Next']");
-
-    //             //     if (event.verifyItems) {
-    //             //         for (item in event.verifyItems) {
-    //             //             waitForVisibility("//img[@alt='" + event.verifyItems[item] + "']", 5000);
-    //             //         }
-    //             //     }
-    //             //     if (event.verifyNonexistenceOfItems) {
-    //             //         for (item in event.verifyNonexistenceOfItems) {
-    //             //             waitForInvisibility("//img[@alt='" + event.user.verifyNonexistenceOfItems[item] + "']", 5000);
-    //             //         }
-    //             //     }
-
-
-    //             //     waitForClickability("//button[contains(@class,'action primary')]", 5000);
-    //             //     runCode("jQuery(document.querySelectorAll('button[class*=\"action primary\"]')).click()");
-    //             //     waitForVisibility("//p[text()='Your order number is: ']", 5000);
-    //             //     click("//span[text()='Continue Shopping']");
-    //         }
-    //     });
-
-
 }
