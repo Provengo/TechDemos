@@ -5,4 +5,5 @@ then
     nohup java -jar selenium-server-4.1.2.jar standalone > /dev/null 2>&1 &
 fi
 
-./provengo.sh run --show Magento | awk '/switching to dry run/{exit} 1'
+./provengo.sh run --show --dev-mode Magento
+# | awk '/switching to test fail mode/{exit} 1'
