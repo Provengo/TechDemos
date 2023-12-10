@@ -10,28 +10,37 @@
 //const URL = "http://localhost:10000"
 const URL = "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
 
-const NUM_OF_USERS = 3
-const NUM_OF_SESSIONS = 2
-const NUM_OF_PROD = 3
+const NUM_OF_USERS = 1
+const NUM_OF_PRODUCTS_PER_USER = 1
 
 // Run sessions for each user in the users array (up to NUM_OF_USERS)
 users.slice(0, NUM_OF_USERS).forEach(user => {
     // Run multiple parallel sessions for each user
-    for (let i = 0; i < NUM_OF_SESSIONS; i++) {
-        bthread('Add to cart sessin #' + i + ' for ' + user.username, function () {
-            with (new SeleniumSession().start(URL)) {
-                login(user)
-                // Add multiple (random) products to the user's cart
-                for (let k = 0; k < NUM_OF_PROD; k++) {
-                    addToCart({ product: choose(products), user: user })
-                }
+    bthread('Add to cart sessin for ' + user.username, function () {
+        with (new SeleniumSession().start(URL)) {
+            let addedProducts = []
+
+            // // Login the user
+            login(user)
+
+            // Add random products to the user's cart
+            for (let k = 0; k < NUM_OF_PRODUCTS_PER_USER; k++) {
+                let product = choose(products)
+                addedProducts.push(product)
+                addToCart({ product: product, user: user })
             }
-        })
-    };
+
+            // Remove a random product from the user's cart
+            //removeFromCart({ product: choose(products), user: user })
+
+            //checkOut({ shippingMethod: 'Fixed', user: user, verifyItems: addedProducts })
+            checkOut({ shippingMethod: 'Fixed', user: user })
+        }
+    })
 });
 
-
-// ctx.story('the Checkout', 'User.All', function (user) {
+// bthread('Checkout', function (user) {
+//     waitFor(Any('AddToCart'))
 //     with (new SeleniumSession().start(URL)) {
 
 //         // waitFor(Any('AddToCart'))
