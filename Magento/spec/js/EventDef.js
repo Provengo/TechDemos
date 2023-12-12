@@ -32,9 +32,9 @@ if (EXCLUDE_LOW_LEVEL == "true") {
         with (session) {
             click("//button[contains(@class,'accountTrigger-trigger-23q clickable-root-1HB')]");
             waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
-            writeText('//input[@id="email"]', event.username);
+            writeText("css::input#email", event.username);
             writeText("css::input#Password", event.password);
-            click("xpath:://span[text()='Sign-in to Your Account']/following::span[text()='Sign In']");
+            click("//span[text()='Sign-in to Your Account']/following::span[text()='Sign In']");
 
             if (event.expectedWelcome)
                 waitForVisibility("(//span[text()='" + event.expectedWelcome + "'])[2]", 10000)
@@ -215,10 +215,10 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             click("//div[@id='root']/main[1]/header[1]/div[1]/div[1]/button[1]")
 
             // Go to main menu by clicking the <- button
-            click("xpath:://span[text()='Main Menu']/preceding::button");
+            click("//span[text()='Main Menu']/preceding::button");
 
             // Exit the menu by clickin thx X button
-            click("xpath:://span[text()='Main Menu']/preceding::button");
+            click("//span[text()='Main Menu']/preceding::button");
         }
     })
 
@@ -229,7 +229,7 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             click("//span[text()='" + event.product.category + "']");
             click("(//span[text()='" + event.product.category + "'])/following::span[text()='" + event.product.subCategory + "']/following::a[text()[normalize-space()='" + event.product.subSubCategory + "']]");
 
-            selectByValue("xpath:://div[@class='toolbar toolbar-products']/following::select[@id='limiter']", '36')
+            selectByValue("//div[@class='toolbar toolbar-products']/following::select[@id='limiter']", '36')
 
             scrollToElement("(//img[@alt='" + event.product.product + "'])[last()]")
             waitForClickability("(//img[@alt='" + event.product.product + "'])[last()]", 1000);
@@ -256,12 +256,11 @@ if (EXCLUDE_LOW_LEVEL == "true") {
      *   product : string - The  product that we want to remove.
      ************************************************************************************/
     defineEvent(SeleniumSession, "RemoveFromCart", function (session, event) {
-        with (session) {
-            // Show the cart
+        with (session) {            // Show the cart
             runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
 
             // Click the remove button
-            click("xpath:://div[contains(@class,'productList-root-2dL gap-sm')]//div/following::a[contains(text(),'" + event.product.product + "')]/following::button[@class='item-deleteButton-2dW']")
+            click(`//div[contains(@class,'productList')]//a[contains(.,'${event.product.product}')]/following-sibling::button[contains(@class,'deleteButton')]`)
 
             // Hide the cart
             runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
