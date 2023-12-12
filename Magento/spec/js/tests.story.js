@@ -11,33 +11,39 @@
 const URL = "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
 
 const NUM_OF_USERS = 1
-const NUM_OF_PRODUCTS_PER_USER = 1
+const NUM_OF_PRODUCTS_PER_USER = 2
 
 // Run sessions for each user in the users array (up to NUM_OF_USERS)
 users.slice(0, NUM_OF_USERS).forEach(user => {
-    // Run multiple parallel sessions for each user
-    bthread('Add to cart sessin for ' + user.username, function () {
+    bthread('Add to cart session for ' + user.username, function () {
         with (new SeleniumSession().start(URL)) {
-            let addedProducts = []
+            let addedProducts = new Set()
 
-            // // Login the user
+            // Login
             login(user)
 
-            // Add random products to the user's cart
-            for (let k = 0; k < NUM_OF_PRODUCTS_PER_USER; k++) {
-                let product = choose(products)
-                addedProducts.push(product)
+            // Add products to cart
+            while (addedProducts.size < NUM_OF_PRODUCTS_PER_USER) {
+                let availableProducts = products.filter(product => !addedProducts.has(product))
+                let product = choose(availableProducts)
+                addedProducts.add(product)
                 addToCart({ product: product, user: user })
             }
 
-            // Remove a random product from the user's cart
-            //removeFromCart({ product: choose(products), user: user })
+            // Remove a product from cart
+            let product = choose(Array.from(addedProducts))
+            addedProducts.delete(product)
+            removeFromCart({ product: product, user: user })
 
-            //checkOut({ shippingMethod: 'Fixed', user: user, verifyItems: addedProducts })
-            checkOut({ shippingMethod: 'Fixed', user: user })
+            // Checkout
+            if (addedProducts.size !== 0) {
+                let notAdded = products.filter(product => !addedProducts.has(product))
+                checkOut({ shippingMethod: 'Fixed', user: user, verifyItems: Array.from(addedProducts), verifyNonexistenceOfItems: notAdded })
+            }
         }
     })
 });
+
 
 // bthread('Checkout', function (user) {
 //     waitFor(Any('AddToCart'))

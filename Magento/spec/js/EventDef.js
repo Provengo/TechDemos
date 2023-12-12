@@ -257,11 +257,14 @@ if (EXCLUDE_LOW_LEVEL == "true") {
      ************************************************************************************/
     defineEvent(SeleniumSession, "RemoveFromCart", function (session, event) {
         with (session) {
-            click("xpath:://a[@class='action showcart']");
-            click("xpath:://a[text()[normalize-space()='" + event.product + "']]/following::a[@class='action delete']");
-            click("xpath:://div[text()='Are you sure you would like to remove this item from the shopping cart?']/following::span[text()='OK']");
-            waitForInvisibility("//div[contains(@class,'block block-minicart')]//img[@alt='" + event.product + "']", 5000);
-            click("//button[@id='btn-minicart-close']");
+            // Show the cart
+            runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
+
+            // Click the remove button
+            click("xpath:://div[contains(@class,'productList-root-2dL gap-sm')]//div/following::a[contains(text(),'" + event.product.product + "')]/following::button[@class='item-deleteButton-2dW']")
+
+            // Hide the cart
+            runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
         }
     });
 
@@ -297,11 +300,11 @@ if (EXCLUDE_LOW_LEVEL == "true") {
      ************************************************************************************/
     defineEvent(SeleniumSession, "CheckOut", function (session, event) {
         with (session) {
-
             // Show the cart
             runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
 
             // Click the checkout button
+            sleep(1000)
             click("//span[text()='CHECKOUT']");
 
             // Wait for the checkout page to load
@@ -332,19 +335,21 @@ if (EXCLUDE_LOW_LEVEL == "true") {
 
             click("//span[text()='Review Order']");
 
-
+            // Verify that items are in the cart
             if (event.verifyItems) {
                 for (item of event.verifyItems) {
                     waitForVisibility("//img[@alt='" + item.product + "']", 5000);
                 }
             }
 
+            // Verify that items are not in the cart
             if (event.verifyNonexistenceOfItems) {
                 for (item of event.verifyNonexistenceOfItems) {
-                    waitForInvisibility("//img[@alt='" + item.product + "']", 5000);
+                    checkNonExistance("//img[@alt='" + item.product + "']", 500);
                 }
             }
 
+            // Place the order and wait for the confirmation
             click("//span[text()='Place Order']");
             waitForVisibility("//*[contains(text(),'Thank you for your order!')]", 9000);
         }
