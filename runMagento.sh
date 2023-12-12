@@ -6,4 +6,3 @@ then
 fi
 
 ./provengo.sh run --show --dev-mode Magento
-# | awk '/switching to test fail mode/{exit} 1'
