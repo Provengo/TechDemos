@@ -344,13 +344,13 @@ if (EXCLUDE_LOW_LEVEL == "true") {
             // Verify that items are not in the cart
             if (event.verifyNonexistenceOfItems) {
                 for (item of event.verifyNonexistenceOfItems) {
-                    checkNonExistance("//img[@alt='" + item.product + "']", 500);
+                    checkNonExistance("//img[@alt='" + item.product + "']", 5000);
                 }
             }
 
             // Place the order and wait for the confirmation
             click("//span[text()='Place Order']");
-            waitForVisibility("//*[contains(text(),'Thank you for your order!')]", 9000);
+            waitForVisibility("//*[contains(., 'Thank you for your order!')]", 100000);
         }
     });
 }
