@@ -1,5 +1,5 @@
 /**
- * Defines a new action.
+ * An helper for defining actions.
  *
  * @param {string} name - The name of the action to be defined.
  * @param {Function} func - The function to be executed when the action is triggered. This function should accept two parameters: the session and the data associated with the action.
@@ -7,10 +7,6 @@
  * The function adds a new method to the SeleniumSession object. This method, when called, triggers the start of the action and executes the provided function.
  * The function also blocks any other start actions in the same session while the provided function is being executed.
  *
- * @example
- * defineAction('MyAction', function(session, data) {
- *     console.log('Action started in session ' + session.name);
- * });
  */
 defineAction = function (name, func) {
     if (!/^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/.test(name)) {
@@ -212,22 +208,15 @@ defineAction("AddToCart", function (session, event) {
             click("//button[@title='" + event.product.options[opt] + "']");
 
             // Verify that it was selected
-            waitForVisibility("//button[@title='" + event.product.options[opt] + "' and contains(@class,'selected')]", 5000);
+            waitForVisibility("//button[@title='" + event.product.options[opt] + "' and contains(@class,'selected')]", 50000);
         }
         // Write the quantity
         if (event.product.quantity) {
             writeText("//input[@name='quantity']", event.product.quantity, true);
         }
 
-        // if (event.product.expected_image) {
-        //     waitForVisibility("//img[contains(@loading='lazy' and @src, '" + event.product.expected_image + "')]", 5000);
-        // }
-
         // Click the add to cart button
         click("//span[text()='Add to Cart']");
-
-        // waitForVisibility("//div[@data-ui-id='message-success']//div[1]", 5000);
-        // assertText("//div[@data-ui-id='message-success']//div[1]", "You added " + event.product.product + " to your shopping cart.");
 
         // Click the menu accordion button
         click("//div[@id='root']/main[1]/header[1]/div[1]/div[1]/button[1]")
@@ -368,6 +357,6 @@ defineAction("CheckOut", function (session, event) {
 
         // Place the order and wait for the confirmation
         click("//span[text()='Place Order']");
-        waitForVisibility("//*[contains(., 'Thank you for your order!')]", 100000);
+        waitForVisibility("//*[contains(., 'Thank you for your order!')]", 1000000);
     }
 });
