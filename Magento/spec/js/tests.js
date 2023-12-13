@@ -1,16 +1,12 @@
 /* @provengo summon selenium */
 
 
-
 // const URL = "http://localhost/"
-// const URL = "https://magento2-demo.magebit.com/"
-// const URL = "https://magento2-b2b.magebit.com/"
-
 //const URL = "https://verbose-cod-v6xg74rrw9fwvw6-10000.preview.app.github.dev/"
 //const URL = "http://localhost:10000"
 const URL = "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
 
-const NUM_OF_USERS = 1
+const NUM_OF_USERS = 2
 const NUM_OF_PRODUCTS_PER_USER = 2
 
 // Run sessions for each user in the users array (up to NUM_OF_USERS)
@@ -20,25 +16,24 @@ users.slice(0, NUM_OF_USERS).forEach(user => {
             let addedProducts = new Set()
 
             // Login
-            login(user)
+            Login(user)
 
             // Add products to cart
             while (addedProducts.size < NUM_OF_PRODUCTS_PER_USER) {
-                let availableProducts = products.filter(product => !addedProducts.has(product))
-                let product = choose(availableProducts)
+                let product = choose(products.filter(product => !addedProducts.has(product)))
                 addedProducts.add(product)
-                addToCart({ product: product, user: user })
+                AddToCart({ product: product, user: user })
             }
 
             // Remove a product from cart
             let product = choose(Array.from(addedProducts))
             addedProducts.delete(product)
-            removeFromCart({ product: product, user: user })
+            RemoveFromCart({ product: product, user: user })
 
             // Checkout
             if (addedProducts.size !== 0) {
                 let notAdded = products.filter(product => !addedProducts.has(product))
-                checkOut({ shippingMethod: 'Fixed', user: user, verifyItems: Array.from(addedProducts), verifyNonexistenceOfItems: notAdded })
+                CheckOut({ shippingMethod: 'Fixed', user: user, verifyItems: Array.from(addedProducts), verifyNonexistenceOfItems: notAdded })
             }
         }
     })
