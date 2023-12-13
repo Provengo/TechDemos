@@ -1,15 +1,14 @@
 /**
- * Defines a new action in the session.
+ * Defines a new action.
  *
- * @param {SeleniumSession} Session - The session object. 
  * @param {string} name - The name of the action to be defined.
  * @param {Function} func - The function to be executed when the action is triggered. This function should accept two parameters: the session and the data associated with the action.
  *
- * The function adds a new method to the session object. This method, when called, triggers the start of the action and executes the provided function.
+ * The function adds a new method to the SeleniumSession object. This method, when called, triggers the start of the action and executes the provided function.
  * The function also blocks any other start actions in the same session while the provided function is being executed.
  *
  * @example
- * defineAction(session, 'MyAction', function(session, data) {
+ * defineAction('MyAction', function(session, data) {
  *     console.log('Action started in session ' + session.name);
  * });
  */
