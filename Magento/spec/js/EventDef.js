@@ -13,12 +13,9 @@
  *     console.log('Action started in session ' + session.name);
  * });
  */
-defineAction = function (Session, name, func) {
-    if (typeof Session !== 'function') {
-        throw new Error('Session must be a constructor function');
-    }
-    if (typeof name !== 'string') {
-        throw new Error('Name must be a string');
+defineAction = function (name, func) {
+    if (!/^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/.test(name)) {
+        throw new Error('Name must be a valid identifier');
     }
     if (typeof func !== 'function') {
         throw new Error('Func must be a function');
@@ -30,7 +27,7 @@ defineAction = function (Session, name, func) {
         });
     };
 
-    Session.prototype[name] = function (data) {
+    SeleniumSession.prototype[name] = function (data) {
         data = Object.assign({ session: this, startEvent: true }, data);
         sync({ request: bp.Event(`Start(${name})`, data) });
 
@@ -50,7 +47,7 @@ defineAction = function (Session, name, func) {
  *   username: string - The user that logs in
  *   password: string - The password of that user
  ************************************************************************************/
-defineAction(SeleniumSession, "Login", function (session, event) {
+defineAction("Login", function (session, event) {
     with (session) {
         click("//button[contains(@class,'accountTrigger-trigger-23q clickable-root-1HB')]");
         waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
@@ -72,7 +69,7 @@ defineAction(SeleniumSession, "Login", function (session, event) {
  *   username: string - The user that logs in
  *   password: string - The password of that user
  ************************************************************************************/
-defineAction(SeleniumSession, "AdminLogin", function (session, event) {
+defineAction("AdminLogin", function (session, event) {
     with (session) {
         // bp.log.info("AdminLogin "+event.user.username+" "+event.user.password)
         writeText('//input[@id="username"]', event.user.username);
@@ -82,7 +79,7 @@ defineAction(SeleniumSession, "AdminLogin", function (session, event) {
 });
 
 /***********************************************************************************/
-defineAction(SeleniumSession, "AddProduct", function (session, event) {
+defineAction("AddProduct", function (session, event) {
     with (session) {
 
         waitForClickability('//li[contains(@class,"item-catalog")]', 3000);
@@ -119,7 +116,7 @@ defineAction(SeleniumSession, "AddProduct", function (session, event) {
     }
 });
 /***********************************************************************************/
-defineAction(SeleniumSession, "ChangeProductPrice", function (session, event) {
+defineAction("ChangeProductPrice", function (session, event) {
     with (session) {
 
         waitForClickability('//li[contains(@class,"item-catalog")]', 5000);
@@ -154,7 +151,7 @@ defineAction(SeleniumSession, "ChangeProductPrice", function (session, event) {
  * Logout a regular user.
  *
  ************************************************************************************/
-defineAction(SeleniumSession, "Logout", function (session, event) {
+defineAction("Logout", function (session, event) {
     with (session) {
         click("//span[@class='customer-name']//button");
         click("//a[normalize-space()='Sign Out']");
@@ -171,7 +168,7 @@ defineAction(SeleniumSession, "Logout", function (session, event) {
  *   email_address : string - An email address for the user. Must be unique.
  *   password : string      - Password for the new user.
  ************************************************************************************/
-defineAction(SeleniumSession, "Register", function (session, event) {
+defineAction("Register", function (session, event) {
     with (session) {
         click("//a[@href='http://localhost/customer/account/create/']");
         writeText('//input[@id="firstname"]', event.firstname);
@@ -196,7 +193,7 @@ defineAction(SeleniumSession, "Register", function (session, event) {
  *   options : array of strings - A list of options for the product.
  *   quantity: number, optional - The number of items to add.
  ************************************************************************************/
-defineAction(SeleniumSession, "AddToCart", function (session, event) {
+defineAction("AddToCart", function (session, event) {
     with (session) {
         // Click the menu accordion button
         click("//div[@id='root']/main[1]/header[1]/div[1]/div[1]/button[1]")
@@ -244,7 +241,7 @@ defineAction(SeleniumSession, "AddToCart", function (session, event) {
     }
 })
 
-defineAction(SeleniumSession, "CheckPrice", function (session, event) {
+defineAction("CheckPrice", function (session, event) {
     with (session) {
 
         refresh();
@@ -277,7 +274,7 @@ defineAction(SeleniumSession, "CheckPrice", function (session, event) {
  *   s: string        - The name of the session in which we want this event to take place.
  *   product : string - The  product that we want to remove.
  ************************************************************************************/
-defineAction(SeleniumSession, "RemoveFromCart", function (session, event) {
+defineAction("RemoveFromCart", function (session, event) {
     with (session) {            // Show the cart
         runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
 
@@ -296,7 +293,7 @@ defineAction(SeleniumSession, "RemoveFromCart", function (session, event) {
  *   s: string -      - The name of the session in which we want this event to take place.
  *   product : string - The  product that we want to remove.
  ************************************************************************************/
-defineAction(SeleniumSession, "CheckExistenceOfProductInCart", function (session, event) {
+defineAction("CheckExistenceOfProductInCart", function (session, event) {
     with (session) {
         click("//a[@class='action showcart']");
         waitForVisibility("//div[contains(@class,'block block-minicart')]//img[@alt='" + event.product + "']", 5000);
@@ -319,7 +316,7 @@ defineAction(SeleniumSession, "CheckExistenceOfProductInCart", function (session
  *   cvv : string, optional                                 - The CVV of the card.
  * 
  ************************************************************************************/
-defineAction(SeleniumSession, "CheckOut", function (session, event) {
+defineAction("CheckOut", function (session, event) {
     with (session) {
         // Show the cart
         runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
