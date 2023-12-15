@@ -42,18 +42,18 @@ defineAction = function (name, func) {
  *   username: string - The user that logs in
  *   password: string - The password of that user
  ************************************************************************************/
-defineAction("Login", function (session, event) {
-    with (session) {
-        click("//button[contains(@class,'accountTrigger-trigger-23q clickable-root-1HB')]");
-        waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
-        writeText("css::input#email", event.username);
-        writeText("css::input#Password", event.password);
-        click("//span[text()='Sign-in to Your Account']/following::span[text()='Sign In']");
+    defineAction("Login", function (session, event) {
+        with (session) {
+            click("//button[contains(@class,'accountTrigger-trigger-23q clickable-root-1HB')]");
+            waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
+            writeText("css::input#email", event.username);
+            writeText("css::input#Password", event.password);
+            click("//span[text()='Sign-in to Your Account']/following::span[text()='Sign In']");
 
-        if (event.expectedWelcome)
-            waitForVisibility("(//span[text()='" + event.expectedWelcome + "'])[2]", 10000)
-    }
-});
+            if (event.expectedWelcome)
+                waitForVisibility("(//span[text()='" + event.expectedWelcome + "'])[2]", 10000)
+        }
+    });
 
 
 
@@ -310,7 +310,6 @@ defineAction("CheckOut", function (session, event) {
         runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
 
         // Click the checkout button
-        sleep(1000)
         click("//span[text()='CHECKOUT']");
 
         // Wait for the checkout page to load

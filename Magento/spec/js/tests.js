@@ -1,9 +1,4 @@
 /* @provengo summon selenium */
-
-
-// const URL = "http://localhost/"
-//const URL = "https://verbose-cod-v6xg74rrw9fwvw6-10000.preview.app.github.dev/"
-//const URL = "http://localhost:10000"
 const URL = "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
 
 const NUM_OF_USERS = 2
