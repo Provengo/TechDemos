@@ -18,7 +18,7 @@ The primary testing scenarios include:
 
 ### Prerequisites
 
-- Ensure https://provengo.io/[Provengo] testing tool is installed on your system.
+- Ensure https://provengo.tech/[Provengo] testing tool is installed on your system.
 
 ### Execution
 
