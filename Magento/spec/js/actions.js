@@ -9,172 +9,74 @@
  *
  */
 defineAction = function (name, func) {
+    // Check that the name is a valid identifier
     if (!/^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/.test(name)) {
-        throw new Error('Name must be a valid identifier');
+        throw new Error('The name parameter must be a valid identifier');
     }
+    // Check that func is a function
     if (typeof func !== 'function') {
-        throw new Error('Func must be a function');
+        throw new Error('The func parameter must be a function');
     }
 
+    // Define an event filter for start events in a session
     const AnyStartInSession = function (s) {
         return bp.EventSet("AnyStartInSession-" + s, function (e) {
             return e.data !== null && e.data.hasOwnProperty('startEvent') && e.data.startEvent && String(s).equals(e.data.session.name);
         });
     };
 
+    // Add the new action to the SeleniumSession prototype
     SeleniumSession.prototype[name] = function (data) {
+        // Merge the session and startEvent properties into the data object
         data = Object.assign({ session: this, startEvent: true }, data);
+
+        // Request a start event
         sync({ request: bp.Event(`Start(${name})`, data) });
 
+        // Block any other start events in the session while the function is executing
         block(AnyStartInSession(this.name), function () {
             func(data.session, data);
         });
 
+        // Request an end event
         sync({ request: bp.Event(`End(${name})`, data) });
     };
 }
 
 
 /***********************************************************************************
- * Login to the store as a regular user.
+ * Login to the store as a user.
  *
  * Parameters:
  *   username: string - The user that logs in
  *   password: string - The password of that user
  ************************************************************************************/
-    defineAction("Login", function (session, event) {
-        with (session) {
-            click("//button[contains(@class,'accountTrigger-trigger-23q clickable-root-1HB')]");
-            waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
-            writeText("css::input#email", event.username);
-            writeText("css::input#Password", event.password);
-            click("//span[text()='Sign-in to Your Account']/following::span[text()='Sign In']");
-
-            if (event.expectedWelcome)
-                waitForVisibility("(//span[text()='" + event.expectedWelcome + "'])[2]", 10000)
-        }
-    });
-
-
-
-/***********************************************************************************
- * Login to the store as an admin user.
- *
- * Parameters:
- *   username: string - The user that logs in
- *   password: string - The password of that user
- ************************************************************************************/
-defineAction("AdminLogin", function (session, event) {
+defineAction("Login", function (session, event) {
+    
+    // Use the session object's methods
     with (session) {
-        // bp.log.info("AdminLogin "+event.user.username+" "+event.user.password)
-        writeText('//input[@id="username"]', event.user.username);
-        writeText('//input[@id="login"]', event.user.password);
-        click('//button[@class="action-login action-primary"]');
+
+        // Click on the account trigger button
+        click("//button[contains(@class,'accountTrigger-trigger-23q clickable-root-1HB')]");
+
+        // Wait until the sign-in title is visible
+        waitForVisibility("//span[contains(@class,'signIn-title-2hm capitalize')]", 1000);
+
+        // Enter the username in the email input field
+        writeText("css::input#email", event.username);
+
+        // Enter the password in the Password input field
+        writeText("css::input#Password", event.password);
+
+        // Click on the Sign In button
+        click("//span[text()='Sign-in to Your Account']/following::span[text()='Sign In']");
+
+        // If an expected welcome message is provided, wait until it's visible
+        if (event.expectedWelcome)
+            waitForVisibility("(//span[text()='" + event.expectedWelcome + "'])[2]", 10000)
     }
 });
 
-/***********************************************************************************/
-defineAction("AddProduct", function (session, event) {
-    with (session) {
-
-        waitForClickability('//li[contains(@class,"item-catalog")]', 3000);
-        click('//li[contains(@class,"item-catalog")]');
-        waitForClickability('//li[contains(@class,"item-catalog-products")]', 3000);
-        click('//li[contains(@class,"item-catalog-products")]');
-        waitForClickability('//button[@id="add_new_product-button"]', 3000);
-        click('//button[@id="add_new_product-button"]');
-
-        waitForVisibility('//input[@name="product[name]"]', 10000);
-        clear('//input[@name="product[name]"]');
-        writeText('//input[@name="product[name]"]', event.product.name);
-        clear('//input[@name="product[sku]"]');
-        writeText('//input[@name="product[sku]"]', event.product.sku);
-        clear('//input[@name="product[quantity_and_stock_status][qty]"]');
-        writeText('//input[@name="product[quantity_and_stock_status][qty]"]', event.product.qty);
-        clear('//input[@name="product[price]"]');
-        writeText('//input[@name="product[price]"]', event.product.price);
-
-        click('//div[text()="Select..."]');
-
-        clear('//div[@class="action-menu _active"]/div[@class="admin__action-multiselect-search-wrap"]/input[@class="admin__control-text admin__action-multiselect-search"]')
-        writeText('//div[@class="action-menu _active"]/div[@class="admin__action-multiselect-search-wrap"]/input[@class="admin__control-text admin__action-multiselect-search"]', "Tees");
-
-        click('//label[@class="admin__action-multiselect-label"]/span[text()="Default Category / Men / Tops"]');
-
-        click('//button[@class="action-default"]');
-
-        click('//button[@id="save-button"]');
-
-        // waitForClickability('//a[@title="My Account"]', 14000);
-        // click('//a[@title="My Account"]');
-        // click('//a[@title="Sign Out"]');
-    }
-});
-/***********************************************************************************/
-defineAction("ChangeProductPrice", function (session, event) {
-    with (session) {
-
-        waitForClickability('//li[contains(@class,"item-catalog")]', 5000);
-        click('//li[contains(@class,"item-catalog")]');
-        waitForClickability('//li[contains(@class,"item-catalog-products")]', 5000);
-        click('//li[contains(@class,"item-catalog-products")]');
-
-        productName = event.product.product + '-' + event.product.options[0] + '-' + event.product.options[1];
-        bp.log.info("ProductName " + productName)
-
-        waitForVisibility('//input[@class="admin__control-text data-grid-search-control"]', 3000);
-        clear('//input[@class="admin__control-text data-grid-search-control"]')
-        writeText('//input[@class="admin__control-text data-grid-search-control"]', productName);
-        waitForClickability('//button[@data-bind="click: apply.bind($data, false)"]', 1000);
-        // data-bind="i18n: 'Search'"
-        click('//button[@data-bind="click: apply.bind($data, false)"]');
-        click('//a[@class="action-menu-item"]');
-
-        waitForVisibility('//input[@name="product[price]"]', 3000);
-        clear('//input[@name="product[price]"]')
-        writeText('//input[@name="product[price]"]', event.product.newPrice);
-
-        click('//button[@id="save-button"]');
-
-        // waitForClickability('//a[@title="My Account"]', 14000);
-        // click('//a[@title="My Account"]');
-        // click('//a[@title="Sign Out"]');
-    }
-});
-
-/***********************************************************************************
- * Logout a regular user.
- *
- ************************************************************************************/
-defineAction("Logout", function (session, event) {
-    with (session) {
-        click("//span[@class='customer-name']//button");
-        click("//a[normalize-space()='Sign Out']");
-    }
-});
-
-/***********************************************************************************
- * Register a  user.
- *
- * Parameters:
- *   s: string              - The name of the session in which we want this event to take place
- *   firsntame : string     - The name of the new user
- *   lastname : string      - The surname of the new user
- *   email_address : string - An email address for the user. Must be unique.
- *   password : string      - Password for the new user.
- ************************************************************************************/
-defineAction("Register", function (session, event) {
-    with (session) {
-        click("//a[@href='http://localhost/customer/account/create/']");
-        writeText('//input[@id="firstname"]', event.firstname);
-        writeText('//input[@id="lastname"]', event.lastname);
-        writeText('//input[@id="email_address"]', event.email_address);
-        writeText('//input[@id="password"]', event.password);
-        writeText('//input[@id="password-confirmation"]', event.password);
-        click('//button[@type="submit" and contains(concat(" ",normalize-space(@class)," ")," action ") and contains(concat(" ",normalize-space(@class)," ")," submit ")]');
-        assertText("//div[@data-ui-id='message-success']//div[1]", "Thank you for registering with Main Website Store.")
-    }
-});
 
 
 /***********************************************************************************
@@ -189,7 +91,10 @@ defineAction("Register", function (session, event) {
  *   quantity: number, optional - The number of items to add.
  ************************************************************************************/
 defineAction("AddToCart", function (session, event) {
+    
+    // Use the session object's methods
     with (session) {
+
         // Click the menu accordion button
         click("//div[@id='root']/main[1]/header[1]/div[1]/div[1]/button[1]")
 
@@ -229,31 +134,6 @@ defineAction("AddToCart", function (session, event) {
     }
 })
 
-defineAction("CheckPrice", function (session, event) {
-    with (session) {
-
-        refresh();
-        click("//span[text()='" + event.product.category + "']");
-        click("(//span[text()='" + event.product.category + "'])/following::span[text()='" + event.product.subCategory + "']/following::a[text()[normalize-space()='" + event.product.subSubCategory + "']]");
-
-        selectByValue("//div[@class='toolbar toolbar-products']/following::select[@id='limiter']", '36')
-
-        scrollToElement("(//img[@alt='" + event.product.product + "'])[last()]")
-        waitForClickability("(//img[@alt='" + event.product.product + "'])[last()]", 1000);
-        click("(//img[@alt='" + event.product.product + "'])[last()]");
-
-        for (let opt in event.product.options) {
-            // Click the options
-            click("//div[@data-option-label='" + event.product.options[opt] + "']");
-
-            // Verify that it was selected
-            waitForVisibility("//div[@data-option-label='" + event.product.options[opt] + "' and contains(@class,'selected')]", 5000);
-        }
-
-        waitForVisibility("//span[@class=\"price-wrapper \"]", 5000);
-        assertText("//span[@data-price-amount][1]", event.product.price);
-    }
-})
 
 /***********************************************************************************
  * Remove an item from the cart of the currently logged-in user.
@@ -263,7 +143,11 @@ defineAction("CheckPrice", function (session, event) {
  *   product : string - The  product that we want to remove.
  ************************************************************************************/
 defineAction("RemoveFromCart", function (session, event) {
-    with (session) {            // Show the cart
+    
+    // Use the session object's methods
+    with (session) {            
+        
+        // Show the cart
         runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
 
         // Click the remove button
@@ -274,20 +158,6 @@ defineAction("RemoveFromCart", function (session, event) {
     }
 });
 
-/***********************************************************************************
- * Check that a product exists in the cart of the currently logged-in user.
- *
- * Parameters:
- *   s: string -      - The name of the session in which we want this event to take place.
- *   product : string - The  product that we want to remove.
- ************************************************************************************/
-defineAction("CheckExistenceOfProductInCart", function (session, event) {
-    with (session) {
-        click("//a[@class='action showcart']");
-        waitForVisibility("//div[contains(@class,'block block-minicart')]//img[@alt='" + event.product + "']", 5000);
-        click("//button[@id='btn-minicart-close']");
-    }
-});
 
 
 /***********************************************************************************
@@ -305,11 +175,15 @@ defineAction("CheckExistenceOfProductInCart", function (session, event) {
  * 
  ************************************************************************************/
 defineAction("CheckOut", function (session, event) {
+
+    // Use the session object's methods
     with (session) {
+        
         // Show the cart
         runCode(`document.querySelectorAll('button[class*="cartTrigger"]')[0].click()`);
 
         // Click the checkout button
+        waitForClickability("//span[text()='CHECKOUT']", 20000);
         click("//span[text()='CHECKOUT']");
 
         // Wait for the checkout page to load
