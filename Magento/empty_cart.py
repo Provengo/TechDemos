@@ -1,33 +1,34 @@
-print("enter")
-import json
-from requests import post, get, delete, put
+import requests
 
-# URL = "http://localhost/"
-URL= "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
+URL = "https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/"
+
 CREDENTIALS = [
     {'username': "roni_cost@example.com", 'password': "roni_cost3@example.com"},
     {'username': "david_lowcost@example.com", 'password': "david_lowcost3@example.com"},
 ]
-print("Connecting to magento...")
-# try:
-for credentials in CREDENTIALS:
+
+def empty_cart(session, credentials):
     print(f'Emptying cart for {credentials["username"]}...')
-    r = post(f'{URL}/rest/default/V1/integration/customer/token', params=credentials)
+    r = session.post(f'{URL}/rest/default/V1/integration/customer/token', params=credentials)
 
     if r.status_code != 200:
         print(f'Error: {r.text}')
-        continue
+        return
 
     token = r.text[1:-1]
-    header = {'Authorization': f'Bearer {token}'}
+    session.headers.update({'Authorization': f'Bearer {token}'})
 
-    r = get(f'{URL}/rest/default/V1/carts/mine', headers=header)
-    cart = json.loads(r.text)
+    r = session.get(f'{URL}/rest/default/V1/carts/mine')
+    cart = r.json()
 
     if "items" in cart:
         for item in cart["items"]:
-            delete(f'{URL}/rest/default/V1/carts/mine/items/{item["item_id"]}', headers=header)
+            session.delete(f'{URL}/rest/default/V1/carts/mine/items/{item["item_id"]}')
 
+with requests.Session() as session:
+    for credentials in CREDENTIALS:
+        empty_cart(session, credentials)
+        
 # # Add products
 # CREDENTIALS = {'username': "user", 'password': "bitnami1"}
 # # CREDENTIALS = {'username': "user", 'password': "user123"}
