@@ -1,0 +1,29 @@
+# Magento Store Testing Project
+
+## Overview
+
+This GitHub project focuses on testing the functionalities of a Magento store, specifically examining cart behaviors such as adding items, removing items, and the checkout process. The store under scrutiny is hosted at [https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/](https://master-7rqtwti-c5v7sxvquxwl4.eu-4.magentosite.cloud/).
+
+## Testing Scenarios
+
+The primary testing scenarios include:
+
+1. **Adding Items to the Cart**: Verify the accurate addition of items to the shopping cart.
+
+2. **Removing Items from the Cart**: Validate the correct removal of items from the shopping cart.
+
+3. **Checkout Process**: Ensure a seamless and error-free checkout process.
+
+## Getting Started
+
+### Prerequisites
+
+- Ensure [Provengo](https://provengo.io/) testing tool is installed on your system.
+
+### Execution
+
+To run the testing model using Provengo, execute the following command:
+
+```bash
+provengo run --dev-mode --show --before="python <path>/empty_cart.py" <path>
+
