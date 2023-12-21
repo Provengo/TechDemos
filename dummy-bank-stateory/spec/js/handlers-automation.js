@@ -79,6 +79,9 @@ function chooseTopic() {
 }
 
 function setTimeAndBranch() {
+  session.click(newTabButton)
+  session.switchTab(0)
+
   let dayPart = select("day part").from(DAYPART);
   let hour = select("hour").from(DAYPART_2_TIME[dayPart]);
 

@@ -73,3 +73,5 @@ const COMPONENTS = {
     conclusion_phone:                   "//div[@id='user-confirmation-phone']",
     conclusion_email:                   "//div[@id='user-confirmation-email']"
  };
+
+ const newTabButton = "//button[text()='Open in a new tab']";

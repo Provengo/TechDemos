@@ -32,6 +32,8 @@ defineEvent(SeleniumSession, "ChooseTopic", function (session, event) {
 //event def for scheduling meeting
 defineEvent(SeleniumSession, "SetTime", function (session, event) {
   with (session) {
+    click(newTabButton)
+    switchTab(0)
     waitForVisibility(COMPONENTS.setTimePage, 1000);
     click(COMPONENTS[event.time]);
   }
