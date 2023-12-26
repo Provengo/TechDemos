@@ -7,7 +7,7 @@ defineEvent(SeleniumSession, "Login", function (session,event) {
     // e2e test
         store(loginTitle, "title");
         rtv.assertEq("Login", "@{title}")
-d
+
         waitForVisibility(COMPONENTS.header, 100000);
         waitForVisibility(COMPONENTS.submitButton, 10000);
 
