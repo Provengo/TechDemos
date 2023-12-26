@@ -1,0 +1,40 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run Selenium Server",
+        "type": "shell",
+        "command": "java",
+        "args": [
+          "-jar",
+          "selenium-server-4.1.2.jar",
+          "standalone",
+          "--port",
+          "4444"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Run the Magento example",
+        "type": "shell",
+        "command": "provengo",
+        "args": [
+          "run",
+          "--show",
+          "magento"
+        ],
+        "problemMatcher": []
+      }
+    ]
+  }
+  

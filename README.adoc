@@ -1,3 +1,5 @@
+
+
 ifndef::env-github[:icons: font]
 ifdef::env-github[]
 :status:
@@ -10,12 +12,16 @@ ifdef::env-github[]
 endif::[]
 
 # Tech Demos
-
 Some https://provengo.tech[Provengo] project to demo different aspects of our technology.
+
+image::Provengo.jpeg[height=600,width=100%]
 
 NOTE: Documentation for the Provengo tool is at https://docs.provengo.tech[docs.provengo.tech].
 
 TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
+
+
+
 
 [1,2,1]
 |===
@@ -27,11 +33,11 @@ TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
 
 | link:vps-customer-conversion[]
 | Specification for a user onboarding business flow. This is an example of a specification validation use-case (no testing, just process verification and visualization!).
-| `Stateory` (state machines), hot/liveness (infinity requirements), `Ctrl.markers`
+| `StateMachines` (state machines), hot/liveness (infinity requirements), `Ctrl.markers`
 
 | link:insurance[]
 | Online claim process in an insurance company. A multi-stage process, composed of deciding case properties, and constraining a state machine based on these properties.
-| `Combi`, `Stateory`, script generation, code generation, ensembles
+| `Combi`, `StateMachines`, script generation, code generation, ensembles
 
 | link:web-search[]
 | Searching terms in https://ecosia.org[Ecosia search engine].
@@ -43,10 +49,10 @@ TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
 
 | link:dummy-bank-stateory[]
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Same process as above, modeled as a State Machine.
-| `Stateory`, `bp-base`, selenium-based actuations, `Constraints`
+| `StateMachines`, `bp-base`, selenium-based actuations, `Constraints`
 
 | link:dummy-bank-combi[]
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Same process as above, this time modeled with a combination of Combi-based case parameters, and a state machine that is constrained by them.
-| `Combi` `Stateory`, `bp-base`, selenium-based actuations, `Constraints`
+| `Combi` `StateMachines`, `bp-base`, selenium-based actuations, `Constraints`
 
 |===

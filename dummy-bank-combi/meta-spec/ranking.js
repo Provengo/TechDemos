@@ -39,8 +39,9 @@
 //    return GOALS.length-unreachedGoals.length;
 //}
 //
-//function rankingFunction(ensemble) {
-//    // return rankByLengthVariance(ensemble);
+function rankingFunction(ensemble) {
+    // return rankByLengthVariance(ensemble);
 //    var rank = rankByGoals(ensemble);
-//    return rank;
-//}
+    return 1;
+}
+

@@ -20,7 +20,7 @@ Automation layers are provided for both manual and Python-based testing.
 link:spec/js/case-gen.js[case-gen.js]::
     Defines possible combinations of properties for possible test cases. Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[Combi library].
 link:spec/js/high-level.states.js[high-level.states.js]::
-    Defines the high-level flows of the tests. Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/dsls/stateory.html[Stateory DSL].
+    Defines the high-level flows of the tests. Uses Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/dsls/stateory.html[StateMachines DSL].
 link:spec/js/z-connect.js[z-connect.js]::
     Connects the above specifications.
 link:spec/js/low-level-manual.js[low-level-manual.js]::

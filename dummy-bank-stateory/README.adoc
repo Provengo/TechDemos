@@ -9,7 +9,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-# Dummy Bank: Stateory
+# Dummy Bank: StateMachines
 
 A sample test model for a queue scheduling application for a bank. The tested site is available at https://dummy-bank.provengo.tech.
 

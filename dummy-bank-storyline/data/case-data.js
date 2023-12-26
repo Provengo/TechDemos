@@ -2,6 +2,9 @@
 
 const URL = "https://dummy-bank.provengo.tech/";
 
+// for e2e test:
+const loginTitle = "//h2[@class='login-title']";
+
 const MEETING_TYPE_2_SERVICE = {
     meet_banker:  ["banker deposit funds 1", "banker withdraw NFTs 2"],
     meet_cashier: ["cashier topic 1", "cashier topic 2"],

@@ -1,0 +1,13 @@
+{
+    "tasks.runOnFolderOpen": [
+        {
+            "type": "shell",
+            "label": "Run Selenium Server",
+            "command": "java -jar selenium-server-4.1.2.jar standalone --port 4444",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
