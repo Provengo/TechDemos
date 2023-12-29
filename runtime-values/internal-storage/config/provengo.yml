@@ -1,0 +1,9 @@
+version: 2
+sample:
+  overwrite: true
+gen-scripts:
+  overwrite: true
+visualization:
+  layout: horizontal
+selenium.show-sessions: true
+  

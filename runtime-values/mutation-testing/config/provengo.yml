@@ -1,0 +1,7 @@
+version: 2
+selenium:
+  show-sessions: true
+profiles:
+  dev:
+    run:
+      dev-mode: true
