@@ -53,3 +53,9 @@
 //   var rank = rankByGoals(ensemble);
 //   return rank;
 // }
+const ensembleGoals = pair(service.getAllSetEvents(), branch.getAllSetEvents())
+                        .concat(pair(hour.getAllSetEvents(), service.getAllSetEvents()));
+//    [dayPart.setToEvent("afternoon"), topic.setToEvent("create new account 1")],
+//    [hour.setToEvent("2:30"), topic.setToEvent("issue receipts 2")],
+//    [dayPart.setToEvent("afternoon"), topic.setToEvent("create new account 1")]
+

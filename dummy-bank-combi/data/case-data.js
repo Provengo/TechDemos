@@ -43,7 +43,6 @@ const REMOTE_BRANCHES = [
   "Tel Aviv Central",
   "Ashdod",
   "Haifa",
-  "Ramat Gan",
   "Beer Sheva",
   "Home Branch",
 ];
