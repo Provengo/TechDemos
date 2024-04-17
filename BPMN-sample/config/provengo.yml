@@ -3,3 +3,5 @@ bpmn:
   auto-start:
     - process-1.bpmn
     - process-2.bpmn
+sample:
+  max-length: 40
