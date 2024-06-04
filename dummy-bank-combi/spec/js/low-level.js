@@ -37,12 +37,14 @@ function chooseService(){
 
 function chooseTopic(){
     let button;
-    let topic = bp.store.get("topic");
+    let chosenService = bp.store.get(service.name);
+    bp.log.info("Chosen service: " + chosenService);
+    let topic = select("topic").from(MEETING_TYPE_2_TOPIC[chosenService]);
 
-    if(topic.includes(1)) {
+    if ( topic.includes("1") ) {
         button = COMPONENTS.TOPICS.topic_1;
     }
-    else if(topic.includes(2)) {
+    else if ( topic.includes("2") ) {
         button = COMPONENTS.TOPICS.topic_2;
     }
     else {
@@ -53,8 +55,8 @@ function chooseTopic(){
 };
 
 function setTimeAndBranch(){
-    let hour = bp.store.get("hour");
-
+    let chosenDayPart = bp.store.get(dayPart.name);
+    let hour = select("hour").from(DAYPART_2_TIME[chosenDayPart]);
     session.click(COMPONENTS.HOURS[hour]);
 
     let branch = bp.store.get("branch");
@@ -66,7 +68,8 @@ function setTimeAndBranch(){
 }
 
 function setTime(){
-    let hour = bp.store.get("hour");
+    let chosenDayPart = bp.store.get(dayPart.name);
+    let hour = select("hour").from(DAYPART_2_TIME[chosenDayPart]);
 
     session.click(COMPONENTS.HOURS[hour]);
     session.click(COMPONENTS.setTime_btn_continue);
@@ -86,29 +89,6 @@ function userConfirmation(){
 }
 
 function systemConfirmation(){
-//    session.waitForVisibility(COMPONENTS.USER_CONFIRM.done, 1000);
-//    session.waitForVisibility(COMPONENTS.USER_CONFIRM.meeting_details, 1000);
-//
-//
-//    let service = bp.store.get("service");
-////    service = service.split("_")[1];//[1];//.toString();
-//
-//    if(service.toLowerCase().includes("cashier")){
-//        let branch = bp.store.get("branch");
-//        session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_branch, branch);
-//    }
-//
-//    let topic = bp.store.get("topic");
-//    topic = topic.slice(0,-1).trim();
-//
-//    let hour = bp.store.get("hour");
-//
-//    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_service, service,
-//    [TextAssertions.modifiers.IgnoreCase,TextAssertions.modifiers.Contains]);
-//
-//    session.assertText(COMPONENTS.SYSTEM_CONFIRM.conclusion_topic, topic,
-//    [TextAssertions.modifiers.IgnoreCase]);
-
     bp.store.remove("service");
     bp.store.remove("branch");
     bp.store.remove("dayPart");

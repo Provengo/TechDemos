@@ -3,14 +3,14 @@
 const URL = "https://dummy-bank.provengo.tech/";
 
 const MEETING_TYPE_2_TOPIC = {
-    meet_banker:  ["create new account 1", "manage your account 2","evaluate overdrafts and loans 3"],
-    meet_cashier: ["Receive payments 1", "issue receipts 2","track transactions 3","payments 4"],
-    meet_invest:  ["consult a specialist 1", "make smart investments 2", "make new financial goals 3"]
+    "Banker":  ["create new account 1", "manage your account 2","evaluate overdrafts and loans 3"],
+    "Cashier": ["Receive payments 1", "issue receipts 2","track transactions 3","payments 4"],
+    "Investment Specialist":  ["consult a specialist 1", "make smart investments 2", "make new financial goals 3"]
 };
 
 const DAYPART_2_TIME = {
-    morning:   ["9:00 AM", "09:30 AM", "10:30 AM"],
-    afternoon: [ "1:00 PM",  "1:30 PM",  "2:30 PM"]
+    morning:   ["09:00 AM", "09:30 AM", "10:30 AM"],
+    afternoon: ["01:00 PM", "01:30 PM", "14:30 PM"]
 };
 
 const CUSTOMER_DETAILS = {
@@ -27,7 +27,7 @@ const REMOTE_BRANCHES = [
     "Haifa",
     "Ramat Gan",
     "Beer Sheva"
-//    ,"Home Branch"
+   ,"Home Branch"
 ];
 
 // Components repository, holds XPaths for UI elements.
@@ -63,12 +63,12 @@ const COMPONENTS = {
     },
 
     HOURS:{
-        "9:00 AM":                            "//input[@id='Morning-hour-0']",
-        "1:00 PM":                             "//input[@id='Afternoon-hour-0']",
-        "9:30 AM":                            "//input[@id='Morning-hour-1']",
-        "1:30 PM":                             "//input[@id='Afternoon-hour-1']",
+        "09:00 AM":                            "//input[@id='Morning-hour-0']",
+        "01:00 PM":                             "//input[@id='Afternoon-hour-0']",
+        "09:30 AM":                            "//input[@id='Morning-hour-1']",
+        "01:30 PM":                             "//input[@id='Afternoon-hour-1']",
         "10:30 AM":                            "//input[@id='Morning-hour-2']",
-        "2:30 PM":                             "//input[@id='Afternoon-hour-2']",
+        "14:30 PM":                             "//input[@id='Afternoon-hour-2']",
     },
 
     BRANCHES:{

@@ -1,4 +1,5 @@
 // @provengo summon constraints
+//@provengo summon StateMachines
 
 // App flow
 const sm = new StateMachine("Dummy Bank Example",false);
