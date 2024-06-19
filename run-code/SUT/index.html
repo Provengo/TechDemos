@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Table for Provengo's <code>runCode</code></title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+        h2 {
+            margin-top: 2em;
+            padding: .5em 0;
+            border-top: 1px solid #6d3c96;
+        }
+        footer {
+            margin-top: 2em;
+            background-color: #6d3c96;
+            color: #faf065;
+            padding: 2em 0;
+            text-align: center;
+            font-size: 9pt;
+            box-shadow: #0008 0 2px 4px inset;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table caption {
+            margin: .5em;
+
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        td.numeric, td.date {
+            font-family: "SF Mono", Monaco, 'Courier New', Courier, monospace;
+            text-align: right;
+        }
+        td.total {
+            font-weight: bold;
+            background-color: #BBB;
+        }
+        tr.total td {
+            background-color: #777;
+            color: rgb(240, 240, 255);
+            font-weight: bold;
+        }
+        td.empty {
+            background-color: #FFF !important;
+            border: none;
+        }   
+        .bug {
+            background-color: #FFBBBB !important;
+            color: #700 !important;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fbf9dc;
+            border-bottom: 1px solid #000;
+            box-shadow: #0008 0 2px 4px;
+            padding: 1em;
+        }
+        header img {
+            height: 50px;
+        }
+        article {
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sample Page for Working with <a href="https://provengo.tech">Provengo's</a> <code>runCode</code></h1>
+        <img src="https://downloads.provengo.tech/logo.png" alt="logo">
+    </header>
+    <article> 
+        <p>
+            The <a href="https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_sn_runcodecode"><code>runCode</code></a> method of Provengo's
+            <a href="https://docs.provengo.tech/ProvengoCli/0.9.5/index.html">Selenium</a> library allows running code within the browser, and reporting back to 
+            the provengo system. 
+            This page contains a sample table that can be used to experiment with this command.
+            Use this page to check that the row and column totals are correct, that all numbers are valid, etc.
+        </p>
+        <dl>
+            <dt>Sample Code</dt>
+            <dd><a href="xcv">GitHub Repo</a></dd>
+            <dt>Provengo's Selenium Library</dt>
+            <dd><a href="https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html">Documentation</a></dd>
+
+        </dl>
+        <h2>Correct Table</h2>
+        <table id="correctTable">
+            <caption>This table contains correct data. Its id is <code>#correctTable</code>.</caption>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Upfront</th>
+                    <th>Payment</th>
+                    <th>Extras</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="date">2024-01-01</td>
+                    <td>Food</td>
+                    <td class="numeric">$50.00</td>
+                    <td class="numeric">$150.00</td>
+                    <td class="numeric">$25.00</td>
+                    <td class="total numeric">$225.00</td>
+                </tr>
+                <tr>
+                    <td class="date">2024-01-02</td>
+                    <td>Equipment</td>
+                    <td class="numeric">$250.00</td>
+                    <td class="numeric">$150.00</td>
+                    <td class="numeric">$0.00</td>
+                    <td class="total numeric">$400.00</td>
+                </tr>
+                <tr>
+                    <td class="date">2024-01-02</td>
+                    <td>Travel</td>
+                    <td class="numeric">$20.00</td>
+                    <td class="numeric">$1,200.00</td>
+                    <td class="numeric">$15.00</td>
+                    <td class="total numeric">$1,235.00</td>
+                </tr>
+                <tr>
+                    <td class="date">2024-02-01</td>
+                    <td>Communication</td>
+                    <td class="numeric">$350.00</td>
+                    <td class="numeric">$179.00</td>
+                    <td class="numeric">$250.00</td>
+                    <td class="total numeric">$779.00</td>
+                </tr>
+                <tr class="total">
+                    <td class="empty">&nbsp;</td>
+                    <td class="empty">&nbsp;</td>
+                    <td class="numeric">$670.00</td>
+                    <td class="numeric">$1,679.00</td>
+                    <td class="numeric">$290.00</td>
+                    <td class="total numeric">$2,639.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>Incorrect Table</h2>
+        <table id="incorrectTable">
+            <caption>This table contains incorrect data, so we can find and report bugs. Bad cells are <span class="bug">highlighted in red</span>. Its id is <code>#incorrectTable</code>.</caption>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Upfront</th>
+                    <th>Payment</th>
+                    <th>Extras</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="date">2024-01-01</td>
+                    <td>Food</td>
+                    <td class="numeric">$50.00</td>
+                    <td class="numeric bug">$not a number.00</td>
+                    <td class="numeric">$25.00</td>
+                    <td class="total numeric">$225.00</td>
+                </tr>
+                <tr>
+                    <td class="date">2024-01-02</td>
+                    <td>Equipment</td>
+                    <td class="numeric">$250.00</td>
+                    <td class="numeric">$150.00</td>
+                    <td class="numeric">$0.00</td>
+                    <td class="total numeric bug">$-129.00</td>
+                </tr>
+                <tr>
+                    <td class="date">2024-01-02</td>
+                    <td>Travel</td>
+                    <td class="numeric">$20.00</td>
+                    <td class="numeric">$1,200.00</td>
+                    <td class="numeric">$15.00</td>
+                    <td class="total numeric">$1,235.00</td>
+                </tr>
+                <tr>
+                    <td class="date">2024-02-01</td>
+                    <td>Communication</td>
+                    <td class="numeric">$350.00</td>
+                    <td class="numeric">$179.00</td>
+                    <td class="numeric">$250.00</td>
+                    <td class="total numeric">$779.00</td>
+                </tr>
+                <tr class="total">
+                    <td class="empty">&nbsp;</td>
+                    <td class="empty">&nbsp;</td>
+                    <td class="numeric">$670.00</td>
+                    <td class="numeric">$1,879.00</td>
+                    <td class="numeric bug">$99,999.00</td>
+                    <td class="total numeric">$2,639.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+    <footer>
+        &copy; provengo.tech 2024
+    </footer>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTBT49WYBY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RTBT49WYBY');
+</script>
+</body>
+</html>
