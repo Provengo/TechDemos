@@ -1,10 +1,8 @@
 # Run Code Example
 
----
-michael
 
-A project to demo the usage of <a href="https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_sn_runcodecode"><code>runCode</code></a>,
-a Selenium library command that runs code in the browser and reports back to Provengo. Here we test a page with a two tables. Each table has a an internal logic between rows and columns (need to sum numbers on some of the cells). One table is correct, the other one contains several errors.
+This project demos the usage of <a href="https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_sn_runcodecode"><code>runCode</code></a>,
+a Selenium library command that runs code in the browser and reports back to tne Provengo tool. Here we test a page with a two tables. Each table has a some internal logic between rows and columns (need to sum numbers on some of the cells). One table is correct, the other one contains several errors.
 
 NOTE: THIS IS STILL AN EXPERIMENTAL FEATURE, TO BE FULLY ROLLED OUT LATER THIS MONTH.
 

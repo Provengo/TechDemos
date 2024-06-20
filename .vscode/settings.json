@@ -9,5 +9,6 @@
             },
             "problemMatcher": []
         }
-    ]
+    ],
+    "asciidoc.antora.enableAntoraSupport": true
 }
