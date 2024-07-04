@@ -2,7 +2,7 @@
 
 const bank = Combi("Dummy Bank");
 
-const service = bank.field("service").isOneOf("Banker","Cashier","Investment Specialist");
+const service = bank.field("service").isOneOf("Banker","Cashier", "Investment Specialist");
 
 const dayPart = bank.field("dayPart").isOneOf("morning","afternoon");
 

@@ -18,8 +18,10 @@ function chooseService(){
         return;
     }
 
-    let service = bp.store.get("service");
+    let service = String(bp.store.get("service")).trim();
     let button;
+
+    bp.log.info("Service: {0}", service);
 
     if(service === "Banker"){
         button = COMPONENTS.SERVICES.meet_banker;
