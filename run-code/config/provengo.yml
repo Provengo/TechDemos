@@ -5,3 +5,6 @@ analyze:
     format: pdf
 visualization:
   layout: horizontal
+profiles:
+  verbose:
+    verbose: true
