@@ -1,0 +1,17 @@
+= Mutation Testing Example
+
+
+A project demonstrating mutation testing using runtime values and browser automation.
+
+We test the Google search engine, by using a query and mutating it.
+
+== General scenario:
+
+. Send a query
+. Sample number of results, store as `resultStats1`
+. Change the query so that it's a narrower version of above query (that's the mutation stage)
+. Send the mutated query
+. Store the number of results as `resultStats2`
+. Ensure that `resultStats1` is smaller than `resultStats2`
+
+This scenario is implemented in link:spec/js/main.js[]. The test scenario map is available link:testSpace-annotated.pdf[here].

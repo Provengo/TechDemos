@@ -1,10 +1,11 @@
-# Mutation Testing Example
+# State Machine Tests
 
 ---
+2024-03-25 12:22:07
+michael
 
-A sample project for demonstrating mutation testing using runtime values and browser automation.
+Provengo project for spec-ing and testing my system.
 
-Overview: Search google, sample number of results, search for a narrower term, see that we have a smaller number of results.
 
 ## Important Files
 
@@ -27,7 +28,7 @@ Overview: Search google, sample number of results, search for a narrower term, s
 
 ## Useful Commands
 
-⚠️ NOTE: In the below listings, we assume that `provengo` is in the system's PATH variable, and that `/Users/michael/Documents/Consulting/Provengo/ProvengoGH/TechDemos/runtime-values/mutation-testing` is the path to this directory.
+⚠️ NOTE: In the below listings, we assume that `provengo` is in the system's PATH variable, and that `/Users/michael/Documents/Consulting/Provengo/ProvengoGH/clients/NESS/pvg-api-test/PvgStateMachine` is the path to this directory.
 
 For full documentation go to [https://docs.provengo.tech](docs.provengo.tech).
 
@@ -35,14 +36,14 @@ For full documentation go to [https://docs.provengo.tech](docs.provengo.tech).
 
 Perform a single run through the specification. Good for "Sanity checks", i.e. to see examples of what can happen.
 
-    provengo run --dry /Users/michael/Documents/Consulting/Provengo/ProvengoGH/TechDemos/runtime-values/mutation-testing
+    provengo run --dry /Users/michael/Documents/Consulting/Provengo/ProvengoGH/clients/NESS/pvg-api-test/PvgStateMachine
 
 
 ### Visualize the Spec
 
 Draw the specification in a PDF file.
 
-    provengo analyze -f pdf /Users/michael/Documents/Consulting/Provengo/ProvengoGH/TechDemos/runtime-values/mutation-testing
+    provengo analyze -f pdf /Users/michael/Documents/Consulting/Provengo/ProvengoGH/clients/NESS/pvg-api-test/PvgStateMachine
 
 
 ⚠️ NOTE: This requires [Graphviz](http://graphviz.org) to be installed.
@@ -52,7 +53,7 @@ Draw the specification in a PDF file.
 
 Sample 10 scenarios into a file. The scenarios are stored in a file called `samples.json` (this can be changed using the `-o`/`--output-file` switch).
 
-    provengo sample --overwrite --size 10 /Users/michael/Documents/Consulting/Provengo/ProvengoGH/TechDemos/runtime-values/mutation-testing
+    provengo sample --overwrite --size 10 /Users/michael/Documents/Consulting/Provengo/ProvengoGH/clients/NESS/pvg-api-test/PvgStateMachine
 
 
 ### Create an Optimized Test Suite
@@ -61,19 +62,19 @@ Generate a test suite of 5 tests that provides a good coverage of items in the [
 
 **Requires running `sample` first** (the previous command)**.**
 
-    provengo ensemble --size 5 /Users/michael/Documents/Consulting/Provengo/ProvengoGH/TechDemos/runtime-values/mutation-testing
+    provengo ensemble --size 5 /Users/michael/Documents/Consulting/Provengo/ProvengoGH/clients/NESS/pvg-api-test/PvgStateMachine
 
 #### Visualize the Spec and the Suite
 
 Draw the specification, and highlight the traces in the optimized test suite create by the previous command.
 
-    provengo analyze -f pdf --highlight ensemble.json /Users/michael/Documents/Consulting/Provengo/ProvengoGH/TechDemos/runtime-values/mutation-testing
+    provengo analyze -f pdf --highlight ensemble.json /Users/michael/Documents/Consulting/Provengo/ProvengoGH/clients/NESS/pvg-api-test/PvgStateMachine
 
 ### Create Test Scripts for Third Party Systems
 
 Converts the runs in `ensemble.json` to automation test scripts.
 
-    provengo gen-scripts -s ensemble.json /Users/michael/Documents/Consulting/Provengo/ProvengoGH/TechDemos/runtime-values/mutation-testing
+    provengo gen-scripts -s ensemble.json /Users/michael/Documents/Consulting/Provengo/ProvengoGH/clients/NESS/pvg-api-test/PvgStateMachine
 
 ## AI code completion
 To enable AI code completion, please use a code completion plugin (e.g., [GitHub Copilot](https://github.com/features/copilot)) and keep open the files inside the [config/ai](config/ai) folder.

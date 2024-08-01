@@ -32,6 +32,10 @@ image::https://downloads.provengo.tech/logo.png[Provengo, 50, link=https://prove
 | Basic example for Behavioral Programming (BP) concepts
 | `bp-base`, BP
 
+| link:/REST-API-testing
+| An example for testing a RESTful API microservice using Provengo/
+| REST, state machine, microservice
+
 | link:vps-customer-conversion[]
 | Specification for a user onboarding business flow. This is an example of a specification validation use-case (no testing, just process verification and visualization!).
 | `StateMachines` (state machines), hot/liveness (infinity requirements), `Ctrl.markers`
@@ -48,7 +52,7 @@ image::https://downloads.provengo.tech/logo.png[Provengo, 50, link=https://prove
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Using the Storylines DSL, the process is modeled like a user story.
 | `Storylines`, selenium-based actuations, `Ctrl.markers`
 
-| link:dummy-bank-stateory[]
+| link:dummy-bank-statemachine[]
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Same process as above, modeled as a State Machine.
 | `StateMachines`, `bp-base`, selenium-based actuations, `Constraints`
 
@@ -57,8 +61,12 @@ image::https://downloads.provengo.tech/logo.png[Provengo, 50, link=https://prove
 | `Combi` `StateMachines`, `bp-base`, selenium-based actuations, `Constraints`
 
 | link:run-code[]
-| Example project for using the https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_sn_runcodecode[`run-code`] command. The demo tests a data table, and validates that sum calculations are correct.
-| selenium-based actuations
+| Using the https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_sn_runcodecode[`run-code`] command. The demo tests a data table, and validates that summary calculations are correct.
+| web automation, Selenium
+
+| link:runtime-values[]
+| Using the https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/runtimevars.html[Runtime Variables] library for performing sample-use scenarios and for reducing model size.
+| runtime variables, web automation, Selenium
 
 |===
 

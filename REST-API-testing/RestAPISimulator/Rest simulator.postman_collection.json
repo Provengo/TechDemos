@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "19d00479-d925-48d8-bbbe-659a1096507b",
+		"name": "Rest simulator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add New Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"first_name\":\"user_fname_Test\",\n    \"last_name\":\"user_lname_Test\",\n    \"age\": \"45\",\n    \"address\":\"student Test address\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/customers",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"first_name\":\"user_fname_Test\",\n    \"last_name\":\"user_lname_Test\",\n    \"age\": \"45\",\n    \"address\":\"student Test address\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/customers?id=3b6phlrvexo2kab9a\n",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3b6phlrvexo2kab9a\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update  Customer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"first_name\":\"tamir\",\n    \"last_name\":\"zano\",\n    \"age\": \"45\",\n    \"address\":\"student Test address\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/customers?id=l3b7f4pfwra1pmti1qb",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "l3b7f4pfwra1pmti1qb"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,3 +1,9 @@
 .DS_Store
 products/
 Provengo.uber.jar
+node_modules/
+.DS_Store
+.vscode
+.metals
+products/
+desktop.ini

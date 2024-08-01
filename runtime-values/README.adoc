@@ -1,0 +1,10 @@
+= Runtime Variables
+
+The https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/runtimevars.html[Runtime Variables] library allows Provengo models to store and use information during scenario execution. This is different from the more traditional JavaScript variables, that store and manipulate data while the scenario is being sampled or analyzed.
+
+Using runtime variables allows for (among other things) sampling data to be used later in the scenario execution, and for reducing behavior space size. The projects in this directory demonstrate how to go about these.
+
+link:mutation-testing[]::
+    A sample search engine test, using the Mutation Testing technique, which involves sampling data during test runtime.
+link:internal-storage[]::
+    Reduce model space by using runtime variables rather than JavaScript variables.

@@ -1,0 +1,11 @@
+version: 2
+sample:
+  overwrite: true
+visualization:
+  order: visual
+run:
+  scripts:
+    # before-test: config/hooks/start.sh
+    # after-success: config/hooks/end.sh
+    # after-failure: config/hooks/end.sh
+
