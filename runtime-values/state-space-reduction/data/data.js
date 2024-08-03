@@ -17,3 +17,5 @@ const PASSWORDS = {
     Dave: "dave123",
     Zak: "zak123"
 };
+
+const MAIN_FLOW_DONE = Event("Done!");

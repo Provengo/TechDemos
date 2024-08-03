@@ -1,5 +1,7 @@
 version: 2
-selenium_implicit_wait: 6000
+selenium:
+  implicit-wait: 6000
+  browser: firefox
 bpmn:
   auto-start:
     - google.bpmn

@@ -13,21 +13,19 @@ endif::[]
 
 A simple customer journey for an online SAAS company. During trial, the company allocates resources for the prospective customer (typically, a virtual machine and some storage). Thus, we do not want a client to stay in trial forever.
 
-CAUTION: This model contains infinite loops. They must be limited by bringing in `flow-limitations.js` prior to sampling the model (calling `provengo sample`).
-
 ## Files
 
 ### Spec
 
-For easy combinations, there are two folder here: `js` and `js-disabled`. Since `provengo` only looks in the `js` folder, you can easily disable files by dragging them to `js-disabled`, and re-enable them y dragging them back to `js`.
+For easy combinations, there are two folder here: link:spec/js[`spec/js`] and link:spec/disabled[`spec/disabled`]. Since `provengo` only looks in the `js` folder, you can easily disable files by dragging them to `disabled`, and re-enable them by dragging them back to `js`.
 
 link:spec/js/customer-flow.states.js[customer-flow.states.js]::
     The main customer journey state machine.
-link:spec/js/loop-limitation.js[loop-limitation.js]::
+link:spec/disabled/loop-limitation.js[loop-limitation.js]::
     Constraints for limiting the loopholes at the customer journey.
-link:spec/js/manual-work.js[manual-work.js]::
+link:spec/disabled/manual-work.js[manual-work.js]::
     Manual actuation layer.
 link:spec/js/markers.js[markers.js]::
     Business-level markers on the process (e.g. who pays when).
-link:spec/js-disabled/support-sm.states.js[support-sm.states.js]::
+link:spec/disabled/support-sm.states.js[support-sm.states.js]::
     Additional state machine describing customer support.

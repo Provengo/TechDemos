@@ -1,1 +1,4 @@
 version: 1
+visualization:
+  layout: horizontal
+  ordering: visual

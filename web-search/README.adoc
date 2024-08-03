@@ -11,45 +11,36 @@ endif::[]
 
 # Web Search
 
-A Provnego project for demonstrating the basics of Selenium-based actuation. This project searches for "pizza", "strawberry", or "banana" in the https://ecosia.org[Ecosia] search engine, and validates that pages containing these terms were indeed found.
+A Provengo project for demonstrating the basics of Selenium-based actuation. This project searches for "pizza", "strawberry", or "banana" in the https://ecosia.org[Ecosia] search engine, and validates that pages containing these terms were indeed found.
 
 IMPORTANT: This demo project does not look into any other features of the Provengo system, such as DSLs, multi-level event flows, optimized test suite generation, etc. Just Selenium actuation and some Provengo extensions to JavaScript.
 
-IMPORTANT: Provengo is not publicly accessible yet. If you find this repo interesting and wand to join our closed beta, please contact hello@provengo.tech.
-
-CAUTION: For the automation sections below to work, you must have a *running* https://www.selenium.dev/[Selenium server (grid)], Chrome, and a chrome selenium driver. Selenium Server can be installed https://www.selenium.dev/downloads/[from here]. For the Chrome driver, see the https://www.selenium.dev/downloads/#platforms-supported-by-selenium["Browsers" section]. You'll have to scroll down quite a bit.
-
+CAUTION: For the automation sections below to work, you must have a *running* https://www.selenium.dev/[Selenium server (grid)]. The default automation browser is Chrome, but Firefox and Safari are also supported https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_classes_and_methods[(read more)].
 
 ## Files of Interest
 
-* link:SimpleSearch.js[] A script for testing a web search engine.
-* link:provengo.yml[] Configuration file.
+* link:spec/js/SimpleSearch.js[] A script for testing a web search engine.
+* link:conf/provengo.yml[] Configuration file.
 
 ## Useful Commands
 
-NOTE: In the below listings, we assume that `provengo.bat` is in the path, and that `web-search` is the path to this directory (i.e. run this code from the directory that directly contains `web-search`). For UNIX systems, change `provengo.bat` to `provengo.sh`.
+NOTE: In the below listings, we assume that `provengo` is in the path, and that `web-search` is the path to this directory (i.e. run this code from the directory that directly contains `web-search`). For UNIX systems, change `provengo` to `provengo.sh`.
 
 ### Randomized Dry Run 
 
 Perform a single run through the specification, with no actuations. Good for "Sanity checks", e.g. to see examples of what can happen. Does not require any Selenium server.
 
-    provengo.bat run --dry-run web-search
+    provengo run --dry-run web-search
 
 ### Randomized Run 
 
 Perform a single run through the specification.  Selenium server needs to be running for this.
 
-    provengo.bat run web-search
+    provengo run web-search
 
-Running with the browser visible
+Running in developer mode (visible browsers, pause on errors)
 
-    provengo.bat run --show-sessions web-search
-
-Running with delayed actions. Units are milliseconds, so the `5000` in the below snippet means "5 seconds".
-
-    provengo.bat run --action-delay 5000 web-search
-
-The above flags can of course be used together.
+    provengo run --dev web-search
 
 ### Visualize the Spec
 
@@ -57,27 +48,27 @@ NOTE: This requires http://graphviz.org[Graphviz] to be installed.
 
 Draw the specification in a PDF file.
 
-    provengo.bat analyze -f pdf web-search
+    provengo analyze -f pdf web-search
 
 
 ### Sample Runs from the Spec
 
 Sample 10 scenarios into a file. The scenarios are stored in a file called `samples.json` (this can be changed using the `-o`/`--output-file` switch).
 
-    provengo.bat sample --delete-previous --sample-size 10 web-search
+    provengo sample --delete-previous --sample-size 10 web-search
 
 
 ### Run the Sample as a Suite
 
 Run the sampled tests as a single test suite.
 
-    provengo.bat run --run-source samples.json web-search
+    provengo run --run-source samples.json web-search
 
 ### Create Run Logs
 
 Creates a report of the tests run, in the form of a static HTML site.
 
-    provengo.bat report web-search
+    provengo report web-search
 
 
 ## NOTES
@@ -85,6 +76,6 @@ Creates a report of the tests run, in the form of a static HTML site.
 * This is a very basic sample project that does not cover all system features. For example, we left suite optimizations and DSLs out.
 * To gain more visibility into what `provengo` is doing, invoke it with the `--verbose` flag between `provengo` and the verb, like so: 
 ```
-    provengo.bat --verbose run selenium-sample
+    provengo --verbose run selenium-sample
 ```
-* To display command options, type `provengo.bat` in the console. To display the reference for a specific command, add `-h` after it, like so: `provengo.bar run -h`.
+* To display command options, type `provengo` in the console. To display the reference for a specific command, add `-h` after it, like so: `provengo.bar run -h`.

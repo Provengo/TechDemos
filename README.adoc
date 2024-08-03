@@ -13,31 +13,30 @@ endif::[]
 
 # Tech Demos
 
-Some https://provengo.tech[Provengo] project to demo different aspects of our technology.
-
-NOTE: Documentation for the Provengo tool is at https://docs.provengo.tech[docs.provengo.tech].
-
-TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
-
 
 [.text-center]
 image::https://downloads.provengo.tech/logo.png[Provengo, 50, link=https://provengo.tech]
 
+Some https://provengo.tech[Provengo] project to demo different aspects of our technology.
+
+NOTE: Documentation for the Provengo tool is at https://docs.provengo.tech[docs.provengo.tech]. You can download the Provengo tool https://downloads.provengo.tech[here].
+
+TIP: Visit https://provengo.tech[Provengo] to know what this is all about.
 
 [1,2,1]
 |===
 | Project | Description | Demonstrated Technologies
 
-| link:/eeny-meeny/[eeny-meeny]
+| link:/eeny-meeny/[Eeny, Meeny, Miny, Moe]
 | Basic example for Behavioral Programming (BP) concepts
 | `bp-base`, BP
 
-| link:/REST-API-testing
+| link:/REST-API-testing[REST API testing]
 | An example for testing a RESTful API microservice using Provengo/
 | REST, state machine, microservice
 
 | link:vps-customer-conversion[]
-| Specification for a user onboarding business flow. This is an example of a specification validation use-case (no testing, just process verification and visualization!).
+| Specification for a user onboarding business flow. This is an example of a specification validation use-case.
 | `StateMachines` (state machines), hot/liveness (infinity requirements), `Ctrl.markers`
 
 | link:insurance[]
@@ -47,6 +46,10 @@ image::https://downloads.provengo.tech/logo.png[Provengo, 50, link=https://prove
 | link:web-search[]
 | Searching terms in https://ecosia.org[Ecosia search engine].
 | bp-base, selenium-based direct actuations, script generation, test books
+
+| link:web-search-bpmn[]
+| Searching terms in https://ecosia.org[Ecosia search engine] - this time using a BPMN diagram as the main flow driver.
+| BPMN, bp-base, selenium-based direct actuations, script generation, test books
 
 | link:dummy-bank-storyline[]
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Using the Storylines DSL, the process is modeled like a user story.
