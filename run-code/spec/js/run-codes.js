@@ -89,12 +89,18 @@ bthread("valid-numbers", function(){
     });
     // waitFor( Event("Check cell validity") );
     block( next, function(){
-        session.runCode(function(){
+        session.runCode(tableCheck);
+    });
+    rtv.assertEq("value1", "@{var1}")
+})
+
+function tableCheck(){
+            pvg.rtv.set("var1", "value1")
             const currencyRe = /^\$\d{1,3}(,\d{1,3})*(.\d+)+$/;
             const isValidCurrencyAmountText = function(cell){
                 return !isNaN(parseFloat(cell.replace(/[^0-9.-]/g, "")));
             };
-    
+
             const numCells = document.querySelectorAll("td.numeric");
             numCells.forEach(function(cell){
                 if ( !isValidCurrencyAmountText(cell.textContent) ){
@@ -102,6 +108,4 @@ bthread("valid-numbers", function(){
                 }
             });
             pvg.success("All currency values are valid");
-        });
-    });
-})
+        }

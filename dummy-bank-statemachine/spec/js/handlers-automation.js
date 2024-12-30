@@ -19,7 +19,7 @@ function userLogin(){
      session.start(URL);
      session.writeText(COMPONENTS.LOGIN.userName, CUSTOMER_DETAILS.username);
      session.writeText(COMPONENTS.LOGIN.password, CUSTOMER_DETAILS.password);
-     session.click(COMPONENTS.LOGIN.submitButton);
+     session.click(["bad-xpath-for-test",COMPONENTS.LOGIN.submitButton]);
 }
 
 function dashboard(){
