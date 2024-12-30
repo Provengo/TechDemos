@@ -25,9 +25,9 @@ mainSm.at("start").run(function(){
 });
 
 mainSm.at("add-new").run(function(){
-    const fName = select("first_name").from("Joe", "Jane", "John", "Jill");
-    const lName = select("last_name").from("Katz", "Smith", "Doe", "Johnson");
-    const age = select("age").from("15", "30", "45", "75");
+    const fName = select("first_name").from("Joe", "Jane");//, "John", "Jill");
+    const lName = select("last_name").from("Katz", "Smith");//, "Doe", "Johnson");
+    const age = select("age").from("15", "30")//, "45", "75");
     svc.post("/customers", {
         body: JSON.stringify({
                 "first_name":fName,

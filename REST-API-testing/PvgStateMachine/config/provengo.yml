@@ -3,6 +3,10 @@ sample:
   overwrite: true
 visualization:
   order: visual
+  layout: horizontal
+analyze:
+  output:
+    format: pdf
 run:
   scripts:
     # before-test: config/hooks/start.sh

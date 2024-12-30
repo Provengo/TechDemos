@@ -3,7 +3,7 @@
 // @provengo summon ctrl
 
 
-const session = new SeleniumSession("main");
+const session = new SeleniumSession("main-xyz");
 const next = Event("(-)");
 
 /**
@@ -17,5 +17,7 @@ bthread("main flow",function() {
     select("table").from("correctTable", "incorrectTable");
     select("direction").from("rows","columns");
     request(next);
-    session.close();
+    // Ctrl.doPause("About to close.");
+    // session.close();
+    session.quit();
 });

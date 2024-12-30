@@ -7,4 +7,8 @@ visualization:
   layout: horizontal
   ordering: visual
 selenium.show-sessions: true
+analyze:
+  output:
+    format: gv
+    
   
