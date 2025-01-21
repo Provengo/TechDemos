@@ -30,6 +30,13 @@ function chooseService(){
     let service = select("service").from("Banker","Investment Specialist","Cashier");
     let button;
 
+    session.scrollToElement(COMPONENTS.SERVICES.meet_banker)
+    session.scrollByAmount(13,45);
+    session.scrollToBottom()
+    session.scrollToTop()
+    session.scrollFromOrigin("viewport", 50, 16, 30, 69)
+    session.scrollFromOrigin(COMPONENTS.SERVICES.meet_banker, 50, 16, 30, 69)
+
     if(service === "Banker"){
         service = "meet_banker";
         button = COMPONENTS.SERVICES.meet_banker;
