@@ -12,6 +12,8 @@
 
 const URL = "https://dummy-bank.provengo.tech/";
 
+const newTabButton = "//button[text()='Open in a new tab']";
+
 const MEETING_TYPE_2_TOPIC = {
     meet_banker:  ["create new account 1", "manage your account 2","evaluate overdrafts and loans 3"],
     meet_cashier: ["Receive payments 1", "issue receipts 2","track transactions 3","payments 4"],

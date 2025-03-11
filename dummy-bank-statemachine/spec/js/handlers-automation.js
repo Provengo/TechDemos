@@ -24,6 +24,11 @@ function userLogin(){
 
 function dashboard(){
      session.waitForVisibility(COMPONENTS.dashboard,1000);
+
+     session.click(newTabButton);
+     session.switchTab(1);
+     session.close();
+     session.switchTab(0);
 }
 
 function chooseService(){
