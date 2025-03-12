@@ -16,7 +16,7 @@
  * List of events "of interest" that we want test suites to cover.
  */
 const GOALS = [
-    bp.EventSet(`switchTabEvent`, function (e) { return e.lib == Selenium && type == "SwitchTab"});
+    bp.EventSet(`switchTabEvent`, function (e) { return e.lib == Selenium && type == "SwitchTab"})
 ];
 
 /**
