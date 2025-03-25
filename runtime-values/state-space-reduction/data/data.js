@@ -2,23 +2,22 @@
  *  This is a good place to put common test data, project-wide constants, etc.
  */
 
-const Person = {
-    toString: function(){
+function Person(name, email){
+    this.name = name;
+    this.email = email;
+    this.toString=function(){
         return "[person: " + this.name + "]";
     }
 }
+
 const PEOPLE = [
-    { name: 'Alice', email: "alice@example2.com" },
-    { name: 'Bob',   email: "bob@example1.com" },
-    { name: 'Carol', email: "carol@example3.com"},
-    { name: 'Dave',  email: "dave@example1.com" },
-    { name: 'Zak',   email: "zak@example3.com" }
+    new Person('Alice', "alice@example2.com"),
+    new Person('Bob',   "bob@example1.com"),
+    new Person('Carol', "carol@example3.com"),
+    new Person('Dave',  "dave@example1.com"),
+    new Person('Zak',   "zak@example3.com")
 ];
 
-PEOPLE.forEach( p => {
-    Object.setPrototypeOf(p, Person);
-    bp.log.info( p.toString() );
-});
 
 const PASSWORDS = {
     Alice: "alice123",

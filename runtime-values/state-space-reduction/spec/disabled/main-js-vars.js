@@ -2,6 +2,7 @@
 
 bthread("main", function() {
     let psn = choose(PEOPLE);
+    bp.log.info(`Selected person: ${psn}`);
     request(Event(`call ${psn.name}`));
     request(Event(`email ${psn.email}`));
     let domain = psn.email.split('@')[1];

@@ -1,7 +1,6 @@
 // @provengo summon rtv
 
 bthread("main", function() {
-     
     rtv.doStore("person", choose(PEOPLE));
     request(Event("call @{person.name}"));
     request(Event("email @{person.email}"));
