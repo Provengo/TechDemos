@@ -91,6 +91,7 @@ function chooseTopic(){
 };
 
 function setTimeAndBranch(){
+    session.assertUrl("setTime", [TextAssertions.modifiers.IgnoreCase, TextAssertions.modifiers.Contains] )
     let dayPart = select("day part").from(DAYPART);
     let hour = select("hour").from(DAYPART_2_TIME[dayPart]);
     bp.store.put("hour",hour);
@@ -106,6 +107,8 @@ function setTimeAndBranch(){
 }
 
 function setTime(){
+    session.assertUrl("*/setTime", TextAssertions.modifiers.Regex )
+
     let dayPart = select("day part").from(DAYPART);
     let hour = select("hour").from(DAYPART_2_TIME[dayPart]);
     bp.store.put("hour",hour);

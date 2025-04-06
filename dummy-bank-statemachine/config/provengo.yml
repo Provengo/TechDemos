@@ -4,7 +4,6 @@ sample:
   size: 200
 selenium:
   browser: firefox
-  server: http://127.0.0.1:4444/wd/hub
 profiles:
   hadas:
     sample:
