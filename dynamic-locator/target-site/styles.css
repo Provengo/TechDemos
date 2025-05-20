@@ -1,0 +1,64 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: #603990;
+    background: linear-gradient(90deg,rgba(96,57,144,1) 0,rgba(246,178,132,255) 100%);
+    color: #f1f1f1;
+    margin-bottom: 1rem;
+    padding: 3rem 0.3rem;
+    height: 60px;
+    vertical-align: middle;
+}
+
+.logo {
+    height: 3em;
+    margin-left: 0.8em;
+}
+
+footer {
+    background: #603990;
+    background: linear-gradient(90deg,rgba(96,57,144,1) 0,rgba(246,178,132,255) 100%);
+    color: #f1f1f1;
+    font-size: .8em;
+    margin-top: 1rem;
+    padding: 1rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.list-group .list-group-item {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    transition: background-color 0.3s;
+}
+
+.list-group .list-group-item div {
+    flex-grow: 1;
+}
+
+.list-group .list-group-item pre {
+    flex-grow: 0;
+    color: #999;
+    font-size: 0.8em;
+    margin: 0 1em;
+}
+
+.completed {
+    background-color: rgba(25, 135, 84, 0.4);
+}
+.completed pre {
+    color: black;
+}
+
+.completed button {
+    display: none;
+}
+

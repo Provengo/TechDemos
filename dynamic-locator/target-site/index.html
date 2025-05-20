@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List Creator</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="https://provengo.tech"><img class="logo" src="https://downloads.provengo.tech/logo.png"></img></a>
+        <h1>Provengo//Dynamic ID Example</h1>
+    </header>
+    <div class="container mt-5 flex-grow-1">
+        <div class="row justify-content-center">
+            <div class="col col-md-8">
+                <div class="alert alert-info">
+                    This is an example of a page containing elements with dynamic IDs. The list items in the list below
+                    have IDs that follow the pattern <code>li-XXXXX</code>, where the <code>X</code>s part is randomly created
+                    when the item is generated.
+                    To test this page using Provengo,
+                    capture the new element IDs using JS, and then use the <a href="https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/runtimevars.html">Runtime Variables library</a>
+                    to compose the locators. See code <a href="https://github.com/Provengo/TechDemos/tree/main/dynamic-locator" target="_blank">here</a>.
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="mb-0">Dynamic List Test Thingy</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="item-form">
+                            <div class="mb-3">
+                                <label for="itemInput" class="form-label">Enter an item</label>
+                                <input type="text" class="form-control" id="itemInput" placeholder="Type item's name" required>
+                            </div>
+                            <button id="btnSubmit" type="submit" class="btn btn-success">Add Item</button>
+                        </form>
+                        
+                        <div class="mt-4">
+                            <h4>Items List</h4>
+                            <ul id="itemsList" class="list-group">
+                                <!-- Items will be added here dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="mt-5">
+        <div>&copy; 2025 Provengo. All rights reserved. "Thanks!" to our friends at the <em>SQL Auto Eng IL</em> WhatsApp Group!</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="main.js"></script> 
+    <script>
+        document.addEventListener('DOMContentLoaded', setup );
+    </script>
+</body>
+</html>

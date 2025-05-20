@@ -1,0 +1,35 @@
+# For full config key list, please visit https://docs.provengo.tech/ProvengoCli/0.9.5/config-reference.html
+version: 2
+rest-api.ssl.validation: false # Don't check REST API server's ssl certificate. Works for most testing scenarios.
+analyze:
+    output:
+        format: gv  # other options: json, gv
+visualization:
+    order: visual    # other options: lexicographic
+    layout: horizontal # other options: horizontal, r-horizontal, r-vertical
+output:
+    offline: false   # use 'true' when the report is to be viewed offline
+sample:
+    overwrite: true  # use 'false' to append samples to sample files rather than deleting existing samples
+ensemble:
+    size: 5
+selenium:
+    browser: firefox     # other options: firefox, edge, safari
+    implicit-wait: 5000 # milliseconds
+report:
+    suite:
+        query: :last-5   # other options: :all, :last-N, N,M,O (where N,M,O are run ids)
+scenario.generator.metadata: addMetadata  # Name of scenario metadata function.
+
+# Profiles are a quick and efficient way of maintaining multiple configurations
+# See 
+profiles:
+    dev:
+        run:
+            dev-mode: true
+#   large-suite:
+#      size: 100    
+#   large-offline-suite:
+#       parent: large-suite
+#       output:
+#          offline: true
