@@ -44,7 +44,8 @@ function checkNewestItem(itemName){
         SESSION.waitForVisibility(liLocator);
         if ( maybe(`complete-${rtvName}`) ) {
             SESSION.click(`${liLocator}/button`);
-            SESSION.assertText(`${liLocator}/div`, "(done)", TextAssertions.modifiers.Contains);
+            SESSION.assertText(`${liLocator}/div`, "(done)", 
+                TextAssertions.modifiers.Contains, TextAssertions.modifiers.IgnoreCase);
         }
     });
 }

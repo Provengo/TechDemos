@@ -28,7 +28,7 @@ Provnego project for spec-ing and testing my system.
 
 ## Useful Commands
 
-⚠️ NOTE: In the below listings, we assume that `provengo` is in the system's PATH variable, and that `/Users/michael/Library/CloudStorage/OneDrive-ProvengoTechnologies/tutorials/Course/Phoenix/code/morning` is the path to this directory.
+⚠️ NOTE: In the below listings, we assume that `provengo` properly installed  [https://downloads.provengo.tech/](see here)  and that the terminal is at the project's directory.
 
 For full documentation go to [https://docs.provengo.tech](docs.provengo.tech).
 
@@ -36,14 +36,14 @@ For full documentation go to [https://docs.provengo.tech](docs.provengo.tech).
 
 Perform a single run through the specification. Good for "Sanity checks", i.e. to see examples of what can happen.
 
-    provengo run --dry /Users/michael/Library/CloudStorage/OneDrive-ProvengoTechnologies/tutorials/Course/Phoenix/code/morning
+    provengo run --dry 
 
 
 ### Visualize the Spec
 
 Draw the specification in a PDF file.
 
-    provengo analyze -f pdf /Users/michael/Library/CloudStorage/OneDrive-ProvengoTechnologies/tutorials/Course/Phoenix/code/morning
+    provengo analyze -f pdf 
 
 
 ⚠️ NOTE: This requires [Graphviz](http://graphviz.org) to be installed.
@@ -53,7 +53,7 @@ Draw the specification in a PDF file.
 
 Sample 10 scenarios into a file. The scenarios are stored in a file called `samples.json` (this can be changed using the `-o`/`--output-file` switch).
 
-    provengo sample --delete-previous --size 10 /Users/michael/Library/CloudStorage/OneDrive-ProvengoTechnologies/tutorials/Course/Phoenix/code/morning
+    provengo sample --delete-previous --size 10 
 
 
 ### Create an Optimized Test Suite
@@ -62,16 +62,16 @@ Generate a test suite of 5 tests that provides a good coverage of items in the [
 
 **Requires running `sample` first** (the previous command)**.**
 
-    provengo ensemble --size 5 /Users/michael/Library/CloudStorage/OneDrive-ProvengoTechnologies/tutorials/Course/Phoenix/code/morning
+    provengo ensemble --size 5 
 
 #### Visualize the Spec and the Suite
 
 Draw the specification, and highlight the traces in the optimized test suite create by the previous command.
 
-    provengo analyze -f pdf --highlight ensemble.json /Users/michael/Library/CloudStorage/OneDrive-ProvengoTechnologies/tutorials/Course/Phoenix/code/morning
+    provengo analyze -f pdf --highlight ensemble.json 
 
 ### Create Test Scripts for Third Party Systems
 
 Converts the runs in `ensemble.json` to automation test scripts.
 
-    provengo gen-scripts -s ensemble.json /Users/michael/Library/CloudStorage/OneDrive-ProvengoTechnologies/tutorials/Course/Phoenix/code/morning
+    provengo gen-scripts -s ensemble.json 
