@@ -30,7 +30,7 @@ Provnego project for spec-ing and testing my system.
 
 ⚠️ NOTE: In the below listings, we assume that `provengo` properly installed ([see here](https://downloads.provengo.tech/))  and that the terminal is at the project's directory.
 
-For full documentation go to [/docs.provengo.tech](https://docs.provengo.tech).
+For full documentation go to [docs.provengo.tech](https://docs.provengo.tech).
 
 ### Randomized Run 
 
