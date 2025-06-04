@@ -28,9 +28,9 @@ Provnego project for spec-ing and testing my system.
 
 ## Useful Commands
 
-⚠️ NOTE: In the below listings, we assume that `provengo` properly installed  [https://downloads.provengo.tech/](see here)  and that the terminal is at the project's directory.
+⚠️ NOTE: In the below listings, we assume that `provengo` properly installed ([see here](https://downloads.provengo.tech/))  and that the terminal is at the project's directory.
 
-For full documentation go to [https://docs.provengo.tech](docs.provengo.tech).
+For full documentation go to [/docs.provengo.tech](https://docs.provengo.tech).
 
 ### Randomized Run 
 
