@@ -11,6 +11,10 @@ function userLogin(){
 
 function dashboard(){
      session.waitForVisibility(COMPONENTS.dashboard,1000);
+     session.assertText(
+             COMPONENTS.dashboard, "hello, teddybear123!",
+             [TextAssertions.modifiers.IgnoreCase]
+         );
 }
 
 function chooseService(){
