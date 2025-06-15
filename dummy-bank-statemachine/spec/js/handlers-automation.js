@@ -107,7 +107,7 @@ function setTimeAndBranch(){
 }
 
 function setTime(){
-    session.assertUrl("*/setTime", TextAssertions.modifiers.Regex )
+    session.assertUrl(".*/setTime", TextAssertions.modifiers.Regex )
 
     let dayPart = select("day part").from(DAYPART);
     let hour = select("hour").from(DAYPART_2_TIME[dayPart]);
