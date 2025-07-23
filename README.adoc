@@ -85,6 +85,10 @@ TIP: Feel free to fork, improve, and alter the projects here, and send us a note
 | Using the https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_sn_runcodecode[`run-code`] command. The demo tests a data table, and validates that summary calculations are correct.
 | web automation, Selenium
 
+| link:runbook-svc[]
+| Using the https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/EventCategory.html[Event Category] library. A demo for a runbook for creating a service account. 
+| event category, runbook
+
 | link:runtime-values[]
 | Using the https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/runtimevars.html[Runtime Variables] library for performing sample-use scenarios and for reducing model size.
 | runtime variables, web automation, Selenium
