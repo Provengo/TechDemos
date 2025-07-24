@@ -2,5 +2,9 @@ version: 2
 sample:
   overwrite: true
   size: 200
-selenium.server: http://127.0.0.1:4444/wd/hub
+#selenium.server: http://127.0.0.1:4444/wd/hub
 analyze.output.format: pdf
+profiles:
+  hadas:
+    run:
+      source: products/run-source/samples.json
