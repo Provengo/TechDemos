@@ -15,7 +15,7 @@ const Manual = (function(){
 
     const LIBRARY_SIG = "Manual";
 
-    const ALL_EVENTS = bp.EventSet("ManualEvents", function(e){
+    const ALL_EVENTS = EventSet("ManualEvents", function(e){
         if ( ! e ) return false;
         if ( isEvent(e) ) {
             let d = e.data;
@@ -30,7 +30,7 @@ const Manual = (function(){
         if ( details ) {
             data.details = details;
         }
-        return bp.Event("Validate: "+msg, data);
+        return Event("Validate: "+msg, data);
     }
     
     function makeAction(session, msg, details){
@@ -38,7 +38,7 @@ const Manual = (function(){
         if ( details ) {
             data.details = details;
         }
-        return bp.Event("Do: "+msg, data);
+        return Event("Do: "+msg, data);
     }
     
     function validate(session, msg, details){
@@ -55,7 +55,7 @@ const Manual = (function(){
             doValidate: function(m,d){ return  validate(name, m,d); },
             actionEvent:  function(m,d){ return makeAction(name, m,d); },
             validationEvent:  function(m,d){ return makeValidation(name, m,d); },
-            anyEvent: bp.EventSet(name+": AnyEvent", function(e){
+            anyEvent: EventSet(name+": AnyEvent", function(e){
                 if ( ! e ) return false;
                 if ( ! (typeof e.data !== "object") ) return false;
                 return (e.data.lib === LIBRARY_SIG  && e.data.session===name);

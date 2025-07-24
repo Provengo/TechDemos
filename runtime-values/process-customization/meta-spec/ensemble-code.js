@@ -4,11 +4,16 @@
  * List of events "of interest" that we want test suites to cover.
  */
 const GOALS = [
-    choiceEvent(PEOPLE[0]),
-    choiceEvent(PEOPLE[2]),
-    any(/alice/)
+    any(/Howdy/),
+    any(/Mars/),
+    Ctrl.markEvent("Classic!")
 ];
 
+const makeGoals = function(){
+    return [ [ any(/Howdy/), any(/Venus/) ],
+             [ any(/Mars/) ],
+             [ Ctrl.markEvent("Classic!") ] ];
+}
 
 /**
  * Ranks test suites by how many events from the GOALS array were met.
@@ -42,13 +47,16 @@ function rankByMetGoals( ensemble ) {
 }
 
 /**
- * Main entry point for ranking test suites (ensembles). Gets a test suite (technically, an array of arrays of Events)
- * and returns a number ranking that suite. The higher the number, the better the suite.
+ * Ranks potential test suites based on the percentage of goals they cover.
+ * Goal events are defined in the GOALS array above. An ensemble with rank
+ * 100 covers all the goal events.
  *
- * Implementation-wise, this delegates the work to one of the above ranking functions, and then weigh their results.
+ * Multiple ranking functions are supported - to change ranking function,
+ * use the `ensemble.ranking-function` configuration key, or the 
+ * --ranking-function <functionName> command-line parameter.
  *
  * @param {Event[][]} ensemble the test suite/ensemble to be ranked
- * @returns the rank of the ensemble.
+ * @returns the percentage of goals covered by `ensemble`.
  */
  function rankingFunction(ensemble) {
     

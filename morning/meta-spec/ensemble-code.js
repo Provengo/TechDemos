@@ -92,7 +92,7 @@ function shirtLater(ensemble) {
 }
 
 /**
- * Main entry point for ranking test suites (ensembles). Gets a test suite (technically, an array of arrays of bp.Events)
+ * Main entry point for ranking test suites (ensembles). Gets a test suite (technically, an array of arrays of Events)
  * and returns a number ranking that suite. The higher the number, the better the suite.
  *
  * Implementation-wise, this delegates the work to one of the above ranking functions, and then weigh their results.

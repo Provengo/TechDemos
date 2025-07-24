@@ -6,5 +6,7 @@ Using runtime variables allows for (among other things) sampling data to be used
 
 link:mutation-testing[]::
     A sample search engine test, using the Mutation Testing technique, which involves sampling data during test runtime.
+link:process-customization[]::
+    An example of process customization according to specific customer traits, using a combination of runtime values and `bp.store`.
 link:state-space-reduction[]::
     Reduce model space by using runtime variables rather than JavaScript variables.

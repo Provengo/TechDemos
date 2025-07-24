@@ -1,56 +1,56 @@
 // @provengo summon constraints
 
 bthread("eeny-meeny", function(){
-    request(bp.Event("Eeny"));
-    request(bp.Event("Meeny"));
-    request(bp.Event("Miny"));
-    request(bp.Event("Moe"));
+    request(Event("Eeny"));
+    request(Event("Meeny"));
+    request(Event("Miny"));
+    request(Event("Moe"));
 });
 
-// Norwegian version 
-// see https://en.wikipedia.org/wiki/Akka_bakka_bonka_rakka
+// // Norwegian version 
+// // see https://en.wikipedia.org/wiki/Akka_bakka_bonka_rakka
 bthread("akka-bakka", function(){
-    request(bp.Event("Akka"));
-    request(bp.Event("Bakka"));
-    request(bp.Event("Banka"));
-    request(bp.Event("Ranka"));
+    request(Event("Akka"));
+    request(Event("Bakka"));
+    request(Event("Banka"));
+    request(Event("Ranka"));
 });
 
-// bthread("door for Norway", function(){
-//     waitFor( choiceEvent("useDoor") );
-//     sync({
-//         block: bp.Event("Eeny"),
-//         waitFor: bp.Event("Bakka")
-//     });
-// });
+bthread("door for Norway", function(){
+    // waitFor( choiceEvent("useDoor") );
+    sync({
+        block: Event("Eeny"),
+        waitFor: Event("Bakka")
+    });
+});
 
 // bthread("English first", function(){
 //     sync({
-//         waitFor: bp.Event("Miny"),
-//         block: bp.Event("Banka")
+//         waitFor: Event("Miny"),
+//         block: Event("Banka")
 //     });
 // });
 
 // bthread("EMMM after bakka", function(){
 //   sync({
-//       waitFor:bp.Event("Bakka"),
-//         block:bp.Event("Eeny")
+//       waitFor:Event("Bakka"),
+//         block:Event("Eeny")
 //   });
 // });
 
-// bthread("pop after bakka", function ()  {
-//     waitFor(bp.Event("Bakka"));
-//     request(bp.Event("Pop!"));
-// });
+bthread("pop after bakka", function ()  {
+    waitFor(Event("Bakka"));
+    request(Event("Pop!"));
+});
 
 
-// Constraints.after(bp.Event("Banka"))
-//            .require(bp.Event("Moe"))
+// Constraints.after(Event("Banka"))
+//            .require(Event("Moe"))
 //            .eventually();
 
 // bthread("splitter!", function(){
 //     const history = [];
-//     const allEvents = bp.EventSet("*",e=>true);
+//     const allEvents = EventSet("*",e=>true);
 //     while ( true ) {
 //         let e = waitFor(allEvents);
 //         history.push(e);

@@ -7,7 +7,7 @@ const Manual = (function(){
         if ( details ) {
             data.details = details;
         }
-        return bp.Event("[Validate] "+msg, data);
+        return Event("[Validate] "+msg, data);
     }
     
     function makeAction(session, msg, details){
@@ -15,7 +15,7 @@ const Manual = (function(){
         if ( details ) {
             data.details = details;
         }
-        return bp.Event("[Do] "+msg, data);
+        return Event("[Do] "+msg, data);
     }
     
     function validate(session, msg, details){
@@ -28,9 +28,9 @@ const Manual = (function(){
 
     function makeSession(name) {
         return {
-            act: function(m,d){ return  act(name, m,d); },
-            validate: function(m,d){ return  validate(name, m,d); },
-            Action:  function(m,d){ return makeAction(name, m,d); },
+            act:         function(m,d){ return  act(name, m,d); },
+            validate:    function(m,d){ return  validate(name, m,d); },
+            Action:      function(m,d){ return makeAction(name, m,d); },
             Validation:  function(m,d){ return makeValidation(name, m,d); }
         }
     }

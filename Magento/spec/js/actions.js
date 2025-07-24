@@ -20,7 +20,7 @@ defineAction = function (name, func) {
 
     // Define an event filter for start events in a session
     const AnyStartInSession = function (s) {
-        return bp.EventSet("AnyStartInSession-" + s, function (e) {
+        return EventSet("AnyStartInSession-" + s, function (e) {
             return e.data !== null && e.data.hasOwnProperty('startEvent') && e.data.startEvent && String(s).equals(e.data.session.name);
         });
     };
@@ -31,7 +31,7 @@ defineAction = function (name, func) {
         data = Object.assign({ session: this, startEvent: true }, data);
 
         // Request a start event
-        sync({ request: bp.Event(`Start(${name})`, data) });
+        request(Event(`Start(${name})`, data));
 
         // Block any other start events in the session while the function is executing
         block(AnyStartInSession(this.name), function () {
@@ -39,7 +39,7 @@ defineAction = function (name, func) {
         });
 
         // Request an end event
-        sync({ request: bp.Event(`End(${name})`, data) });
+        request(Event(`End(${name})`, data));
     };
 }
 

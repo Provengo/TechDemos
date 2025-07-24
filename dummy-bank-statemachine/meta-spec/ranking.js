@@ -16,7 +16,7 @@
  * List of events "of interest" that we want test suites to cover.
  */
 const GOALS = [
-    bp.EventSet(`switchTabEvent`, function (e) { return e.lib == Selenium && type == "SwitchTab"})
+    EventSet(`switchTabEvent`, function (e) { return e.lib == Selenium && type == "SwitchTab"})
 ];
 
 /**
@@ -70,7 +70,7 @@ function rankByMetGoals( ensemble ) {
 }
 
 /**
- * Main entry point for ranking test suites (ensembles). Gets a test suite (technically, an array of arrays of bp.Events)
+ * Main entry point for ranking test suites (ensembles). Gets a test suite (technically, an array of arrays of Events)
  * and returns a number ranking that suite. The higher the number, the better the suite.
  *
  * Implementation-wise, this delegates the work to one of the above ranking functions.

@@ -14,7 +14,7 @@ bthread("Good Morning", function(){
             request(Actions.wakeUp());
             requestOne(
                 Actions.backToSleep(),
-                bp.Event("coffee break")
+                Event("coffee break")
             );
         }
     }
@@ -23,8 +23,8 @@ bthread("Good Morning", function(){
     request(Actions.tidyUp());
     request(Actions.goOut());
     while( true ) {
-        request(bp.Event("work"));
-        request(bp.Event("coffee break"));
+        request(Event("work"));
+        request(Event("coffee break"));
     }
 });
 

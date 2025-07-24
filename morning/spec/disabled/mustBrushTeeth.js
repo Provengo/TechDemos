@@ -1,6 +1,6 @@
-bthread("must brush", function(){
+bthread("must brush teeth before going out", function(){
     interrupt( Actions.brushTeeth(), function(){
         waitFor( Actions.goOut() );
-        bp.ASSERT(false,"Can't leave house without brushing teeth!");
+        halt("Can't leave house without brushing teeth!");
     })
 });

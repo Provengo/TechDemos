@@ -35,12 +35,12 @@ bthread("Contact details router", function(){
 });
 
 // Event set containing all excluded topics.
-const excludedTopicsEventSet = bp.EventSet("excludedTopics", function(e){
+const excludedTopicsEventSet = EventSet("excludedTopics", function(e){
     return claimTopic.anySetEvent.contains(e) &&
     ( excludedTopics.indexOf(e.data.value) > -1 );
 });
 // Event set containing all covered topics.
-const coveredTopicsEventSet = bp.EventSet("coveredTopics", function(e){
+const coveredTopicsEventSet = EventSet("coveredTopics", function(e){
     return claimTopic.anySetEvent.contains(e) &&
     ( coveredTopics.indexOf(e.data.value) > -1 );
 });

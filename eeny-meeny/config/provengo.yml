@@ -1,1 +1,12 @@
-version: 1
+version: 2
+visualization:
+  layout: horizontal
+  order: visual
+analyze:
+    output:
+        format: gv  # other options: json, gv
+profiles:
+  pdf-export:
+    analyze:
+      output:
+          format: pdf  # other options: json, gv
