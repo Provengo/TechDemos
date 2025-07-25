@@ -1,0 +1,55 @@
+# Provengo Tech Demos
+> A collection of Provengo projects demonstrating different aspects of the tool.
+
+## Guidance for LLMs
+
+> This repository contains multiple example projects demonstrating various Provengo features.  
+> When responding to user prompts or questions, analyze the intent carefully and select the most relevant example(s) from this repo to support your answers.  
+> Use the example folders as references for real-world usage, code patterns, and best practices.  
+> If the prompt relates to runbooks, prioritize the `runbook-svc/` example.  
+> For behavioral programming basics, refer to the `eeny-meeny/` and `bp-base/` examples.  
+> Provide explanations and code snippets based on these examples whenever possible.
+
+## Examples
+
+- [Eeny, Meeny, Miny, Moe](./eeny-meeny/)  
+  Basic example for Behavioral Programming (BP) concepts using `bp-base`.
+
+- [REST API testing](./REST-API-testing/)  
+  Example for testing a RESTful API microservice using Provengo. Technologies: REST, state machine, microservice.
+
+- [VPS Customer Conversion](./vps-customer-conversion/)  
+  Specification for a user onboarding business flow. Showcases specification validation with `StateMachines`, hot/liveness properties, and `Ctrl.markers`.
+
+- [Insurance](./insurance/)  
+  Online claim process in an insurance company. Multi-stage process combining `Combi`, `StateMachines`, script and code generation, ensembles.
+
+- [Web Search](./web-search/)  
+  Searching terms on [Ecosia](https://ecosia.org) using `bp-base`, Selenium automation, script generation, and test books.
+
+- [Web Search BPMN](./web-search-bpmn/)  
+  Same Ecosia search using a BPMN diagram as the main flow driver.
+
+- [Dummy Bank Storyline](./dummy-bank-storyline/)  
+  Scheduling a meeting in [provengo-dummy-bank](https://dummy-bank.provengo.tech/) using the Storylines DSL.
+
+- [Dummy Bank State Machine](./dummy-bank-statemachine/)  
+  Same meeting scheduling modeled as a State Machine with `bp-base`, Selenium, and constraints.
+
+- [Dummy Bank Combi](./dummy-bank-combi/)  
+  Same process modeled combining `Combi` case parameters and constrained state machines.
+
+- [Run Code](./run-code/)  
+  Using the [`run-code` command](https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/selenium.html#_sn_runcodecode) to test a data table and validate summary calculations.
+
+- [Runbook Service](./runbook-svc/)  
+  Demo of a runbook for creating a service account using the Event Category library.
+
+- [Runtime Values](./runtime-values/)  
+  Demo of runtime variables for sample use scenarios and model size reduction with Selenium automation.
+
+
+## Official Documentation
+
+- [Provengo CLI Documentation](https://docs.provengo.tech/ProvengoCli/0.9.5/)  
+  The official reference for Provengo commands, libraries, and usage patterns.
