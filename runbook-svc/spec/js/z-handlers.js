@@ -1,29 +1,42 @@
-const automicActions = {
-  "upsert": {
+/** This is the object that we use to connect a Provengo action to its corresponding Automic action.
+ * It uses the objectName and objectType to identify the Automic action.
+ */
+const AUTOMIC_ACTIONS = {
+  upsert: {
     objectName: "UPSERT_USER",
     objectType: "JOBP",
   },
-  "generate password": {
-    objectName: "GENERATE_PASSWORD",
+  "generate user": {
+    objectName: "GENERATE_USER",
     objectType: "JOBP",
   },
-  "send pass": {
-    objectName: "SEND_PASSWORD",
+  "send email": {
+    objectName: "SEND_EMAIL",
     objectType: "JOBP",
   },
-  "iis": {
+  iis: {
     objectName: "IIS",
     objectType: "JOBP",
   },
-  "linux": {
+  linux: {
     objectName: "LINUX",
     objectType: "JOBP",
   },
 };
 
-//handlers 
-actionsSVC.refine("Upsert Project OU").with(upsertOU);
-actionsSVC.refine("Generate User").with(generatePass);
-actionsSVC.refine("Send Password").with(sendPass);
-actionsSVC.refine("Run Linux Command").with(handleLinux);
-actionsSVC.refine("Run IIS Command").with(handleIis);
+//handlers
+actionsSVC.refine("Upsert Project OU").with(function () {
+  withAutomic(AUTOMIC_ACTIONS["upsert"].objectName);
+});
+actionsSVC.refine("Generate User").with(function () {
+  withAutomic(AUTOMIC_ACTIONS["generate user"].objectName);
+});
+actionsSVC.refine("Send Email").with(function () {
+  withAutomic(AUTOMIC_ACTIONS["send email"].objectName);
+});
+actionsSVC.refine("Run Linux Command").with(function () {
+  withAutomic(AUTOMIC_ACTIONS["linux"].objectName);
+});
+actionsSVC.refine("Run IIS Command").with(function () {
+  withAutomic(AUTOMIC_ACTIONS["iis"].objectName);
+});

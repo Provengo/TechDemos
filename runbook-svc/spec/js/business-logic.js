@@ -2,13 +2,14 @@
 /* @provengo summon rtv */
 
 
+// Using the EventCategory library to define the actions available in the service account creation process.
 const actionsSVC = EventCategory.create("Actions", {
   names: [
     "Handle IIS",
     "Handle Linux",
     "Upsert Project OU",
     "Generate User",
-    "Send Password",
+    "Send Email",
     "Run Linux Command",
     "Run IIS Command",
     "Send Keytab",
@@ -16,16 +17,25 @@ const actionsSVC = EventCategory.create("Actions", {
   color: "#FF6F61",
 });
 
-function generatePassword() {
-  var length = 8,
-    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-    retVal = "";
-  for (var i = 0, n = charset.length; i < length; ++i) {
-    retVal += charset.charAt(Math.floor(Math.random() * n));
+// if ( LogicLayer.requestData()?.parameters?.value?.serverType ) {
+//   bp.log.info("Checking server type.");
+
+//   if (LogicLayer.requestData().parameters.value.serverType === "linux") {
+//     Constraints.block(selectEvent("serverType","iis") ).forever()
+// } else {
+//   Constraints.block(selectEvent("serverType","linux") ).forever()
+//   }
+// }
+if ( LogicLayer.requestData()?.parameters?.value?.isKerberos ) {
+  bp.log.info("Checking need for Kerberos authentication.");
+  if (LogicLayer.requestData().parameters.value.isKerberos === true) {
+    Constraints.block(maybeEvent("isKerberos").no ).forever()
+  } else {
+    Constraints.block(maybeEvent("isKerberos").yes ).forever()
   }
-  return retVal;
 }
 
+// main bthread of this project.
 bthread("SVC", function () {
   if (LogicLayer.requestData()) {
     bp.log.info("Request data: {0}", LogicLayer.requestData());
@@ -34,9 +44,7 @@ bthread("SVC", function () {
   }
   actionsSVC.doUpsertProjectOu();
   actionsSVC.doGenerateUser();
-  rtv.doStore("password",generatePassword());
-  let p = "@{password}";
-  actionsSVC.doSendPassword(p);
+  actionsSVC.doSendEmail("Password generated successfully.");
 
   if(maybe("isKerberos")){
     let type= select("serverType").from("linux","iis");
@@ -59,3 +67,6 @@ if (LogicLayer.isInServer()) {
     request(Event("EXTERNAL", { num: 1 }));
   });
 }
+
+
+/// add like the example on svc with the maybeEvent- on the Question isKerberos?
