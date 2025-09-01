@@ -27,9 +27,7 @@ profiles:
     dev:
         run:
             dev-mode: true
-#   large-suite:
-#      size: 100    
-#   large-offline-suite:
-#       parent: large-suite
-#       output:
-#          offline: true
+    wdm:
+        selenium:  
+            driver-manager: WebDriverManager
+            

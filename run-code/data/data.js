@@ -3,7 +3,7 @@
  */
 
 /** Public site, this is probably the URL you initially want. */
-const URL = "https://content.provengo.tech/SUT-run-code.html";
+const URL = "https://content.provengo.tech/test-targets/run-code.html";
 
 /** Use for local testing, if you change the SUT page. */
 // const URL = "http://localhost:8080";

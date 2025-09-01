@@ -2,8 +2,11 @@ version: 2
 sample:
   overwrite: true
   size: 200
-#selenium.server: http://127.0.0.1:4444/wd/hub
+visualization:
+  order: visual
 analyze.output.format: pdf
+ensemble:
+  size: 10
 profiles:
   hadas:
     run:

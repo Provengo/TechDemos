@@ -11,6 +11,9 @@ const next = Event("(-)");
  */
 bthread("main flow",function() {
     session.start(URL);
+    if ( maybe("small screen?") ) {
+        session.setWindowSize("400x850");
+    }
     if ( maybe("Check cell validity") ){
         request(next);
     }

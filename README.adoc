@@ -77,6 +77,10 @@ TIP: Feel free to fork, improve, and alter the projects here, and send us a note
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Same process as above, modeled as a State Machine.
 | `StateMachines`, `bp-base`, selenium-based actuations, `Constraints`
 
+| link:survey-bot[]
+| A model-building demo, which focuses on modularity. A little survey robot travels between foru stations. Various requirement modifications change how the robot behaves.
+| `EventCategory`, modularity, `gen-script`
+
 | link:dummy-bank-combi[]
 | Basic demo for scheduling a meeting in https://dummy-bank.provengo.tech/[provengo-dummy-bank]. Same process as above, this time modeled with a combination of Combi-based case parameters, and a state machine that is constrained by them.
 | `Combi` `StateMachines`, `bp-base`, selenium-based actuations, `Constraints`
