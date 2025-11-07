@@ -78,7 +78,7 @@ TIP: Feel free to fork, improve, and alter the projects here, and send us a note
 | `StateMachines`, `bp-base`, selenium-based actuations, `Constraints`
 
 | link:survey-bot[]
-| A model-building demo, which focuses on modularity. A little survey robot travels between foru stations. Various requirement modifications change how the robot behaves.
+| A model-building demo, which focuses on modularity. A little survey robot travels between four stations. Various requirement modifications change how the robot behaves.
 | `EventCategory`, modularity, `gen-script`
 
 | link:dummy-bank-combi[]
