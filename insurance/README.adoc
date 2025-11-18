@@ -9,9 +9,9 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-# Insurance
+# Insurance (combi+state machine)
 
-This (somewhat advanced) example specifies and tests processing of an online insurance claim. The specification starts with setting the case properties (using Provengo's https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[Combi library]), and then continues with a state machine describing testable user behavior based on the properties. 
+This (somewhat advanced) example specifies and tests processing of an online insurance claim. The specification starts with setting the case properties (using Provengo's https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/combi.html[Combi library]), and then continues with a state machine describing testable user behavior based on the properties. 
 
 Automation layers are provided for both manual and Python-based testing.
 
@@ -36,7 +36,7 @@ link:meta-spec/z-ranking.js[z-ranking.js]::
 
 ## Things to try
 
-IMPORTANT: These assume that you have provengo installed on your system. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[the install page on our documentation site] if not.
+IMPORTANT: These assume that you have provengo installed on your system. See https://docs.provengo.tech/main/site/ProvengoCli/0.9.5/installation.html[the install page on our documentation site] if that is not yet the case.
 
 Run the code and see the events on the console.
 

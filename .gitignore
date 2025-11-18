@@ -7,3 +7,5 @@ node_modules/
 .metals
 products/
 desktop.ini
+locator_history.json
+.swp

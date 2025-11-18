@@ -1,0 +1,22 @@
+= Insurance Test Case
+
+This project models insurance claims and their expected results. Test cases are generated as `.json` or TDD `.feature` files. This model uses the https://docs.provengo.tech/ProvengoCli/0.9.5/libraries/combi.html[combi library] to create test case parameters while avoiding illogical parameter combinations. 
+
+Expected results are specified by ``waitFor``-ing combi events, and ``block``ing possible results as they become invalid.
+
+Test case generation format is done by selecting the appropriate profile, with the default profile generating `.feature` files, and the `json-output` profile generating `.json` files.
+
+== Files of Interest
+
+link:spec/js/case-params.js[]::
+    Test case parameters and their inter-connections.
+link:spec/js/routing.js[]::
+    Specifying the expected result.
+link:meta-spec/script-writer.js[]::
+    Creation of the test case files, both `.json` and `.feature`.
+link:meta-spec/ensemble-code.js[]::
+    Specifying coverage goals.
+link:test-suite.pdf[]::
+    Visualization of the scenario space, highlighting an optimized test suite of 5 tests that cover all goals defined in link:meta-spec/ensemble-code.js[].
+
+

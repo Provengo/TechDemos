@@ -61,6 +61,10 @@ TIP: Feel free to fork, improve, and alter the projects here, and send us a note
 | Online claim process in an insurance company. A multi-stage process, composed of deciding case properties, and constraining a state machine based on these properties.
 | `Combi`, `StateMachines`, script generation, code generation, ensembles
 
+| link:insurance-params-only[]
+| Online claim for an insurance company. This model covers claim background and parameters, and specifies an expected result based on the parameters. Test cases are exported to TDD `.feature` files, or to custom ``.json``s.
+| `Combi`, script generation, ensembles
+
 | link:web-search[]
 | Searching terms in https://ecosia.org[Ecosia search engine].
 | bp-base, selenium-based direct actuations, script generation, test books
@@ -100,4 +104,4 @@ TIP: Feel free to fork, improve, and alter the projects here, and send us a note
 |===
 
 [.text-center]
-image::https://downloads.provengo.tech/logo.png[Provengo, 50, link=https://provengo.tech]
+image::https://content.provengo.tech/logo.png[Provengo, 50, link=https://provengo.ai]
