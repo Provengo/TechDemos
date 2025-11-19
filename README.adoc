@@ -13,7 +13,7 @@ endif::[]
 
 
 [.text-center]
-image::https://downloads.provengo.tech/logo.png[Provengo, 50, link=https://provengo.tech]
+image::https://content.provengo.tech/logo.png[Provengo, 50, link=https://provengo.tech]
 
 This repo has a collection of https://provengo.tech[Provengo] projects, demonstrating different aspects of our unique tool.
 
